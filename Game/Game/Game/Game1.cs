@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using DigitalRune.Game.States;
+using DigitalRune.Game;
+using Game.Screens;
 
 namespace Game
 {
@@ -16,8 +19,30 @@ namespace Game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+
+        private SpriteBatch spriteBatch;
+        public SpriteBatch SpriteBatch
+        {
+            get { return spriteBatch; }
+            set { spriteBatch = value; }
+        }
+
+        private StateMachine screenManager;
+        public StateMachine ScreenManager
+        {
+            get { return screenManager; }
+            set { screenManager = value; }
+        }
+
+        private GameObjectManager objectManager;
+        public GameObjectManager ObjectManager
+        {
+            get { return objectManager; }
+            set { objectManager = value; }
+        }
+
+        private MenuScreen menuScreen;
 
         public Game1()
         {
@@ -33,7 +58,12 @@ namespace Game
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            screenManager = new StateMachine();
+            menuScreen = new MenuScreen();
+
+            screenManager.States.Add(menuScreen);
+
+            screenManager.States.InitialState = menuScreen;
 
             base.Initialize();
         }
@@ -71,6 +101,7 @@ namespace Game
                 this.Exit();
 
             // TODO: Add your update logic here
+            screenManager.Update(gameTime.ElapsedGameTime);
 
             base.Update(gameTime);
         }
