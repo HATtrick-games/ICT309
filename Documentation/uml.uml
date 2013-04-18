@@ -270,10 +270,10 @@
 <XPD:OBJ name="OwnedViews[7]" type="UMLClassView" guid="l3I9/jSpM0ynIkmS5rxdrAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Left" type="integer">548</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">276</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">544</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">352</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">161</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">121</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">95</XPD:ATTR>
 <XPD:REF name="Model">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="i3eAGDveVkGnDufkx5aA0wAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="n51i7QHkTEed8bCpPHo8dgAA">
@@ -358,7 +358,7 @@
 <XPD:OBJ name="OwnedViews[10]" type="UMLGeneralizationView" guid="Qgl9d13+yEOgxydxkjbbJQAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">616,276;607,229</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">618,352;604,229</XPD:ATTR>
 <XPD:REF name="Model">qMGi/HCDt064A/XmbJrPpAAA</XPD:REF>
 <XPD:REF name="Head">fZEWtiWY7kibjLJV8CF9GAAA</XPD:REF>
 <XPD:REF name="Tail">l3I9/jSpM0ynIkmS5rxdrAAA</XPD:REF>
@@ -623,34 +623,31 @@
 <XPD:REF name="Views[3]">S46eEydiYEmmkyR13LLFaQAA</XPD:REF>
 <XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
 <XPD:REF name="Generalizations[0]">qMGi/HCDt064A/XmbJrPpAAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">6</XPD:ATTR>
-<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="umHpdmcnGk2WwNiHw8blpgAA">
-<XPD:ATTR name="Name" type="string">OnEnter</XPD:ATTR>
-<XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="idSa5SXruk2C9WslNURrggAA">
-<XPD:ATTR name="Name" type="string">OnExit</XPD:ATTR>
-<XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="ND7N+G4I50KqgSzZDiXnFwAA">
-<XPD:ATTR name="Name" type="string">OnUpdate</XPD:ATTR>
-<XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="kvDUSPw9XUCIDJhfRegHRwAA">
+<XPD:ATTR name="#Operations" type="integer">4</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="kvDUSPw9XUCIDJhfRegHRwAA">
 <XPD:ATTR name="Name" type="string">LoadResources</XPD:ATTR>
 <XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[4]" type="UMLOperation" guid="/uYnZaN39kCy09tVxjrnWQAA">
+<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="/uYnZaN39kCy09tVxjrnWQAA">
 <XPD:ATTR name="Name" type="string">UnloadResources</XPD:ATTR>
 <XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="f7NtreYWFk+xitc1P/SqFwAA">
+<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="f7NtreYWFk+xitc1P/SqFwAA">
 <XPD:ATTR name="Name" type="string">Update</XPD:ATTR>
 <XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="9f0R5GSEckm2R3a5wX1AVQAA">
-<XPD:ATTR name="Name" type="string">GameTime gameTime</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="v/dNYDnDWkKSe7MrpEf8WAAA">
+<XPD:ATTR name="Name" type="string">TimeSpan gameTime</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">f7NtreYWFk+xitc1P/SqFwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="6oyIynk2lUmczYoe/vzqFgAA">
+<XPD:ATTR name="Name" type="string">Draw</XPD:ATTR>
+<XPD:REF name="Owner">Q83gRQ7JB0KMT+2Gx8TfdQAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="A9m/jWlHP0Sf6PGCekVz3QAA">
+<XPD:ATTR name="Name" type="string">TimeSpan gameTime</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">6oyIynk2lUmczYoe/vzqFgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>

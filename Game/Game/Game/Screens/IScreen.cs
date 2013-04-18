@@ -5,7 +5,7 @@ using System.Text;
 using DigitalRune.Game.States;
 using Microsoft.Xna.Framework;
 
-namespace Game.Screens
+namespace ICT309Game.Screens
 {
     class IScreen : State
     {
@@ -27,6 +27,7 @@ namespace Game.Screens
         protected override void OnUpdate(StateEventArgs eventArgs)
         {
             Update(eventArgs.DeltaTime);
+            Draw(eventArgs.DeltaTime);
 
             base.OnUpdate(eventArgs);
         }

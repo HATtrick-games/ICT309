@@ -1,7 +1,7 @@
 using System;
 using DigitalRune;
 
-namespace Game
+namespace ICT309Game
 {
 #if WINDOWS || XBOX
     static class Program
@@ -14,7 +14,7 @@ namespace Game
             // Necessary for using the functions available in the DigitalRune engine.
             DigitalRune.Licensing.AddSerialNumber("tgCcAcuJg2I1Hs4BYfH2YgY9zwEiACNUaW1vdGh5IFZlbGV0dGEjMSMzI05vbkNvbW1lcmNpYWxAg7LDkM1RVAQDAfwPTE1CWShg8ydjAzN820/FDwY81X7iRsmnEZIi9Zr3Fz46IC9N7KhUL6OSReHCzBLn");
 
-            using (Game1 game = new Game1())
+            using (GameManager game = new GameManager())
             {
                 game.Run();
             }
