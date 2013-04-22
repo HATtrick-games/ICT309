@@ -13,6 +13,7 @@ using DigitalRune.Game;
 using DigitalRune.Game.Input;
 using ICT309Game.Screens;
 using DigitalRune.Game.UI;
+using DigitalRune.Graphics;
 
 namespace ICT309Game
 {
@@ -22,6 +23,13 @@ namespace ICT309Game
     public class GameManager : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
+
+        private GraphicsManager _graphicsManager;
+        public GraphicsManager _GraphicsManager
+        {
+            get { return _graphicsManager; }
+            set { _graphicsManager = value; }
+        }
 
         private StateMachine _screenManager;
         public StateMachine _ScreenManager
@@ -79,6 +87,9 @@ namespace ICT309Game
             _uiManager = new UIManager(this, _inputManager);
             Services.AddService(typeof(IUIService), _uiManager);
 
+            _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);
+            Services.AddService(typeof(IGraphicsService), _graphicsManager);
+
             Services.AddService(typeof(ContentManager), Content);
 
             // Game States
@@ -118,6 +129,8 @@ namespace ICT309Game
         {
             var deltaTime = gameTime.ElapsedGameTime;
 
+            _graphicsManager.Update(deltaTime);
+            _graphicsManager.Render(false);
             _inputManager.Update(deltaTime);
             _screenManager.Update(deltaTime);
             _uiManager.Update(deltaTime);

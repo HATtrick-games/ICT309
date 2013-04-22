@@ -8,7 +8,7 @@
   <Textures>
     <!-- The styles below don't use any images. The UITexture is just a 1 x 1 pixels, 
          white dummy texture. -->
-    <Texture Name="UITexture" File="UITexture.png"/>
+    <Texture Name="UITexture" File="checkerboard.jpg"/>
   </Textures>
 
   <Styles>
