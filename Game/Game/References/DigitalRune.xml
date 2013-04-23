@@ -2663,10 +2663,10 @@
       <summary>
             Gets the <see cref="T:DigitalRune.Diagnostics.ProfilerDataCollection" /> for the specified thread.
             </summary>
-      <param name="managedThreadId">
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;param name="managedThreadId"/&gt; documentation for "M:DigitalRune.Diagnostics.Profiler.Get(System.Int32)"]</p>
-      </param>
-      <returns>The <see cref="T:DigitalRune.Diagnostics.ProfilerDataCollection" /> for the specified thread.</returns>
+      <param name="managedThreadId">The thread ID.</param>
+      <returns>
+            The <see cref="T:DigitalRune.Diagnostics.ProfilerDataCollection" /> for the specified thread.
+            </returns>
     </member>
     <member name="M:DigitalRune.Diagnostics.Profiler.Get(System.String)">
       <summary>

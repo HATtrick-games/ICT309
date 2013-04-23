@@ -51,8 +51,8 @@ namespace ICT309Game.Screens.Components
 
             _cameraNode = new CameraNode(new Camera(projection));
 
-            _position = new Vector3F(0, 80.0f, 5f);
-            _yaw = 0.0f;
+            _position = new Vector3F(50f, 120.0f, 50f);
+            _yaw = MathHelper.ToRadians(45.0f);
         }
 
         public void Update(TimeSpan deltaTime)

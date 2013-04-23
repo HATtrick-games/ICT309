@@ -59,6 +59,13 @@ namespace ICT309Game
             set { _uiManager = value; }
         }
 
+        private GameObjectManager _gameObjectManager;
+        public GameObjectManager _GameObjectManager
+        {
+            get { return _gameObjectManager; }
+            set { _gameObjectManager = value; }
+        }
+
         private MenuScreen menuScreen;
         private GameScreen gameScreen;
 
@@ -89,6 +96,9 @@ namespace ICT309Game
 
             _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);
             Services.AddService(typeof(IGraphicsService), _graphicsManager);
+
+            _gameObjectManager = new GameObjectManager();
+            Services.AddService(typeof(IGameObjectService), _gameObjectManager);
 
             Services.AddService(typeof(ContentManager), Content);
 
@@ -134,6 +144,7 @@ namespace ICT309Game
             _inputManager.Update(deltaTime);
             _screenManager.Update(deltaTime);
             _uiManager.Update(deltaTime);
+            _gameObjectManager.Update(deltaTime);
 
             base.Update(gameTime);
         }

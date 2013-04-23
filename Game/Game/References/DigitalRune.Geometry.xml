@@ -957,6 +957,13 @@
         <see langword="true" /> if the poses are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Geometry.Pose.op_Implicit(DigitalRune.Geometry.Pose)~DigitalRune.Mathematics.Algebra.Matrix44F">
+      <summary>
+            Converts a pose to a 4x4 transformation matrix.
+            </summary>
+      <param name="pose">The pose.</param>
+      <returns>A 4x4-matrix that represents the same transformation as the pose.</returns>
+    </member>
     <member name="M:DigitalRune.Geometry.Pose.op_Implicit(DigitalRune.Geometry.Pose)~Microsoft.Xna.Framework.Matrix">
       <summary>
             Converts a pose to a 4x4 transformation matrix (XNA Framework). (Only available in the 
@@ -966,13 +973,6 @@
       <returns>
             A 4x4-matrix that represents the same transformation as the pose.
             </returns>
-    </member>
-    <member name="M:DigitalRune.Geometry.Pose.op_Implicit(DigitalRune.Geometry.Pose)~DigitalRune.Mathematics.Algebra.Matrix44F">
-      <summary>
-            Converts a pose to a 4x4 transformation matrix.
-            </summary>
-      <param name="pose">The pose.</param>
-      <returns>A 4x4-matrix that represents the same transformation as the pose.</returns>
     </member>
     <member name="M:DigitalRune.Geometry.Pose.op_Inequality(DigitalRune.Geometry.Pose,DigitalRune.Geometry.Pose)">
       <summary>

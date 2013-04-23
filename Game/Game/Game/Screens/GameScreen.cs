@@ -56,8 +56,8 @@ namespace ICT309Game.Screens
         }
 
         public override void LoadContent()
-        {
-            _model = _contentService.Load<ModelNode>("testmodel").Clone();
+        {                
+            _model = _graphicsService.Content.Load<ModelNode>("testmodel").Clone();
 
             // Let's loop through the mesh nodes of the model:
             foreach (var meshNode in _model.GetSubtree().OfType<MeshNode>())
@@ -134,7 +134,7 @@ namespace ICT309Game.Screens
                 _camera._Yaw += MathHelper.ToRadians(gameTime.Milliseconds / 50.0f);
             }
 
-            _camera._Position -= (_inputService.MouseWheelDelta / 20.0f) * _camera.GetForwardVector();
+            _camera._Position -= new Vector3F(0.0f, (_inputService.MouseWheelDelta / 20.0f) * _camera.GetUpVector().Y, 0.0f);
 
             _camera.Update(gameTime);
 

@@ -1147,17 +1147,17 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22D)~System.Double[0:,0:]">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22D)~DigitalRune.Mathematics.Algebra.Matrix22F">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" /> to a 2-dimensional 
-            <see langword="double" /> array.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" />.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22D)~DigitalRune.Mathematics.Algebra.Matrix22F">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22D)~System.Double[0:,0:]">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" />.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" /> to a 2-dimensional 
+            <see langword="double" /> array.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
@@ -1705,14 +1705,6 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22F)~System.Single[][]">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> 
-            to a jagged <see langword="float" /> array.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22F)~System.Single[0:,0:]">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> to a 2-dimensional 
@@ -1721,9 +1713,10 @@
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Implicit(DigitalRune.Mathematics.Algebra.Matrix22F)~DigitalRune.Mathematics.Algebra.Matrix22D">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix22F)~System.Single[][]">
       <summary>
-            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" />.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> 
+            to a jagged <see langword="float" /> array.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
@@ -1731,6 +1724,13 @@
     <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Implicit(DigitalRune.Mathematics.Algebra.Matrix22F)~DigitalRune.Mathematics.Algebra.MatrixF">
       <summary>
             Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" />.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix22F.op_Implicit(DigitalRune.Mathematics.Algebra.Matrix22F)~DigitalRune.Mathematics.Algebra.Matrix22D">
+      <summary>
+            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" />.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
@@ -2352,17 +2352,17 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix33D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix33D)~System.Double[0:,0:]">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix33D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix33D)~DigitalRune.Mathematics.Algebra.Matrix33F">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" /> to a 2-dimensional 
-            <see langword="double" /> array.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33F" />.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix33D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix33D)~DigitalRune.Mathematics.Algebra.Matrix33F">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix33D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix33D)~System.Double[0:,0:]">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33F" />.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" /> to a 2-dimensional 
+            <see langword="double" /> array.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
@@ -3870,10 +3870,17 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~System.Double[0:,0:]">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~Microsoft.Xna.Framework.Matrix">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> to a 2-dimensional 
-            <see langword="double" /> array.
+            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> (DigitalRune Mathematics) to 
+            <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).
+            </summary>
+      <param name="matrix">The <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> (DigitalRune Mathematics).</param>
+      <returns>The <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~DigitalRune.Mathematics.Algebra.Matrix44F">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" />.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
@@ -3886,20 +3893,13 @@
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~DigitalRune.Mathematics.Algebra.Matrix44F">
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~System.Double[0:,0:]">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" />.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> to a 2-dimensional 
+            <see langword="double" /> array.
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44D)~Microsoft.Xna.Framework.Matrix">
-      <summary>
-            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> (DigitalRune Mathematics) to 
-            <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).
-            </summary>
-      <param name="matrix">The <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44D" /> (DigitalRune Mathematics).</param>
-      <returns>The <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Matrix44D.op_Explicit(Microsoft.Xna.Framework.Matrix)~DigitalRune.Mathematics.Algebra.Matrix44D">
       <summary>
@@ -4786,6 +4786,14 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44F)~Microsoft.Xna.Framework.Matrix">
+      <summary>
+            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" /> (DigitalRune Mathematics) to 
+            <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).
+            </summary>
+      <param name="matrix">The <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" /> (DigitalRune Mathematics).</param>
+      <returns>The <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).</returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Matrix44F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44F)~System.Single[0:,0:]">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" /> to a 2-dimensional 
@@ -4801,14 +4809,6 @@
             </summary>
       <param name="matrix">The matrix.</param>
       <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Matrix44F.op_Explicit(DigitalRune.Mathematics.Algebra.Matrix44F)~Microsoft.Xna.Framework.Matrix">
-      <summary>
-            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" /> (DigitalRune Mathematics) to 
-            <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).
-            </summary>
-      <param name="matrix">The <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" /> (DigitalRune Mathematics).</param>
-      <returns>The <see cref="T:Microsoft.Xna.Framework.Matrix" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Matrix44F.op_Explicit(Microsoft.Xna.Framework.Matrix)~DigitalRune.Mathematics.Algebra.Matrix44F">
       <summary>
@@ -5539,32 +5539,6 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixD)~DigitalRune.Mathematics.Algebra.Matrix22D">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" />.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="matrix" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-        <paramref name="matrix" /> is not 2x2 matrix.
-            </exception>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixD)~DigitalRune.Mathematics.Algebra.Matrix33D">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" />.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="matrix" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-        <paramref name="matrix" /> is not 3x3 matrix.
-            </exception>
-    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixD)~DigitalRune.Mathematics.Algebra.MatrixF">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" />.
@@ -5599,6 +5573,32 @@
             </exception>
       <exception cref="T:System.InvalidCastException">
         <paramref name="matrix" /> is not 4x4 matrix.
+            </exception>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixD)~DigitalRune.Mathematics.Algebra.Matrix22D">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22D" />.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="matrix" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+        <paramref name="matrix" /> is not 2x2 matrix.
+            </exception>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixD)~DigitalRune.Mathematics.Algebra.Matrix33D">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix33D" />.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="matrix" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+        <paramref name="matrix" /> is not 3x3 matrix.
             </exception>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.MatrixD.op_Inequality(DigitalRune.Mathematics.Algebra.MatrixD,DigitalRune.Mathematics.Algebra.MatrixD)">
@@ -6482,6 +6482,35 @@
         <see langword="true" /> if the matrices are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~System.Single[0:,0:]">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to a 2-dimensional 
+            <see langword="float" /> array.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~System.Single[][]">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to jagged <see langword="float" />
+            array.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~DigitalRune.Mathematics.Algebra.Matrix44F">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" />.
+            </summary>
+      <param name="matrix">The matrix.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="matrix" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+        <paramref name="matrix" /> is not 4x4 matrix.
+            </exception>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~DigitalRune.Mathematics.Algebra.Matrix22F">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix22F" />.
@@ -6506,35 +6535,6 @@
             </exception>
       <exception cref="T:System.InvalidCastException">
         <paramref name="matrix" /> is not 3x3 matrix.
-            </exception>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~System.Single[][]">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to jagged <see langword="float" />
-            array.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~System.Single[0:,0:]">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to a 2-dimensional 
-            <see langword="float" /> array.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Explicit(DigitalRune.Mathematics.Algebra.MatrixF)~DigitalRune.Mathematics.Algebra.Matrix44F">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Matrix44F" />.
-            </summary>
-      <param name="matrix">The matrix.</param>
-      <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="matrix" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-        <paramref name="matrix" /> is not 4x4 matrix.
             </exception>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.MatrixF.op_Implicit(DigitalRune.Mathematics.Algebra.MatrixF)~DigitalRune.Mathematics.Algebra.MatrixD">
@@ -7482,13 +7482,6 @@
         <see langword="true" /> if the quaternions are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.QuaternionD.op_Explicit(DigitalRune.Mathematics.Algebra.QuaternionD)~DigitalRune.Mathematics.Algebra.QuaternionF">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionF" />.
-            </summary>
-      <param name="quaternion">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionD" />.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.QuaternionD.op_Explicit(DigitalRune.Mathematics.Algebra.QuaternionD)~System.Collections.Generic.List{System.Double}">
       <summary>
             Converts the vector to a list of 4 <see langword="double" /> values: (w, x, y, z).
@@ -7510,6 +7503,13 @@
             </summary>
       <param name="quaternion">The <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionD" /> (DigitalRune Mathematics).</param>
       <returns>The <see cref="T:Microsoft.Xna.Framework.Quaternion" /> (XNA Framework).</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.QuaternionD.op_Explicit(DigitalRune.Mathematics.Algebra.QuaternionD)~DigitalRune.Mathematics.Algebra.QuaternionF">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionF" />.
+            </summary>
+      <param name="quaternion">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.QuaternionD" />.</param>
+      <returns>The result of the conversion.</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.QuaternionD.op_Explicit(Microsoft.Xna.Framework.Quaternion)~DigitalRune.Mathematics.Algebra.QuaternionD">
       <summary>
@@ -8933,14 +8933,13 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~System.Double[]">
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~Microsoft.Xna.Framework.Vector2">
       <summary>
-            Converts a vector to an array of 2 <see langword="double" /> values.
+            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" /> (DigitalRune Mathematics) to 
+            <see cref="T:Microsoft.Xna.Framework.Vector2" /> (XNA Framework).
             </summary>
-      <param name="vector">The vector.</param>
-      <returns>
-            The array with 2 <see langword="double" /> values. The order of the elements is: x, y
-            </returns>
+      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" /> (DigitalRune Mathematics).</param>
+      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector2" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~System.Collections.Generic.List{System.Double}">
       <summary>
@@ -8951,20 +8950,21 @@
             The list with 2 <see langword="double" /> values. The order of the elements is: x, y
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~System.Double[]">
+      <summary>
+            Converts a vector to an array of 2 <see langword="double" /> values.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>
+            The array with 2 <see langword="double" /> values. The order of the elements is: x, y
+            </returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~DigitalRune.Mathematics.Algebra.Vector2F">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" />.
             </summary>
       <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" />.</param>
       <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2D)~Microsoft.Xna.Framework.Vector2">
-      <summary>
-            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" /> (DigitalRune Mathematics) to 
-            <see cref="T:Microsoft.Xna.Framework.Vector2" /> (XNA Framework).
-            </summary>
-      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" /> (DigitalRune Mathematics).</param>
-      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector2" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector2D.op_Explicit(Microsoft.Xna.Framework.Vector2)~DigitalRune.Mathematics.Algebra.Vector2D">
       <summary>
@@ -9573,6 +9573,15 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2F)~System.Single[]">
+      <summary>
+            Converts a vector to an array of 2 <see langword="float" /> values.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>
+            The array with 2 <see langword="float" /> values. The order of the elements is: x, y
+            </returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2F)~Microsoft.Xna.Framework.Vector2">
       <summary>
             Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" /> (DigitalRune Mathematics) to 
@@ -9588,15 +9597,6 @@
       <param name="vector">The vector.</param>
       <returns>
             The list with 2 <see langword="float" /> values. The order of the elements is: x, y
-            </returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector2F)~System.Single[]">
-      <summary>
-            Converts a vector to an array of 2 <see langword="float" /> values.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>
-            The array with 2 <see langword="float" /> values. The order of the elements is: x, y
             </returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Explicit(Microsoft.Xna.Framework.Vector2)~DigitalRune.Mathematics.Algebra.Vector2F">
@@ -9631,16 +9631,16 @@
             than its counterpart in <paramref name="vector2" />; otherwise, <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector2F)~DigitalRune.Mathematics.Algebra.VectorF">
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector2F)~DigitalRune.Mathematics.Algebra.Vector2D">
       <summary>
-            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" />.
+            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" />.
             </summary>
       <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" />.</param>
       <returns>The result of the conversion.</returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector2F)~DigitalRune.Mathematics.Algebra.Vector2D">
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector2F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector2F)~DigitalRune.Mathematics.Algebra.VectorF">
       <summary>
-            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector2D" />.
+            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" />.
             </summary>
       <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" />.</param>
       <returns>The result of the conversion.</returns>
@@ -10957,6 +10957,14 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector3F)~Microsoft.Xna.Framework.Vector3">
+      <summary>
+            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> (DigitalRune Mathematics) to 
+            <see cref="T:Microsoft.Xna.Framework.Vector3" /> (XNA Framework).
+            </summary>
+      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> (DigitalRune Mathematics).</param>
+      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector3" /> (XNA Framework).</returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector3F)~System.Single[]">
       <summary>
             Converts a vector to an array of 3 <see langword="float" /> values.
@@ -10972,14 +10980,6 @@
             </summary>
       <param name="vector">The vector.</param>
       <returns>The result of the conversion. The order of the elements is: x, y, z</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector3F)~Microsoft.Xna.Framework.Vector3">
-      <summary>
-            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> (DigitalRune Mathematics) to 
-            <see cref="T:Microsoft.Xna.Framework.Vector3" /> (XNA Framework).
-            </summary>
-      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> (DigitalRune Mathematics).</param>
-      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector3" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Explicit(Microsoft.Xna.Framework.Vector3)~DigitalRune.Mathematics.Algebra.Vector3F">
       <summary>
@@ -11013,18 +11013,18 @@
             than its counterpart in <paramref name="vector2" />; otherwise, <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector3F)~DigitalRune.Mathematics.Algebra.Vector3D">
-      <summary>
-            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector3D" />.
-            </summary>
-      <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" />.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector3F)~DigitalRune.Mathematics.Algebra.VectorF">
       <summary>
             Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" />.
             </summary>
       <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Implicit(DigitalRune.Mathematics.Algebra.Vector3F)~DigitalRune.Mathematics.Algebra.Vector3D">
+      <summary>
+            Performs an implicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector3D" />.
+            </summary>
+      <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" />.</param>
       <returns>The result of the conversion.</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector3F.op_Inequality(DigitalRune.Mathematics.Algebra.Vector3F,DigitalRune.Mathematics.Algebra.Vector3F)">
@@ -11641,14 +11641,12 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~System.Double[]">
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~DigitalRune.Mathematics.Algebra.Vector4F">
       <summary>
-            Converts a vector to an array of 4 <see langword="double" /> values.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" />.
             </summary>
-      <param name="vector">The vector.</param>
-      <returns>
-            The array with 4 <see langword="double" /> values. The order of the elements is: x, y, z, w
-            </returns>
+      <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" />.</param>
+      <returns>The result of the conversion.</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~System.Collections.Generic.List{System.Double}">
       <summary>
@@ -11659,13 +11657,6 @@
             The list with 4 <see langword="double" /> values. The order of the elements is: x, y, z, w
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~DigitalRune.Mathematics.Algebra.Vector4F">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" />.
-            </summary>
-      <param name="vector">The DigitalRune <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" />.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~Microsoft.Xna.Framework.Vector4">
       <summary>
             Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" /> (DigitalRune Mathematics) to 
@@ -11673,6 +11664,15 @@
             </summary>
       <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" /> (DigitalRune Mathematics).</param>
       <returns>The <see cref="T:Microsoft.Xna.Framework.Vector4" /> (XNA Framework).</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4D)~System.Double[]">
+      <summary>
+            Converts a vector to an array of 4 <see langword="double" /> values.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>
+            The array with 4 <see langword="double" /> values. The order of the elements is: x, y, z, w
+            </returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector4D.op_Explicit(Microsoft.Xna.Framework.Vector4)~DigitalRune.Mathematics.Algebra.Vector4D">
       <summary>
@@ -12323,6 +12323,14 @@
             The array with 4 <see langword="float" /> values. The order of the elements is: x, y, z, w
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.Vector4F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4F)~Microsoft.Xna.Framework.Vector4">
+      <summary>
+            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" /> (DigitalRune Mathematics) to 
+            <see cref="T:Microsoft.Xna.Framework.Vector4" /> (XNA Framework).
+            </summary>
+      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" /> (DigitalRune Mathematics).</param>
+      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector4" /> (XNA Framework).</returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector4F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4F)~System.Collections.Generic.List{System.Single}">
       <summary>
             Converts a vector to a list of 4 <see langword="float" /> values.
@@ -12331,14 +12339,6 @@
       <returns>
             The list with 4 <see langword="float" /> values. The order of the elements is: x, y, z, w
             </returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.Vector4F.op_Explicit(DigitalRune.Mathematics.Algebra.Vector4F)~Microsoft.Xna.Framework.Vector4">
-      <summary>
-            Performs an conversion from <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" /> (DigitalRune Mathematics) to 
-            <see cref="T:Microsoft.Xna.Framework.Vector4" /> (XNA Framework).
-            </summary>
-      <param name="vector">The <see cref="T:DigitalRune.Mathematics.Algebra.Vector4F" /> (DigitalRune Mathematics).</param>
-      <returns>The <see cref="T:Microsoft.Xna.Framework.Vector4" /> (XNA Framework).</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.Vector4F.op_Explicit(Microsoft.Xna.Framework.Vector4)~DigitalRune.Mathematics.Algebra.Vector4F">
       <summary>
@@ -13079,18 +13079,12 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.Vector3D">
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.MatrixD">
       <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector3D" />.
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" />.
             </summary>
       <param name="vector">The vector.</param>
       <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="vector" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-            This vector has more than 3 elements.
-            </exception>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~System.Double[]">
       <summary>
@@ -13098,33 +13092,6 @@
             </summary>
       <param name="vector">The vector.</param>
       <returns>The array.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.Vector4D">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" />.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="vector" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-            This vector has more than 4 elements.
-            </exception>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.VectorF">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" />.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.MatrixD">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixD" />.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The result of the conversion.</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.Vector2D">
       <summary>
@@ -13145,6 +13112,39 @@
             </summary>
       <param name="vector">The vector.</param>
       <returns>The list with of <see langword="double" /> values.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.Vector3D">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector3D" />.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="vector" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+            This vector has more than 3 elements.
+            </exception>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.VectorF">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" />.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_Explicit(DigitalRune.Mathematics.Algebra.VectorD)~DigitalRune.Mathematics.Algebra.Vector4D">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorD" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector4D" />.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="vector" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+            This vector has more than 4 elements.
+            </exception>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorD.op_GreaterThan(DigitalRune.Mathematics.Algebra.VectorD,DigitalRune.Mathematics.Algebra.VectorD)">
       <summary>
@@ -13929,6 +13929,20 @@
         <see langword="true" /> if the vectors are equal; otherwise <see langword="false" />.
             </returns>
     </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~DigitalRune.Mathematics.Algebra.MatrixF">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" />.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~System.Collections.Generic.List{System.Single}">
+      <summary>
+            Converts a vector to a list of <see langword="float" /> values.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The list with of <see langword="float" /> values.</returns>
+    </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~DigitalRune.Mathematics.Algebra.Vector3F">
       <summary>
             Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector3F" />.
@@ -13940,6 +13954,19 @@
             </exception>
       <exception cref="T:System.InvalidCastException">
             This vector has more than 3 elements.
+            </exception>
+    </member>
+    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~DigitalRune.Mathematics.Algebra.Vector2F">
+      <summary>
+            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" />.
+            </summary>
+      <param name="vector">The vector.</param>
+      <returns>The result of the conversion.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="vector" /> is <see langword="null" />.
+            </exception>
+      <exception cref="T:System.InvalidCastException">
+            This vector has more than 2 elements.
             </exception>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~System.Single[]">
@@ -13961,33 +13988,6 @@
       <exception cref="T:System.InvalidCastException">
             This vector has more than 4 elements.
             </exception>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~DigitalRune.Mathematics.Algebra.MatrixF">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.MatrixF" />.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The result of the conversion.</returns>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~DigitalRune.Mathematics.Algebra.Vector2F">
-      <summary>
-            Performs an explicit conversion from <see cref="T:DigitalRune.Mathematics.Algebra.VectorF" /> to <see cref="T:DigitalRune.Mathematics.Algebra.Vector2F" />.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The result of the conversion.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="vector" /> is <see langword="null" />.
-            </exception>
-      <exception cref="T:System.InvalidCastException">
-            This vector has more than 2 elements.
-            </exception>
-    </member>
-    <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_Explicit(DigitalRune.Mathematics.Algebra.VectorF)~System.Collections.Generic.List{System.Single}">
-      <summary>
-            Converts a vector to a list of <see langword="float" /> values.
-            </summary>
-      <param name="vector">The vector.</param>
-      <returns>The list with of <see langword="float" /> values.</returns>
     </member>
     <member name="M:DigitalRune.Mathematics.Algebra.VectorF.op_GreaterThan(DigitalRune.Mathematics.Algebra.VectorF,DigitalRune.Mathematics.Algebra.VectorF)">
       <summary>

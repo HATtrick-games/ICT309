@@ -1953,8 +1953,9 @@
             Initializes a new instance of the <see cref="T:DigitalRune.Graphics.LensFlare" /> class.
             </summary>
       <param name="isDirectionalLight">
-        <p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Missing &lt;param name="isDirectionalLight"/&gt; documentation for "M:DigitalRune.Graphics.LensFlare.#ctor(System.Boolean)"]</p>
-      </param>
+            If set to <see langword="true" />, the lens flare is caused by a a directional light.
+            (See <see cref="P:DigitalRune.Graphics.LensFlare.IsDirectional" /> for more info.)
+            </param>
     </member>
     <member name="M:DigitalRune.Graphics.LensFlare.Clone">
       <summary>
@@ -3188,6 +3189,11 @@
       <summary>
             Releases unmanaged resources before an instance of the <see cref="T:DigitalRune.Graphics.MeshRenderer" /> class is 
             reclaimed by garbage collection.
+            </summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.MeshRenderer.InstancingThreshold">
+      <summary>
+            Gets or sets the minimum batch size required to activate hardware instancing.
             </summary>
     </member>
     <member name="M:DigitalRune.Graphics.MeshRenderer.Render(System.Collections.Generic.IList{DigitalRune.Graphics.SceneGraph.SceneNode},DigitalRune.Graphics.RenderContext,DigitalRune.Graphics.RenderOrder)">
@@ -9077,6 +9083,40 @@
             The description of the effect technique, or <see langword="null" /> if the method was not
             able to interpret the effect technique.
             </returns>
+    </member>
+    <member name="T:DigitalRune.Graphics.Interop.D3DImagePresentationTarget">
+      <summary>
+            A WPF control that implements <see cref="T:DigitalRune.Graphics.Interop.IPresentationTarget" /> to host a 3D view.
+            (Only available in MonoGame-compatible builds.)
+            </summary>
+    </member>
+    <member name="M:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:DigitalRune.Graphics.Interop.D3DImagePresentationTarget" /> class</summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.DigitalRune#Graphics#Interop#IPresentationTarget#Handle">
+      <summary>
+            Gets the window handle (HWND).
+            </summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.DigitalRune#Graphics#Interop#IPresentationTarget#Height">
+      <summary>
+            Gets the height of the presentation target in pixels.
+            </summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.DigitalRune#Graphics#Interop#IPresentationTarget#IsVisible">
+      <summary>
+            Gets or sets a value indicating whether the presentation target is displayed.
+            </summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.DigitalRune#Graphics#Interop#IPresentationTarget#Width">
+      <summary>
+            Gets the width of the presentation target in pixels.
+            </summary>
+    </member>
+    <member name="P:DigitalRune.Graphics.Interop.D3DImagePresentationTarget.GraphicsService">
+      <summary>
+            Gets or sets the graphics service.
+            </summary>
     </member>
     <member name="T:DigitalRune.Graphics.Interop.ElementPresentationTarget">
       <summary>

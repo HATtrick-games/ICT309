@@ -5335,19 +5335,19 @@
             A pose that represents the same rotation and translation (ignoring all scalings).
             </returns>
     </member>
-    <member name="M:DigitalRune.Animation.Character.SrtTransform.op_Implicit(DigitalRune.Animation.Character.SrtTransform)~Microsoft.Xna.Framework.Matrix">
+    <member name="M:DigitalRune.Animation.Character.SrtTransform.op_Implicit(DigitalRune.Animation.Character.SrtTransform)~DigitalRune.Mathematics.Algebra.Matrix44F">
       <summary>
-            Converts a SRT transform to a 4x4 transformation matrix (XNA Framework). 
-            (Only available in the XNA-compatible build.)
+            Converts an SRT transform to a 4x4 transformation matrix.
             </summary>
       <param name="srt">The transform.</param>
       <returns>
             A 4x4-matrix that represents the same transformation as the SRT transform.
             </returns>
     </member>
-    <member name="M:DigitalRune.Animation.Character.SrtTransform.op_Implicit(DigitalRune.Animation.Character.SrtTransform)~DigitalRune.Mathematics.Algebra.Matrix44F">
+    <member name="M:DigitalRune.Animation.Character.SrtTransform.op_Implicit(DigitalRune.Animation.Character.SrtTransform)~Microsoft.Xna.Framework.Matrix">
       <summary>
-            Converts an SRT transform to a 4x4 transformation matrix.
+            Converts a SRT transform to a 4x4 transformation matrix (XNA Framework). 
+            (Only available in the XNA-compatible build.)
             </summary>
       <param name="srt">The transform.</param>
       <returns>
