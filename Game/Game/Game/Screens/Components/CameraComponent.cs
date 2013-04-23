@@ -60,6 +60,10 @@ namespace ICT309Game.Screens.Components
             // Update the position based upon keyboard
             _orientation = QuaternionF.CreateRotationY(_yaw) * QuaternionF.CreateRotationX(_pitch);
 
+            _position.X = MathHelper.Clamp(_position.X, -170.0f, 170.0f);
+            _position.Y = MathHelper.Clamp(_position.Y, 40.0f, 200.0f);
+            _position.Z = MathHelper.Clamp(_position.Z, -170.0f, 170.0f);
+
             _cameraNode.PoseWorld = new Pose(_position, _orientation);
         }
 
