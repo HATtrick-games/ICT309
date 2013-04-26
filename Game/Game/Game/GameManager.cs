@@ -11,9 +11,13 @@ using Microsoft.Xna.Framework.Media;
 using DigitalRune.Game.States;
 using DigitalRune.Game;
 using DigitalRune.Game.Input;
-using ICT309Game.Screens;
 using DigitalRune.Game.UI;
 using DigitalRune.Graphics;
+using DigitalRune.ServiceLocation;
+using DigitalRune.Threading;
+using Microsoft.Practices.ServiceLocation;
+using DigitalRune.Animation;
+using ICT309Game.Game_Components;
 
 namespace ICT309Game
 {
@@ -24,52 +28,25 @@ namespace ICT309Game
     {
         private GraphicsDeviceManager _graphics;
 
+        private ServiceContainer _serviceContainer;
+
         private GraphicsManager _graphicsManager;
-        public GraphicsManager _GraphicsManager
-        {
-            get { return _graphicsManager; }
-            set { _graphicsManager = value; }
-        }
-
-        private StateMachine _screenManager;
-        public StateMachine _ScreenManager
-        {
-            get { return _screenManager; }
-            set { _screenManager = value; }
-        }
-
         private GameObjectManager _objectManager;
-        public GameObjectManager _ObjectManager
-        {
-            get { return _objectManager; }
-            set { _objectManager = value; }
-        }
-
         private InputManager _inputManager;
-        public InputManager _InputManager
-        {
-            get { return _inputManager; }
-            set { _inputManager = value; }
-        }
-
+        private AnimationManager _animationManager;
         private UIManager _uiManager;
-        public UIManager _UIManager
-        {
-            get { return _uiManager; }
-            set { _uiManager = value; }
-        }
-
         private GameObjectManager _gameObjectManager;
-        public GameObjectManager _GameObjectManager
+
+        private Action _updateAnimation;
+
+        private Task _updateAnimationTask;
+
+        private TimeSpan _deltaTime;
+
+        static GameManager()
         {
-            get { return _gameObjectManager; }
-            set { _gameObjectManager = value; }
+            DigitalRune.Licensing.AddSerialNumber("tgCcAcuJg2I1Hs4BYfH2YgY9zwEiACNUaW1vdGh5IFZlbGV0dGEjMSMzI05vbkNvbW1lcmNpYWxAg7LDkM1RVAQDAfwPTE1CWShg8ydjAzN820/FDwY81X7iRsmnEZIi9Zr3Fz46IC9N7KhUL6OSReHCzBLn");
         }
-
-        private MenuScreen menuScreen;
-        private GameScreen gameScreen;
-
-        public Transition menuToGameTransition;
 
         public GameManager()
         {
@@ -77,6 +54,7 @@ namespace ICT309Game
             {
                 PreferredBackBufferWidth = 1280,
                 PreferredBackBufferHeight = 720,
+                PreferMultiSampling = false,
             };
 
             Content.RootDirectory = "Content";
@@ -86,67 +64,67 @@ namespace ICT309Game
 
         protected override void Initialize()
         {
+            _serviceContainer = new ServiceContainer();
+            ServiceLocator.SetLocatorProvider(() => _serviceContainer);
+
+            _serviceContainer.Register(typeof(Game), null, this);
+            _serviceContainer.Register(typeof(ContentManager), null, Content);
+
             // Adds the input service, which manages device input, button presses etc.
             _inputManager = new InputManager(false);
-            Services.AddService(typeof(IInputService), _inputManager);
+            _serviceContainer.Register(typeof(IInputService), null, _inputManager);
 
             // Adds the UI service which manages UI screens
             _uiManager = new UIManager(this, _inputManager);
-            Services.AddService(typeof(IUIService), _uiManager);
+            _serviceContainer.Register(typeof(IUIService), null, _uiManager);
 
             _graphicsManager = new GraphicsManager(GraphicsDevice, Window, Content);
             Services.AddService(typeof(IGraphicsService), _graphicsManager);
+            _serviceContainer.Register(typeof(IGraphicsService), null, _graphicsManager);
+
+            _animationManager = new AnimationManager();
+            _serviceContainer.Register(typeof(IAnimationService), null, _animationManager);
 
             _gameObjectManager = new GameObjectManager();
-            Services.AddService(typeof(IGameObjectService), _gameObjectManager);
+            _serviceContainer.Register(typeof(IGameObjectService), null, _gameObjectManager);
 
             Services.AddService(typeof(ContentManager), Content);
+            Services.AddService(typeof(Game), this);
 
-            // Game States
-            _screenManager = new StateMachine();
-            menuScreen = new MenuScreen(this);
-            gameScreen = new GameScreen(this);
+            Components.Add(new MainGameComponent(this));
 
-            menuToGameTransition = new Transition
-            {
-                Name = "MenuToGame",
-                TargetState = gameScreen,
-            };
-
-            menuScreen.Transitions.Add(menuToGameTransition);
-
-            _screenManager.States.Add(menuScreen);
-            _screenManager.States.Add(gameScreen);
-
-            _screenManager.States.InitialState = menuScreen;
+            _updateAnimation = () => _animationManager.Update(_deltaTime);
 
             base.Initialize();
         }
 
-        protected override void LoadContent()
-        {
-
-            base.LoadContent();
-            
-        }
-
-        protected override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
-
         protected override void Update(GameTime gameTime)
         {
-            var deltaTime = gameTime.ElapsedGameTime;
+            _inputManager.Update(_deltaTime);
 
-            _graphicsManager.Update(deltaTime);
-            _graphicsManager.Render(false);
-            _inputManager.Update(deltaTime);
-            _screenManager.Update(deltaTime);
-            _uiManager.Update(deltaTime);
-            _gameObjectManager.Update(deltaTime);
+            _updateAnimationTask.Wait();
+
+            _animationManager.ApplyAnimations();
+            Parallel.RunCallbacks();
+
+            _deltaTime = gameTime.ElapsedGameTime;
 
             base.Update(gameTime);
+
+            _uiManager.Update(_deltaTime);
+            _gameObjectManager.Update(_deltaTime);
+
+            _updateAnimationTask = Parallel.Start(_updateAnimation);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            _graphicsManager.Update(_deltaTime);
+
+            // Render to back buffer
+            _graphicsManager.Render(false);
+
+            base.Draw(gameTime);
         }
 
     }
