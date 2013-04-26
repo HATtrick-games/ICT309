@@ -68,8 +68,6 @@ namespace ICT309Game.Graphics
 
         protected override void OnRender(RenderContext context)
         {
-            Console.WriteLine("GameScreen OnRender");
-
             context.CameraNode = ActiveCamera;
 
             var graphicsDevice = context.GraphicsService.GraphicsDevice;

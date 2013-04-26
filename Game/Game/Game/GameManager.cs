@@ -18,6 +18,7 @@ using DigitalRune.Threading;
 using Microsoft.Practices.ServiceLocation;
 using DigitalRune.Animation;
 using ICT309Game.Game_Components;
+using DigitalRune.Physics;
 
 namespace ICT309Game
 {
@@ -36,10 +37,13 @@ namespace ICT309Game
         private AnimationManager _animationManager;
         private UIManager _uiManager;
         private GameObjectManager _gameObjectManager;
+        private Simulation _simulation;
 
         private Action _updateAnimation;
+        private Action _updatePhysics;
 
         private Task _updateAnimationTask;
+        private Task _updatePhysicsTask;
 
         private TimeSpan _deltaTime;
 
@@ -85,8 +89,13 @@ namespace ICT309Game
             _animationManager = new AnimationManager();
             _serviceContainer.Register(typeof(IAnimationService), null, _animationManager);
 
+            _simulation = new Simulation();
+            _serviceContainer.Register(typeof(Simulation), null, _simulation);
+
             _gameObjectManager = new GameObjectManager();
             _serviceContainer.Register(typeof(IGameObjectService), null, _gameObjectManager);
+
+            _serviceContainer.Register(typeof(ContentManager), null, Content);
 
             Services.AddService(typeof(ContentManager), Content);
             Services.AddService(typeof(Game), this);
@@ -94,6 +103,7 @@ namespace ICT309Game
             Components.Add(new MainGameComponent(this));
 
             _updateAnimation = () => _animationManager.Update(_deltaTime);
+            _updatePhysics = () => _simulation.Update(_deltaTime);
 
             base.Initialize();
         }
@@ -103,6 +113,7 @@ namespace ICT309Game
             _inputManager.Update(_deltaTime);
 
             _updateAnimationTask.Wait();
+            _updatePhysicsTask.Wait();
 
             _animationManager.ApplyAnimations();
             Parallel.RunCallbacks();
@@ -115,6 +126,7 @@ namespace ICT309Game
             _gameObjectManager.Update(_deltaTime);
 
             _updateAnimationTask = Parallel.Start(_updateAnimation);
+            _updatePhysicsTask = Parallel.Start(_updatePhysics);
         }
 
         protected override void Draw(GameTime gameTime)

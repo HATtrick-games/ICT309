@@ -11,6 +11,7 @@ using Microsoft.Practices.ServiceLocation;
 using ICT309Game.Graphics;
 using ICT309Game.GameObjects;
 using DigitalRune.Mathematics.Algebra;
+using ICT309GameGame.GameObjects;
 
 namespace ICT309Game.Game_Components
 {
@@ -45,7 +46,7 @@ namespace ICT309Game.Game_Components
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
             gameObjectService.Objects.Add(new CameraObject());
             gameObjectService.Objects.Add(new BoardObject());
-            gameObjectService.Objects.Add(new SquareObject(new Vector3F(114.5f, 0.0f, 114.5f)));
+            gameObjectService.Objects.Add(new GameBoardManagerObject());
 
             base.Initialize();
         }

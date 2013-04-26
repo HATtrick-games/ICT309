@@ -12,12 +12,15 @@ using Microsoft.Xna.Framework;
 using DigitalRune.Graphics.Effects;
 using DigitalRune.Geometry;
 using DigitalRune.Mathematics.Algebra;
+using DigitalRune.Physics;
+using DigitalRune.Geometry.Shapes;
 
 namespace ICT309Game.GameObjects
 {
     class SquareObject:GameObject
     {
         private ModelNode _model;
+        private RigidBody _body;
         private Vector3F _position;
 
         public SquareObject(Vector3F position)
@@ -29,6 +32,8 @@ namespace ICT309Game.GameObjects
         {
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var simulation = ServiceLocator.Current.GetInstance<Simulation>();
+
             var screen = ((GameScreen)graphicsService.Screens["Default"]);
 
             _model = contentManager.Load<ModelNode>("square").Clone();
@@ -36,6 +41,7 @@ namespace ICT309Game.GameObjects
             screen.Scene.Children.Add(_model);
 
             _model.PoseWorld = new Pose(_position);
+            ChangeColor();
 
             base.OnLoad();
         }
@@ -47,8 +53,9 @@ namespace ICT309Game.GameObjects
 
         protected override void OnUnload()
         {
+            _model.Parent.Children.Remove(_model);
             _model.Dispose();
-            base.OnUnload();
+            _model = null;
         }
 
         private void ChangeColor()

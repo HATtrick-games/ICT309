@@ -12,6 +12,9 @@ using ICT309Game.Graphics;
 using DigitalRune.Mathematics;
 using DigitalRune.Geometry;
 using Microsoft.Xna.Framework.Input;
+using DigitalRune.Geometry.Shapes;
+using DigitalRune.Geometry.Collisions;
+using DigitalRune.Physics;
 
 namespace ICT309Game.GameObjects
 {
@@ -110,6 +113,11 @@ namespace ICT309Game.GameObjects
                 _pitch += MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
             }
 
+            if (_inputService.IsPressed(MouseButtons.Left, false))
+            {
+                MousePicking();
+            }
+
             _position -= new Vector3F(0.0f, (_inputService.MouseWheelDelta / 20.0f) * GetUpVector().Y, 0.0f);
 
             _orientation = QuaternionF.CreateRotationY(_pitch) * QuaternionF.CreateRotationX(_yaw);
@@ -142,6 +150,35 @@ namespace ICT309Game.GameObjects
             return new Vector3F(1 - 2 * (_orientation.Y * _orientation.Y + _orientation.Z * _orientation.Z),
                     2 * (_orientation.X * _orientation.Y + _orientation.W * _orientation.Z),
                     2 * (_orientation.X * _orientation.Z - _orientation.W * _orientation.Y));
+        }
+
+        public Vector3F MousePicking()
+        {
+            var simulation = ServiceLocator.Current.GetInstance<Simulation>();
+
+            Vector3F cameraDirection = _cameraNode.PoseWorld.ToWorldDirection(Vector3F.Forward);
+
+            var ray = new RayShape(_position, cameraDirection, 1000);
+
+            ray.StopsAtFirstHit = true;
+
+            var rayCollisionObject = new CollisionObject(new GeometricObject(ray, Pose.Identity));
+            ContactSet contactSet = simulation.CollisionDomain.GetContacts(rayCollisionObject).FirstOrDefault();
+            if (contactSet != null && contactSet.Count > 0)
+            {
+                Contact contact = contactSet[0];
+
+                CollisionObject hitCollisionObject = (contactSet.ObjectA == rayCollisionObject) ? contactSet.ObjectB : contactSet.ObjectA;
+
+                RigidBody hitBody = hitCollisionObject.GeometricObject as RigidBody;
+                if (hitBody != null && hitBody.MotionType == MotionType.Dynamic)
+                {
+                    Console.WriteLine("Hit Static Object");
+
+                }
+            }
+
+            return new Vector3F();
         }
     }
 }
