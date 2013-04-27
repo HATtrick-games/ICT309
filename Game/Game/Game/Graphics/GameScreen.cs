@@ -92,52 +92,10 @@ namespace ICT309Game.Graphics
             context.RenderPass = "AlphaBlend";
             _transparentSceneRenderer.Render(SceneQuery.RenderableNodes, context, RenderOrder.BackToFront);
 
-            context.RenderPass = null;
-            context.CameraNode = null;
-
-            /*
-            if (ActiveCamera == null)
-                return;
-
-            var renderTargetPool = GraphicsService.RenderTargetPool;
-           // var graphicsDevice = GraphicsService.GraphicsDevice;
-            var screenRenderTarget = context.RenderTarget;
-            var viewport = context.Viewport;
-
-            var width = context.Viewport.Width;
-            var height = context.Viewport.Height;
-            context.Viewport = new Viewport(0, 0, width, height);
-
-            context.Scene = Scene;
-            context.CameraNode = ActiveCamera;
-
-            SceneQuery sceneQuery = Scene.Query<SceneQuery>(ActiveCamera);
-
-            context.RenderTarget = renderTargetPool.Obtain2D(new RenderTargetFormat(width, height, false, SurfaceFormat.HdrBlendable, DepthFormat.Depth24Stencil8));
-            graphicsDevice.SetRenderTarget(context.RenderTarget);
-            context.Viewport = graphicsDevice.Viewport;
-            graphicsDevice.Clear(Color.CornflowerBlue);
-            graphicsDevice.DepthStencilState = DepthStencilState.Default;
-            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-            graphicsDevice.BlendState = BlendState.Opaque;
-            context.RenderPass = "Material";
-            _opaqueSceneRenderer.Render(sceneQuery.RenderableNodes, context);
-
-            graphicsDevice.ResetTextures();
-
-            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
-            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-            graphicsDevice.BlendState = BlendState.AlphaBlend;
-            context.RenderPass = "AlphaBlend";
-            _transparentSceneRenderer.Render(sceneQuery.RenderableNodes, context, RenderOrder.BackToFront);
-            context.RenderPass = null;
-            graphicsDevice.ResetTextures();
-
             DebugRenderer.Render(context);
 
+            context.RenderPass = null;
             context.CameraNode = null;
-            context.Scene = null;
-            context.RenderPass = null;*/
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)

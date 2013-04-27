@@ -15,11 +15,15 @@ using Microsoft.Xna.Framework.Input;
 using DigitalRune.Geometry.Shapes;
 using DigitalRune.Geometry.Collisions;
 using DigitalRune.Physics;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace ICT309Game.GameObjects
 {
     class CameraObject : GameObject
     {
+        public Vector3F MousePosition { get; private set; }
+
         private IInputService _inputService;
         private DebugRenderer _debugRenderer;
 
@@ -32,12 +36,15 @@ namespace ICT309Game.GameObjects
 
         public CameraObject()
         {
+            base.Name = "Camera";
+
             _inputService = ServiceLocator.Current.GetInstance<IInputService>();
         }
 
         protected override void OnLoad()
         {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var gameObjectManager = ServiceLocator.Current.GetInstance<IGameObjectService>();
             var screen = ((GameScreen)graphicsService.Screens["Default"]);
             _debugRenderer = screen.DebugRenderer;
 
@@ -50,7 +57,6 @@ namespace ICT309Game.GameObjects
             screen.Scene.Children.Add(_cameraNode);
 
             screen.ActiveCamera = _cameraNode;
-
             ResetCamera();
 
             base.OnLoad();
@@ -59,8 +65,8 @@ namespace ICT309Game.GameObjects
         public void ResetCamera()
         {
             _position = new Vector3F(160.0f, 160.0f, 160.0f);
-            _yaw = MathHelper.ToRadians(-45.0f);
-            _pitch = MathHelper.ToRadians(45.0f);
+            _yaw = Microsoft.Xna.Framework.MathHelper.ToRadians(-45.0f);
+            _pitch = Microsoft.Xna.Framework.MathHelper.ToRadians(45.0f);
 
             _cameraNode.PoseWorld = new Pose(_position);
             _cameraNode.SetLastPose(true);
@@ -83,6 +89,8 @@ namespace ICT309Game.GameObjects
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
+            MousePicking();
+
             if (_inputService.IsDown(Keys.W))
             {
                 _position -= new Vector3F(GetForwardVector().X, 0.0f, GetForwardVector().Z);
@@ -105,26 +113,21 @@ namespace ICT309Game.GameObjects
 
             if (_inputService.IsDown(Keys.E))
             {
-                _pitch -= MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
+                _pitch -= Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
             }
 
             if (_inputService.IsDown(Keys.Q))
             {
-                _pitch += MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
-            }
-
-            if (_inputService.IsPressed(MouseButtons.Left, false))
-            {
-                MousePicking();
+                _pitch += Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
             }
 
             _position -= new Vector3F(0.0f, (_inputService.MouseWheelDelta / 20.0f) * GetUpVector().Y, 0.0f);
 
             _orientation = QuaternionF.CreateRotationY(_pitch) * QuaternionF.CreateRotationX(_yaw);
 
-            _position.X = MathHelper.Clamp(_position.X, -200.0f, 200.0f);
-            _position.Y = MathHelper.Clamp(_position.Y, 40.0f, 220.0f);
-            _position.Z = MathHelper.Clamp(_position.Z, -200.0f, 200.0f);
+            _position.X = Microsoft.Xna.Framework.MathHelper.Clamp(_position.X, -200.0f, 200.0f);
+            _position.Y = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Y, 40.0f, 220.0f);
+            _position.Z = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Z, -200.0f, 200.0f);
 
             _cameraNode.PoseWorld = new Pose(_position, _orientation);
 
@@ -152,33 +155,36 @@ namespace ICT309Game.GameObjects
                     2 * (_orientation.X * _orientation.Z - _orientation.W * _orientation.Y));
         }
 
-        public Vector3F MousePicking()
+        public void MousePicking()
         {
-            var simulation = ServiceLocator.Current.GetInstance<Simulation>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
 
-            Vector3F cameraDirection = _cameraNode.PoseWorld.ToWorldDirection(Vector3F.Forward);
+            int mouseX = (int)_inputService.MousePosition.X;
+            int mouseY = (int)_inputService.MousePosition.Y;
 
-            var ray = new RayShape(_position, cameraDirection, 1000);
+            Vector3 rayStart = graphicsService.GraphicsDevice.Viewport.Unproject(
+                new Vector3(mouseX, mouseY, 0),
+                _cameraNode.Camera.Projection.ToXna(),
+                _cameraNode.View.ToXna(),
+                Matrix.Identity);
 
-            ray.StopsAtFirstHit = true;
+            Vector3 rayEnd = graphicsService.GraphicsDevice.Viewport.Unproject(
+                new Vector3(mouseX, mouseY, 1),
+                _cameraNode.Camera.Projection.ToXna(),
+                _cameraNode.View.ToXna(),
+                Matrix.Identity);
 
-            var rayCollisionObject = new CollisionObject(new GeometricObject(ray, Pose.Identity));
-            ContactSet contactSet = simulation.CollisionDomain.GetContacts(rayCollisionObject).FirstOrDefault();
-            if (contactSet != null && contactSet.Count > 0)
+            Vector3 direction = rayEnd - rayStart;
+            direction.Normalize();
+
+            Vector3F cameraPosition = Vector3F.FromXna(rayStart);
+            Vector3F cameraDirection = Vector3F.FromXna(direction);
+
+            MousePosition = cameraPosition;
+            while (MousePosition.Y > 0)
             {
-                Contact contact = contactSet[0];
-
-                CollisionObject hitCollisionObject = (contactSet.ObjectA == rayCollisionObject) ? contactSet.ObjectB : contactSet.ObjectA;
-
-                RigidBody hitBody = hitCollisionObject.GeometricObject as RigidBody;
-                if (hitBody != null && hitBody.MotionType == MotionType.Dynamic)
-                {
-                    Console.WriteLine("Hit Static Object");
-
-                }
+                MousePosition += cameraDirection;
             }
-
-            return new Vector3F();
         }
     }
 }

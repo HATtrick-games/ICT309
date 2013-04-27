@@ -34,6 +34,15 @@ namespace ICT309GameGame.GameObjects
             }
         }
 
+        protected override void OnUpdate(TimeSpan deltaTime)
+        {
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+
+            
+
+            base.OnUpdate(deltaTime);
+        }
+
         protected override void OnLoad()
         {
             base.OnLoad();
