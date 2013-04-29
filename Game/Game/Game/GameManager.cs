@@ -38,6 +38,7 @@ namespace ICT309Game
         private UIManager _uiManager;
         private GameObjectManager _gameObjectManager;
         private Simulation _simulation;
+        private DebugRenderer _debugRenderer;
 
         private Action _updateAnimation;
         private Action _updatePhysics;
@@ -94,6 +95,9 @@ namespace ICT309Game
 
             _gameObjectManager = new GameObjectManager();
             _serviceContainer.Register(typeof(IGameObjectService), null, _gameObjectManager);
+
+            _debugRenderer = new DebugRenderer(_graphicsManager, Content.Load<SpriteFont>("MiramonteBold"));
+            _serviceContainer.Register(typeof(DebugRenderer), null, _debugRenderer);
 
             _serviceContainer.Register(typeof(ContentManager), null, Content);
 

@@ -78,8 +78,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="square.FBX">
-      <Name>square</Name>
+    <Compile Include="redSquare.FBX">
+      <Name>redSquare</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="whiteSquare.FBX">
+      <Name>whiteSquare</Name>
       <Importer>FbxImporter</Importer>
       <Processor>DRModelProcessor</Processor>
     </Compile>

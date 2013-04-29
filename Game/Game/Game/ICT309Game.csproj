@@ -165,8 +165,9 @@
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="GameObjects\BoardObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
+    <Compile Include="GameObjects\WhiteSquareObject.cs" />
+    <Compile Include="GameObjects\RedSquareObject.cs" />
     <Compile Include="GameObjects\GameBoardManagerObject.cs" />
-    <Compile Include="GameObjects\SquareObject.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\SceneQuery.cs" />
     <Compile Include="GameObjects\AIObject.cs" />

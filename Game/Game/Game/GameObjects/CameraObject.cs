@@ -23,6 +23,8 @@ namespace ICT309Game.GameObjects
     class CameraObject : GameObject
     {
         public Vector3F MousePosition { get; private set; }
+        public Matrix View { get; private set; }
+        public Matrix Projection { get; private set; }
 
         private IInputService _inputService;
         private DebugRenderer _debugRenderer;
@@ -58,6 +60,9 @@ namespace ICT309Game.GameObjects
 
             screen.ActiveCamera = _cameraNode;
             ResetCamera();
+
+            View = _cameraNode.View.ToXna();
+            Projection = _cameraNode.Camera.Projection.ToXna();
 
             base.OnLoad();
         }
@@ -130,6 +135,9 @@ namespace ICT309Game.GameObjects
             _position.Z = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Z, -200.0f, 200.0f);
 
             _cameraNode.PoseWorld = new Pose(_position, _orientation);
+
+            View = _cameraNode.View.ToXna();
+            Projection = _cameraNode.Camera.Projection.ToXna();
 
             base.OnUpdate(deltaTime);
         }

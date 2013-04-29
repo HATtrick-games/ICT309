@@ -12,6 +12,7 @@ using ICT309Game.Graphics;
 using ICT309Game.GameObjects;
 using DigitalRune.Mathematics.Algebra;
 using ICT309GameGame.GameObjects;
+using DigitalRune.Geometry;
 
 namespace ICT309Game.Game_Components
 {

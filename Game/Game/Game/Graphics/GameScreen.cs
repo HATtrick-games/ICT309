@@ -36,7 +36,7 @@ namespace ICT309Game.Graphics
             _transparentSceneRenderer = new SceneRenderer();
             _transparentSceneRenderer.Renderers.Add(meshRenderer);
 
-            DebugRenderer = new DebugRenderer(graphicsService, content.Load<SpriteFont>("MiramonteBold"));
+            DebugRenderer = ServiceLocator.Current.GetInstance<DebugRenderer>();
 
             Scene = new Scene();
         }
