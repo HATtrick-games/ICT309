@@ -9,7 +9,11 @@ namespace ICT309Game.PathFinding
     {
         //length and width of the map in number of squares.
         private int mapWidth = 10, mapHeight = 10;
+        //constants
+        const int walkable = 0, unwalkable = 1;
+        const bool found = true, notfound = false;
         //arrays.
+        private int[,] walkability;
         private int[] openList;
         private int[,] whichList;
         private int[] openX;
@@ -22,8 +26,10 @@ namespace ICT309Game.PathFinding
         private int[] pathLength;
         private int[] pathLocation;
 
+        //sets up all arrays
         public void Intialise()
         {
+            walkability = new int[mapWidth, mapHeight];
             openList = new int[mapWidth * mapHeight + 2];
             whichList = new int[mapWidth+1,mapHeight+1];
             openX = new int[mapWidth * mapHeight + 2];
@@ -35,9 +41,25 @@ namespace ICT309Game.PathFinding
             hCost = new int[mapWidth * mapHeight];
             pathLength = new int[1];
             pathLocation = new int[1];
-
         }
-        
+
+        //main function for finding a  path, takes in a starting point and finishing point
+        public bool FindPath(int startingX, int startingY, int targetpassX, int targetpassY)
+        {
+            int startX = startingX;
+            int startY = startingY;
+            int targetX = targetpassX;
+            int targetY = targetpassY;
+
+
+            if (walkability[targetX, targetY] == unwalkable)
+            {
+                return notfound;
+            }
+
+
+            return found;
+         }
 
 
 
