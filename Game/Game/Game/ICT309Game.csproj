@@ -165,6 +165,7 @@
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="GameObjects\BoardObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
+    <Compile Include="GameObjects\BlueSquareObject.cs" />
     <Compile Include="GameObjects\WhiteSquareObject.cs" />
     <Compile Include="GameObjects\RedSquareObject.cs" />
     <Compile Include="GameObjects\GameBoardManagerObject.cs" />
