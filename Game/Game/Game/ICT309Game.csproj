@@ -172,6 +172,7 @@
     <Compile Include="Graphics\SceneQuery.cs" />
     <Compile Include="GameObjects\AIObject.cs" />
     <Compile Include="GameObjects\PlayerObject.cs" />
+    <Compile Include="PathFinding\PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="GameManager.cs" />
