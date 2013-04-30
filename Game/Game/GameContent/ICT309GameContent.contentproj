@@ -71,36 +71,39 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="testmodel.FBX">
-      <Name>testmodel</Name>
+    <Compile Include="Militia.fbx">
+      <Name>Militia</Name>
       <Importer>FbxImporter</Importer>
       <Processor>DRModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="redSquare.FBX">
+    <Compile Include="Board\blueSquare.FBX">
+      <Name>blueSquare</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Board\redSquare.FBX">
       <Name>redSquare</Name>
       <Importer>FbxImporter</Importer>
       <Processor>DRModelProcessor</Processor>
     </Compile>
-    <Compile Include="whiteSquare.FBX">
+    <Compile Include="Board\testmodel.FBX">
+      <Name>testmodel</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Board\whiteSquare.FBX">
       <Name>whiteSquare</Name>
       <Importer>FbxImporter</Importer>
       <Processor>DRModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="blueSquare.FBX">
-      <Name>blueSquare</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>DRModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Militia.fbx">
-      <Name>Militia</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>DRModelProcessor</Processor>
+    <Compile Include="Board\checkerboard.jpg">
+      <Name>checkerboard</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

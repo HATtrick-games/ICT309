@@ -163,16 +163,17 @@
   <ItemGroup>
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
-    <Compile Include="GameObjects\BoardObject.cs" />
+    <Compile Include="GameObjects\Board\BoardObject.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
-    <Compile Include="GameObjects\BlueSquareObject.cs" />
-    <Compile Include="GameObjects\WhiteSquareObject.cs" />
-    <Compile Include="GameObjects\RedSquareObject.cs" />
-    <Compile Include="GameObjects\GameBoardManagerObject.cs" />
+    <Compile Include="GameObjects\Board\BlueSquareObject.cs" />
+    <Compile Include="GameObjects\Board\WhiteSquareObject.cs" />
+    <Compile Include="GameObjects\Board\RedSquareObject.cs" />
+    <Compile Include="GameObjects\Board\GameBoardManagerObject.cs" />
+    <Compile Include="GameObjects\CharacterObject.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\SceneQuery.cs" />
-    <Compile Include="GameObjects\AIObject.cs" />
-    <Compile Include="GameObjects\PlayerObject.cs" />
+    <Compile Include="GameObjects\AI\AIObject.cs" />
+    <Compile Include="GameObjects\Player\MainCharacter.cs" />
     <Compile Include="PathFinding\PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

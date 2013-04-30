@@ -10,8 +10,8 @@ using DigitalRune.Game;
 using Microsoft.Practices.ServiceLocation;
 using ICT309Game.Graphics;
 using ICT309Game.GameObjects;
+using ICT309Game.GameObjects.Board;
 using DigitalRune.Mathematics.Algebra;
-using ICT309GameGame.GameObjects;
 using DigitalRune.Geometry;
 
 namespace ICT309Game.Game_Components
@@ -48,7 +48,7 @@ namespace ICT309Game.Game_Components
             gameObjectService.Objects.Add(new CameraObject());
             gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(new GameBoardManagerObject());
-            gameObjectService.Objects.Add(new PlayerObject());
+            gameObjectService.Objects.Add(new MainCharacter());
 
             base.Initialize();
         }
