@@ -48,6 +48,7 @@ namespace ICT309Game.Game_Components
             gameObjectService.Objects.Add(new CameraObject());
             gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(new GameBoardManagerObject());
+            gameObjectService.Objects.Add(new PlayerObject());
 
             base.Initialize();
         }

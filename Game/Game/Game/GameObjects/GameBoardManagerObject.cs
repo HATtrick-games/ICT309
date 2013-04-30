@@ -119,11 +119,6 @@ namespace ICT309GameGame.GameObjects
 
                 if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
                 {
-                    //gameBoard[IndexI, IndexJ].InUse = !gameBoard[IndexI, IndexJ].InUse;
-
-                    Console.WriteLine("Index I = " + IndexI);
-                    Console.WriteLine("Index J = " + IndexJ);
-
                     ResetBoard();
                     ShowMovementRange(IndexI, IndexJ, 2);
                 }
@@ -151,8 +146,6 @@ namespace ICT309GameGame.GameObjects
 
         public void ShowMovementRange(int x, int z, int range)
         {
-            Console.WriteLine("ShowMovementRange");
-
             if(!CheckRange(x) ||
                 !CheckRange(z) ||
                 !CheckRange(range))
@@ -160,14 +153,11 @@ namespace ICT309GameGame.GameObjects
                 return;
             }
 
-            Console.WriteLine("ShowMovementRange");
-
             List<Pair<int>> nodeList = new List<Pair<int>>();
             nodeList.Add(new Pair<int>(x,z));
 
             while (range > 0)
             {
-                Console.WriteLine("In loop");
                 int count = nodeList.Count;
 
                 for (int i = 0; i < count; i++)
@@ -192,8 +182,6 @@ namespace ICT309GameGame.GameObjects
                 range--;
             }
 
-            Console.WriteLine("Count =" + nodeList.Count);
-
             for (int i = 0; i < nodeList.Count; i++)
             {
                 if (CheckRange(nodeList[i].First) && CheckRange(nodeList[i].Second))
@@ -208,11 +196,9 @@ namespace ICT309GameGame.GameObjects
         {
             if (x >= 10 || x < 0)
             {
-                Console.WriteLine("CheckRange " + x + " false.");
                 return false;
             }
 
-            Console.WriteLine("CheckRange " + x + " true.");
             return true;
         }
     }
