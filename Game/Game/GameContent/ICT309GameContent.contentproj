@@ -57,27 +57,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MiramonteBold.spritefont">
-      <Name>MiramonteBold</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Theme.xml">
-      <Name>Theme</Name>
-      <Importer>ThemeImporter</Importer>
-      <Processor>ThemeProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Militia.fbx">
-      <Name>Militia</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>DRModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Board\blueSquare.FBX">
       <Name>blueSquare</Name>
       <Importer>FbxImporter</Importer>
@@ -104,6 +83,47 @@
       <Name>checkerboard</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="UI\MiramonteBold.spritefont">
+      <Name>MiramonteBold</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI\Theme.xml">
+      <Name>Theme</Name>
+      <Importer>ThemeImporter</Importer>
+      <Processor>ThemeProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Player\Militia.fbx">
+      <Name>Militia</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AI\rangedenemy.FBX">
+      <Name>rangedenemy</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+    <Compile Include="AI\weakenemy.FBX">
+      <Name>weakenemy</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Player\rangedally.FBX">
+      <Name>rangedally</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>DRModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

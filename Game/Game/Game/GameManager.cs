@@ -19,6 +19,7 @@ using Microsoft.Practices.ServiceLocation;
 using DigitalRune.Animation;
 using ICT309Game.Game_Components;
 using DigitalRune.Physics;
+using DigitalRune.Game.UI.Controls;
 
 namespace ICT309Game
 {
@@ -32,7 +33,6 @@ namespace ICT309Game
         private ServiceContainer _serviceContainer;
 
         private GraphicsManager _graphicsManager;
-        private GameObjectManager _objectManager;
         private InputManager _inputManager;
         private AnimationManager _animationManager;
         private UIManager _uiManager;
@@ -96,7 +96,7 @@ namespace ICT309Game
             _gameObjectManager = new GameObjectManager();
             _serviceContainer.Register(typeof(IGameObjectService), null, _gameObjectManager);
 
-            _debugRenderer = new DebugRenderer(_graphicsManager, Content.Load<SpriteFont>("MiramonteBold"));
+            _debugRenderer = new DebugRenderer(_graphicsManager, Content.Load<SpriteFont>("UI/MiramonteBold"));
             _serviceContainer.Register(typeof(DebugRenderer), null, _debugRenderer);
 
             _serviceContainer.Register(typeof(ContentManager), null, Content);
@@ -139,6 +139,9 @@ namespace ICT309Game
 
             // Render to back buffer
             _graphicsManager.Render(false);
+
+            foreach (UIScreen screen in _uiManager.Screens)
+                screen.Draw(gameTime);
 
             base.Draw(gameTime);
         }

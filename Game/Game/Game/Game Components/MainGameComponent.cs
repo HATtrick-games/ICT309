@@ -13,17 +13,24 @@ using ICT309Game.GameObjects;
 using ICT309Game.GameObjects.Board;
 using DigitalRune.Mathematics.Algebra;
 using DigitalRune.Geometry;
+using ICT309Game.Game_Components.UI;
+using Microsoft.Xna.Framework.Content;
+using DigitalRune.Game.UI.Rendering;
 
 namespace ICT309Game.Game_Components
 {
     class MainGameComponent: GameComponent
     {
         private GameScreen _gameScreen;
+        private MainGameHUD _gameHUD;
 
         private readonly IInputService _inputService;
         private readonly IUIService _uiService;
         private readonly IGraphicsService _graphicsService;
         private readonly IGameObjectService _gameObjectService;
+
+        // GAME OBJECTS
+        private GameBoardManagerObject _gameBoardManager;
 
         public MainGameComponent(Game game):base(game)
         {
@@ -36,19 +43,29 @@ namespace ICT309Game.Game_Components
         public override void Initialize()
         {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-
             _gameScreen = new GameScreen(graphicsService)
             {
                 Name = "Default"
             };
             graphicsService.Screens.Add(_gameScreen);
 
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var theme = Game.Content.Load<Theme>("UI/Theme");
+            var renderer = new UIRenderer(Game, theme);
+
+            _gameHUD = new MainGameHUD("GameHUD", renderer);
+
+            _uiService.Screens.Add(_gameHUD);
+
+            _gameBoardManager = new GameBoardManagerObject();
+
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
             gameObjectService.Objects.Add(new CameraObject());
             gameObjectService.Objects.Add(new BoardObject());
-            gameObjectService.Objects.Add(new GameBoardManagerObject());
-            gameObjectService.Objects.Add(new MainCharacter());
+            gameObjectService.Objects.Add(_gameBoardManager);
+            //gameObjectService.Objects.Add(new MainCharacter());
+            //gameObjectService.Objects.Add(new AIRangedCharacter());
 
             base.Initialize();
         }
@@ -56,6 +73,8 @@ namespace ICT309Game.Game_Components
         public override void Update(GameTime gameTime)
         {
             _gameScreen.DebugRenderer.Clear();
+
+            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.Name;
 
             base.Update(gameTime);
         }

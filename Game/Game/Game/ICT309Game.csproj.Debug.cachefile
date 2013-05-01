@@ -1,10 +1,3 @@
-Content\MiramonteBold.xnb
-Content\Theme.xnb
-Content\Default.xnb
-Content\UITexture.xnb
-Content\Militia.xnb
-Content\Militia-Texture_0.xnb
-Content\Militia-Texture_1.xnb
 Content\Board\checkerboard.xnb
 Content\Board\blueSquare.xnb
 Content\Board\redSquare.xnb
@@ -12,3 +5,13 @@ Content\Board\testmodel.xnb
 Content\Board\whiteSquare.xnb
 Content\ground_grass_gen_05_1.xnb
 Content\ground_grass_gen_05_2.xnb
+Content\UI\MiramonteBold.xnb
+Content\UI\Theme.xnb
+Content\Default.xnb
+Content\UITexture.xnb
+Content\Player\Militia.xnb
+Content\Player\Militia-Texture_1.xnb
+Content\Player\Militia-Texture_2.xnb
+Content\AI\rangedenemy.xnb
+Content\AI\weakenemy.xnb
+Content\Player\rangedally.xnb

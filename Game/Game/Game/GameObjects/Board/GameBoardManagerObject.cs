@@ -27,17 +27,27 @@ namespace ICT309Game.GameObjects.Board
     {
         private const float startPos = -114.5f;
         private const float gap = 25.5f;
+        private const int boardSize = 10;
 
-        public static readonly Vector3F[,] Positions = new Vector3F[10, 10];
+        // BOARD PROPERTIES
+        public static readonly Vector3F[,] Positions = new Vector3F[boardSize, boardSize];
 
-        private RedSquareObject[,] redGameBoard = new RedSquareObject[10,10];
-        private WhiteSquareObject[,] whiteGameBoard = new WhiteSquareObject[10, 10];
-        private BlueSquareObject[,] blueGameBoard = new BlueSquareObject[10, 10];
+        private RedSquareObject[,] redGameBoard = new RedSquareObject[boardSize,boardSize];
+        private WhiteSquareObject[,] whiteGameBoard = new WhiteSquareObject[boardSize, boardSize];
+        private BlueSquareObject[,] blueGameBoard = new BlueSquareObject[boardSize, boardSize];
 
-        public SquareData[,] GameBoard = new SquareData[10, 10];
+        public SquareData[,] GameBoard = new SquareData[boardSize, boardSize];
+
+        // CHARACTER OBJECTS
+        private MainCharacter _mainCharacter;
+        private RangedCharacter _rangedCharacter;
+
+        public TurnManager TurnManager { get; private set; }
 
         public GameBoardManagerObject()
         {
+            // LOAD IN LEVEL FILES FROM EXTERNAL FILE
+
             for (int i = 0; i < Positions.GetLength(0); i++)
             {
                 for (int j = 0; j < Positions.GetLength(1); j++)
@@ -46,12 +56,7 @@ namespace ICT309Game.GameObjects.Board
                 }
             }
 
-            ResetBoard();
-
-            // TODO make the game board data load from an external file
-            // in the meantime heres this array
-
-           
+            ResetBoard();  
         }
 
         protected override void  OnLoad()
@@ -80,6 +85,16 @@ namespace ICT309Game.GameObjects.Board
                     gameObjectService.Objects.Add(whiteGameBoard[i, j]);
                 }
             }
+
+            _mainCharacter = new MainCharacter();
+            _rangedCharacter = new RangedCharacter();
+
+            gameObjectService.Objects.Add(_mainCharacter);
+            gameObjectService.Objects.Add(_rangedCharacter);
+
+            TurnManager = new TurnManager();
+            TurnManager.AddToList(_mainCharacter);
+            TurnManager.AddToList(_rangedCharacter);
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)
@@ -133,8 +148,9 @@ namespace ICT309Game.GameObjects.Board
                     ResetBoard();
                     ShowMovementRange(IndexI, IndexJ, 2);
                 }
-            } 
-           
+            }
+
+            if (inputService.IsPressed(MouseButtons.Right, false)) TurnManager.ChangeTurn();
 
             base.OnUpdate(deltaTime);
         }
@@ -205,7 +221,7 @@ namespace ICT309Game.GameObjects.Board
 
         private bool CheckRange(int x)
         {
-            if (x >= 10 || x < 0)
+            if (x >= boardSize || x < 0)
             {
                 return false;
             }

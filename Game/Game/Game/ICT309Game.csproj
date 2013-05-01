@@ -163,16 +163,20 @@
   <ItemGroup>
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
+    <Compile Include="Game Components\UI\MainGameHUD.cs" />
+    <Compile Include="GameObjects\AI\AIRangedCharacter.cs" />
+    <Compile Include="GameObjects\AI\AIWeakCharacter.cs" />
     <Compile Include="GameObjects\Board\BoardObject.cs" />
+    <Compile Include="GameObjects\Board\TurnManager.cs" />
     <Compile Include="GameObjects\CameraObject.cs" />
     <Compile Include="GameObjects\Board\BlueSquareObject.cs" />
     <Compile Include="GameObjects\Board\WhiteSquareObject.cs" />
     <Compile Include="GameObjects\Board\RedSquareObject.cs" />
     <Compile Include="GameObjects\Board\GameBoardManagerObject.cs" />
     <Compile Include="GameObjects\CharacterObject.cs" />
+    <Compile Include="GameObjects\Player\RangedCharacter.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Graphics\SceneQuery.cs" />
-    <Compile Include="GameObjects\AI\AIObject.cs" />
     <Compile Include="GameObjects\Player\MainCharacter.cs" />
     <Compile Include="PathFinding\PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

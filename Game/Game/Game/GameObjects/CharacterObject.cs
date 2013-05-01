@@ -20,6 +20,10 @@ namespace ICT309Game.GameObjects
     class CharacterObject : GameObject
     {
         protected ModelNode _model;
+        protected Vector4 _color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+
+        public static readonly int NameID =
+            CreateProperty<String>("Name", "Common", "Defines the name of the character.", "Character").Id;
 
         public static readonly int HitPointsID = 
             CreateProperty<int>("HP", "Common", "Defines the number of hit points remaining.", 100).Id;
@@ -44,6 +48,12 @@ namespace ICT309Game.GameObjects
 
         public static readonly int PositionYID =
             CreateProperty<int>("PosY", "Common", "Defines the Y Position on the game board.", 0).Id;
+
+        public String Name
+        {
+            get { return GetValue<String>(NameID); }
+            set { SetValue(NameID, value); }
+        }
 
         public int HitPoints
         {
@@ -127,13 +137,12 @@ namespace ICT309Game.GameObjects
                 foreach (var material in mesh.Materials)
                 {
                     var effectBinding = material["Default"];
-                    effectBinding.Set("DiffuseColor", new Vector4(1.0f, 1.0f, 1.0f, 1));
+                    effectBinding.Set("DiffuseColor", _color);
                     ((BasicEffectBinding)effectBinding).LightingEnabled = false;
                 }
             }
 
             screen.Scene.Children.Add(_model);
-            _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
         }
     }
 }

@@ -21,7 +21,10 @@ namespace ICT309Game.GameObjects
 
         protected override void OnLoad()
         {
-            LoadModel("Militia");
+            LoadModel("Player/Militia");
+            _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
+
+            Name = "Main Character";
 
             base.OnLoad();
         }
@@ -34,7 +37,6 @@ namespace ICT309Game.GameObjects
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
-            
 
             base.OnUpdate(deltaTime);
         }
