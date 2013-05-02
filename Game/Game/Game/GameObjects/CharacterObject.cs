@@ -41,7 +41,7 @@ namespace ICT309Game.GameObjects
             CreateProperty<int>("Range", "Common", "Defines the distance at which a character can attack.", 0).Id;
 
         public static readonly int MovementID =
-            CreateProperty<int>("Movement", "Common", "Defines the distance the character can move in a turn.", 0).Id;
+            CreateProperty<int>("Movement", "Common", "Defines the distance the character can move in a turn.", 2).Id;
 
         public static readonly int PositionXID =
             CreateProperty<int>("PosX", "Common", "Defines the X Position on the game board.", 0).Id;
@@ -49,7 +49,7 @@ namespace ICT309Game.GameObjects
         public static readonly int PositionYID =
             CreateProperty<int>("PosY", "Common", "Defines the Y Position on the game board.", 0).Id;
 
-        public String Name
+        public String CharacterName
         {
             get { return GetValue<String>(NameID); }
             set { SetValue(NameID, value); }
@@ -102,6 +102,9 @@ namespace ICT309Game.GameObjects
             get { return GetValue<int>(PositionYID); }
             set { SetValue(PositionYID, value); }
         }
+
+        public bool isTurn = false;
+        public bool isAlly { get; protected set; }
 
         protected override void OnLoad()
         {

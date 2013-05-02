@@ -5,14 +5,22 @@ using System.Text;
 
 namespace ICT309Game.GameObjects.Board
 {
+    enum TurnStatus
+    {
+        MOVEMENT = 0,
+        ACTION = 1
+    };
+
     class TurnManager
     {
         private List<CharacterObject> characterList = new List<CharacterObject>();
 
         public CharacterObject CurrentTurn { get; private set; }
+        public TurnStatus CurrentTurnStatus { get; private set; }
 
         public TurnManager()
         {
+            CurrentTurnStatus = TurnStatus.MOVEMENT;
         }
 
         public void AddToList(CharacterObject element)
@@ -36,6 +44,12 @@ namespace ICT309Game.GameObjects.Board
             characterList.Insert(characterList.Count, CurrentTurn);
 
             CurrentTurn = characterList[0];
+            CurrentTurnStatus = TurnStatus.MOVEMENT;
+        }
+
+        public void ChangeStatus()
+        {
+            if (CurrentTurnStatus == TurnStatus.MOVEMENT) CurrentTurnStatus = TurnStatus.ACTION;
         }
     }
 }

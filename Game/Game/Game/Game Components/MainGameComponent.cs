@@ -74,7 +74,7 @@ namespace ICT309Game.Game_Components
         {
             _gameScreen.DebugRenderer.Clear();
 
-            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.Name;
+            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
 
             base.Update(gameTime);
         }

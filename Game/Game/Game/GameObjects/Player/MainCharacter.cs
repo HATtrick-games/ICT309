@@ -18,13 +18,17 @@ namespace ICT309Game.GameObjects
 {
     class MainCharacter : CharacterObject
     {
+        public MainCharacter()
+        {
+            isAlly = true;
+        }
 
         protected override void OnLoad()
         {
             LoadModel("Player/Militia");
             _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
 
-            Name = "Main Character";
+            CharacterName = "Main Character";
 
             base.OnLoad();
         }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8">
+<level>
+	<width>10</width>
+	<height>10</height>
+	<model>"board/testmodel"</model>
+	<data>1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111
+		  1111111111</data>
+</level>
+<characters>
+	<maincharacter>
+		<posx>3</posx>
+		<posy>3</posy>
+	</maincharacter>
+	<airangedcharacter>
+		<posx>5</posx>
+		<posy>5</posy>
+</characters>

@@ -99,6 +99,39 @@ namespace ICT309Game.GameObjects.Board
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
+            ResetBoard();
+
+            if (TurnManager.CurrentTurn.isAlly && TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT)
+            {
+                ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+
+                var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+                var inputService = ServiceLocator.Current.GetInstance<IInputService>();
+                CameraObject camera;
+                gameObjectService.Objects.TryGet("Camera", out camera);
+
+                Vector3F mousePos = new Vector3F();
+
+                if (inputService.IsPressed(MouseButtons.Right, false))
+                {
+                    mousePos = camera.MousePosition;
+
+                    int IndexI = (int)((mousePos.X - startPos + (gap / 2.0f)) / gap);
+                    int IndexJ = (int)((mousePos.Z - startPos + (gap / 2.0f)) / gap);
+
+                    if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
+                    {
+                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTED)
+                        {
+                            TurnManager.CurrentTurn.PosX = IndexI;
+                            TurnManager.CurrentTurn.PosY = IndexJ;
+
+                            TurnManager.ChangeStatus();
+                        }
+                    }
+                }
+            }
+
             for (int i = 0; i < GameBoard.GetLength(0); i++)
             {
                 for (int j = 0; j < GameBoard.GetLength(1); j++)
@@ -128,29 +161,6 @@ namespace ICT309Game.GameObjects.Board
                     }
                 }
             }
-
-            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-            var inputService = ServiceLocator.Current.GetInstance<IInputService>();
-            CameraObject camera; 
-            gameObjectService.Objects.TryGet("Camera", out camera);
-
-            Vector3F mousePos = new Vector3F();
-
-            if (inputService.IsPressed(MouseButtons.Left, true))
-            {
-                mousePos = camera.MousePosition;
-
-                int IndexI = (int)((mousePos.X - startPos + (gap / 2.0f)) / gap);
-                int IndexJ = (int)((mousePos.Z - startPos + (gap / 2.0f)) / gap);
-
-                if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
-                {
-                    ResetBoard();
-                    ShowMovementRange(IndexI, IndexJ, 2);
-                }
-            }
-
-            if (inputService.IsPressed(MouseButtons.Right, false)) TurnManager.ChangeTurn();
 
             base.OnUpdate(deltaTime);
         }
