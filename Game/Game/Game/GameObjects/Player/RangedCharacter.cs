@@ -24,6 +24,7 @@ namespace ICT309Game.GameObjects
             LoadModel("Player/rangedally");
 
             CharacterName = "Ranged Character";
+            Range = 4;
 
             base.OnLoad();
         }

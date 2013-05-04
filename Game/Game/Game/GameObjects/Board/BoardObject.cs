@@ -20,8 +20,6 @@ namespace ICT309Game.GameObjects.Board
 
         protected override void OnLoad()
         {
-            Console.WriteLine("BoardObject OnLoad");
-
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
             var screen = ((GameScreen)graphicsService.Screens["Default"]);

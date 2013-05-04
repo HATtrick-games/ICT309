@@ -6,13 +6,14 @@ using DigitalRune.Game.UI;
 using DigitalRune.Game.UI.Controls;
 using DigitalRune.Game.UI.Rendering;
 using Microsoft.Xna.Framework;
+using DigitalRune.Mathematics.Algebra;
 
 namespace ICT309Game.Game_Components.UI
 {
     class MainGameHUD : UIScreen
     {
-        StackPanel _panel;
         TextBlock _text;
+        Button _turnButton;
 
         public String CurrentCharacterName { get; set; }
 
@@ -28,19 +29,22 @@ namespace ICT309Game.Game_Components.UI
             {
                 Text = "Current Turn",
                 Background = Color.Black,
-                X = 100,
-                Y = 100,
-            };
-
-            _panel = new StackPanel
-            {
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Bottom,
             };
 
-            _panel.Children.Add(_text);
+            _turnButton = new Button
+            {
+                Margin = new Vector4F(10),
+                Width = 200,
+                Height = 60,
+                Content = new TextBlock { Text = "End Turn" },
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Bottom,
+            };
 
-            Children.Add(_panel);
+            Children.Add(_text);
+            Children.Add(_turnButton);
 
             base.OnLoad();
         }
@@ -55,7 +59,8 @@ namespace ICT309Game.Game_Components.UI
 
         protected override void OnRender(UIRenderContext context)
         {
-            _panel.Render(context);
+            _text.Render(context);
+            _turnButton.Render(context);
 
             base.OnRender(context);
         }

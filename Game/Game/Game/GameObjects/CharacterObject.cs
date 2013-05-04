@@ -38,7 +38,7 @@ namespace ICT309Game.GameObjects
             CreateProperty<int>("Armor", "Common", "Defines the amount of damage reduced by attacks.", 0).Id;
 
         public static readonly int RangeID =
-            CreateProperty<int>("Range", "Common", "Defines the distance at which a character can attack.", 0).Id;
+            CreateProperty<int>("Range", "Common", "Defines the distance at which a character can attack.", 1).Id;
 
         public static readonly int MovementID =
             CreateProperty<int>("Movement", "Common", "Defines the distance the character can move in a turn.", 2).Id;

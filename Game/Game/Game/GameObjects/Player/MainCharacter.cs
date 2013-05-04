@@ -29,13 +29,13 @@ namespace ICT309Game.GameObjects
             _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
 
             CharacterName = "Main Character";
+            Range = 1;
 
             base.OnLoad();
         }
 
         protected override void OnUnload()
         {
-
             base.OnUnload();
         }
 

@@ -20,7 +20,8 @@ namespace ICT309Game.GameObjects.Board
         BLOCKED = 0,
         EMPTY = 1,
         OCCUPIED = 2,
-        HIGHLIGHTED = 3,
+        HIGHLIGHTEDRED = 3,
+        HIGHLIGHTEDBLUE = 4,
     };
 
     class GameBoardManagerObject:GameObject
@@ -121,7 +122,7 @@ namespace ICT309Game.GameObjects.Board
 
                     if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
                     {
-                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTED)
+                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
                         {
                             TurnManager.CurrentTurn.PosX = IndexI;
                             TurnManager.CurrentTurn.PosY = IndexJ;
@@ -130,6 +131,11 @@ namespace ICT309Game.GameObjects.Board
                         }
                     }
                 }
+            }
+
+            if (TurnManager.CurrentTurn.isAlly && TurnManager.CurrentTurnStatus == TurnStatus.ACTION)
+            {
+                ShowAttackRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Range);
             }
 
             for (int i = 0; i < GameBoard.GetLength(0); i++)
@@ -148,15 +154,20 @@ namespace ICT309Game.GameObjects.Board
                             whiteGameBoard[i, j].InUse = true;
                             blueGameBoard[i, j].InUse = false;
                             break;
-                        case SquareData.HIGHLIGHTED:
+                        case SquareData.HIGHLIGHTEDRED:
                             redGameBoard[i, j].InUse = true;
                             whiteGameBoard[i, j].InUse = false;
                             blueGameBoard[i, j].InUse = false;
                             break;
-                        case SquareData.OCCUPIED:
+                        case SquareData.HIGHLIGHTEDBLUE:
                             redGameBoard[i, j].InUse = false;
                             whiteGameBoard[i, j].InUse = false;
                             blueGameBoard[i, j].InUse = true;
+                            break;
+                        case SquareData.OCCUPIED:
+                            redGameBoard[i, j].InUse = false;
+                            whiteGameBoard[i, j].InUse = false;
+                            blueGameBoard[i, j].InUse = false;
                             break;
                     }
                 }
@@ -223,10 +234,42 @@ namespace ICT309Game.GameObjects.Board
             {
                 if (CheckRange(nodeList[i].First) && CheckRange(nodeList[i].Second))
                     // TODO 
-                    GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTED;
+                    GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDRED;
+            }
+        }
+
+        public void ShowAttackRange(int x, int z, int range)
+        {
+            if (!CheckRange(x) ||
+                !CheckRange(z) ||
+                !CheckRange(range))
+            {
+                return;
             }
 
-            GameBoard[x, z] = SquareData.OCCUPIED;
+            List<Pair<int>> nodeList = new List<Pair<int>>();
+            nodeList.Add(new Pair<int>(x, z));
+
+            for (int i = 1; i <= range; i++)
+            {
+                if (CheckRange(x + i))
+                    nodeList.Add(new Pair<int>(x + i, z));
+
+                if (CheckRange(x - i))
+                    nodeList.Add(new Pair<int>(x - i, z));
+
+                if (CheckRange(z + i))
+                    nodeList.Add(new Pair<int>(x, z + i));
+
+                if (CheckRange(z - i))
+                    nodeList.Add(new Pair<int>(x, z - i));
+            }
+
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (CheckRange(nodeList[i].First) && CheckRange(nodeList[i].Second))
+                    GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDBLUE;
+            }
         }
 
         private bool CheckRange(int x)
