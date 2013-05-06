@@ -11,18 +11,17 @@ using Microsoft.Xna.Framework;
 
 namespace ICT309Game.Graphics
 {
-    class GameScreen : GraphicsScreen, IDisposable
+    class GameScreen : GraphicsScreen
     {
         private bool _disposed;
 
         private readonly SceneRenderer _opaqueSceneRenderer;
-        private readonly SceneRenderer _transparentSceneRenderer;
 
         public Scene Scene { get; private set; }
 
         public CameraNode ActiveCamera { get; set; }
 
-        public DebugRenderer DebugRenderer { get; private set; }
+        //public DebugRenderer DebugRenderer { get; private set; }
 
         public GameScreen(IGraphicsService graphicsService) : base(graphicsService)
         {
@@ -33,17 +32,9 @@ namespace ICT309Game.Graphics
             _opaqueSceneRenderer = new SceneRenderer();
             _opaqueSceneRenderer.Renderers.Add(meshRenderer);
 
-            _transparentSceneRenderer = new SceneRenderer();
-            _transparentSceneRenderer.Renderers.Add(meshRenderer);
-
-            DebugRenderer = ServiceLocator.Current.GetInstance<DebugRenderer>();
+            //DebugRenderer = ServiceLocator.Current.GetInstance<DebugRenderer>();
 
             Scene = new Scene();
-        }
-
-        ~GameScreen()
-        {
-            Dispose(false);
         }
 
         public void Dispose()
@@ -59,7 +50,7 @@ namespace ICT309Game.Graphics
                 if (disposing)
                 {
                     Scene.Dispose();
-                    DebugRenderer.Dispose();
+                    //DebugRenderer.Dispose();
                 }
 
                 _disposed = true;
@@ -84,15 +75,7 @@ namespace ICT309Game.Graphics
             SceneQuery SceneQuery = Scene.Query<SceneQuery>(ActiveCamera);
             _opaqueSceneRenderer.Render(SceneQuery.RenderableNodes, context);
 
-            graphicsDevice.ResetTextures();
-
-            graphicsDevice.DepthStencilState = DepthStencilState.DepthRead;
-            graphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-            graphicsDevice.BlendState = BlendState.AlphaBlend;
-            context.RenderPass = "AlphaBlend";
-            _transparentSceneRenderer.Render(SceneQuery.RenderableNodes, context, RenderOrder.BackToFront);
-
-            DebugRenderer.Render(context);
+            //DebugRenderer.Render(context);
 
             context.RenderPass = null;
             context.CameraNode = null;
@@ -101,7 +84,7 @@ namespace ICT309Game.Graphics
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             Scene.Update(deltaTime);
-            DebugRenderer.Update(deltaTime);
+            //DebugRenderer.Update(deltaTime);
         }
     }
 }

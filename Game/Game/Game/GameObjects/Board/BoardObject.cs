@@ -22,7 +22,7 @@ namespace ICT309Game.GameObjects.Board
         {
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            var screen = ((GameScreen)graphicsService.Screens["Default"]);
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
             _model = contentManager.Load<ModelNode>("Board/testmodel");
             _model = _model.Clone();

@@ -35,7 +35,7 @@ namespace ICT309Game.GameObjects.Board
             _color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            var screen = ((GameScreen)graphicsService.Screens["Default"]);
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
 
             _model = contentManager.Load<ModelNode>("Board/redSquare").Clone();

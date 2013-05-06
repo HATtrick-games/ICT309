@@ -16,46 +16,39 @@ using DigitalRune.Geometry;
 using ICT309Game.Game_Components.UI;
 using Microsoft.Xna.Framework.Content;
 using DigitalRune.Game.UI.Rendering;
+using DigitalRune.Graphics.SceneGraph;
 
 namespace ICT309Game.Game_Components
 {
     class MainGameComponent: GameComponent
     {
-        private GameScreen _gameScreen;
+        private BasicScreen _gameScreen;
         private MainGameHUD _gameHUD;
-
-        private readonly IInputService _inputService;
-        private readonly IUIService _uiService;
-        private readonly IGraphicsService _graphicsService;
-        private readonly IGameObjectService _gameObjectService;
 
         // GAME OBJECTS
         private GameBoardManagerObject _gameBoardManager;
 
         public MainGameComponent(Game game):base(game)
         {
-            _inputService = ServiceLocator.Current.GetInstance<IInputService>();
-            _uiService = ServiceLocator.Current.GetInstance<IUIService>();
-            _graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            _gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+
+            _gameScreen = new BasicScreen(graphicsService)
+            {
+                Name = "Default",
+            };
+            graphicsService.Screens.Add(_gameScreen);
         }
 
         public override void Initialize()
         {
-            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            _gameScreen = new GameScreen(graphicsService)
-            {
-                Name = "Default"
-            };
-            graphicsService.Screens.Add(_gameScreen);
-
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var theme = Game.Content.Load<Theme>("UI/Theme");
             var renderer = new UIRenderer(Game, theme);
 
             _gameHUD = new MainGameHUD("GameHUD", renderer);
 
-            _uiService.Screens.Add(_gameHUD);
+            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
+            uiService.Screens.Add(_gameHUD);
 
             _gameBoardManager = new GameBoardManagerObject();
 
@@ -66,16 +59,14 @@ namespace ICT309Game.Game_Components
             gameObjectService.Objects.Add(_gameBoardManager);
             //gameObjectService.Objects.Add(new MainCharacter());
             //gameObjectService.Objects.Add(new AIRangedCharacter());
-
-            base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            _gameScreen.DebugRenderer.Clear();
+            //_Scene.Update(gameTime.ElapsedGameTime);
+            //_gameScreen.DebugRenderer.Clear();
 
-            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
-
+            //_gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
             base.Update(gameTime);
         }
 
@@ -83,10 +74,11 @@ namespace ICT309Game.Game_Components
         {
             if (disposing)
             {
-                _gameObjectService.Objects.Clear();
+                var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+                gameObjectService.Objects.Clear();
 
-                _gameScreen.GraphicsService.Screens.Clear();
-                _gameScreen.Dispose();
+                var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+                graphicsService.Screens.Clear();
             }
 
             base.Dispose(disposing);

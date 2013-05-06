@@ -27,9 +27,8 @@ namespace ICT309Game.GameObjects
         public Matrix Projection { get; private set; }
 
         private IInputService _inputService;
-        private DebugRenderer _debugRenderer;
 
-        private CameraNode _cameraNode;
+        public CameraNode _cameraNode { get; private set; }
 
         private Vector3F _position;
         private QuaternionF _orientation;
@@ -41,14 +40,10 @@ namespace ICT309Game.GameObjects
             base.Name = "Camera";
 
             _inputService = ServiceLocator.Current.GetInstance<IInputService>();
-        }
-
-        protected override void OnLoad()
-        {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
             var gameObjectManager = ServiceLocator.Current.GetInstance<IGameObjectService>();
-            var screen = ((GameScreen)graphicsService.Screens["Default"]);
-            _debugRenderer = screen.DebugRenderer;
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            //_debugRenderer = screen.DebugRenderer;
 
             PerspectiveProjection projection = new PerspectiveProjection();
             projection.SetFieldOfView(Microsoft.Xna.Framework.MathHelper.PiOver4,
@@ -63,7 +58,10 @@ namespace ICT309Game.GameObjects
 
             View = _cameraNode.View.ToXna();
             Projection = _cameraNode.Camera.Projection.ToXna();
+        }
 
+        protected override void OnLoad()
+        {
             base.OnLoad();
         }
 
@@ -80,7 +78,7 @@ namespace ICT309Game.GameObjects
         protected override void OnUnload()
         {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            var screen = ((GameScreen)graphicsService.Screens["Default"]);
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
             if (screen.ActiveCamera == _cameraNode)
             {
@@ -189,10 +187,15 @@ namespace ICT309Game.GameObjects
             Vector3F cameraDirection = Vector3F.FromXna(direction);
 
             MousePosition = cameraPosition;
-            while (MousePosition.Y > 0)
+            if (cameraDirection.Y < 0)
             {
-                MousePosition += cameraDirection;
+                while (MousePosition.Y > 0)
+                {
+                    MousePosition += cameraDirection;
+                }
             }
+
+            
         }
     }
 }

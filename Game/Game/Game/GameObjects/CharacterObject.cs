@@ -130,7 +130,7 @@ namespace ICT309Game.GameObjects
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
-            var screen = ((GameScreen)graphicsService.Screens["Default"]);
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
             _model = contentManager.Load<ModelNode>(filepath).Clone();
 

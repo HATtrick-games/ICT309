@@ -20,10 +20,12 @@ namespace ICT309Game.Game_Components.UI
         public MainGameHUD(string name, IUIRenderer renderer)
             : base(name, renderer)
         {
+            
         }
 
         protected override void OnLoad()
         {
+            CurrentCharacterName = " ";
 
             _text = new TextBlock
             {

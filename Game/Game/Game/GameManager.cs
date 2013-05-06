@@ -37,14 +37,13 @@ namespace ICT309Game
         private AnimationManager _animationManager;
         private UIManager _uiManager;
         private GameObjectManager _gameObjectManager;
-        private Simulation _simulation;
         private DebugRenderer _debugRenderer;
 
-        private Action _updateAnimation;
-        private Action _updatePhysics;
+        private MainGameComponent _mainGameComponent;
 
-        private Task _updateAnimationTask;
-        private Task _updatePhysicsTask;
+        //private Action _updateAnimation;
+
+        //private Task _updateAnimationTask;
 
         private TimeSpan _deltaTime;
 
@@ -90,9 +89,6 @@ namespace ICT309Game
             _animationManager = new AnimationManager();
             _serviceContainer.Register(typeof(IAnimationService), null, _animationManager);
 
-            _simulation = new Simulation();
-            _serviceContainer.Register(typeof(Simulation), null, _simulation);
-
             _gameObjectManager = new GameObjectManager();
             _serviceContainer.Register(typeof(IGameObjectService), null, _gameObjectManager);
 
@@ -101,13 +97,10 @@ namespace ICT309Game
 
             _serviceContainer.Register(typeof(ContentManager), null, Content);
 
-            Services.AddService(typeof(ContentManager), Content);
-            Services.AddService(typeof(Game), this);
+            _mainGameComponent = new MainGameComponent(this);
+            Components.Add(_mainGameComponent);
 
-            Components.Add(new MainGameComponent(this));
-
-            _updateAnimation = () => _animationManager.Update(_deltaTime);
-            _updatePhysics = () => _simulation.Update(_deltaTime);
+            //_updateAnimation = () => _animationManager.Update(_deltaTime);
 
             base.Initialize();
         }
@@ -116,11 +109,10 @@ namespace ICT309Game
         {
             _inputManager.Update(_deltaTime);
 
-            _updateAnimationTask.Wait();
-            _updatePhysicsTask.Wait();
+            //_updateAnimationTask.Wait();
 
             _animationManager.ApplyAnimations();
-            Parallel.RunCallbacks();
+            //Parallel.RunCallbacks();
 
             _deltaTime = gameTime.ElapsedGameTime;
 
@@ -129,8 +121,7 @@ namespace ICT309Game
             _uiManager.Update(_deltaTime);
             _gameObjectManager.Update(_deltaTime);
 
-            _updateAnimationTask = Parallel.Start(_updateAnimation);
-            _updatePhysicsTask = Parallel.Start(_updatePhysics);
+            //_updateAnimationTask = Parallel.Start(_updateAnimation);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -146,5 +137,14 @@ namespace ICT309Game
             base.Draw(gameTime);
         }
 
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            System.Console.WriteLine("Exiting");
+            _mainGameComponent.Dispose();
+
+            _serviceContainer.Clear();
+
+            base.OnExiting(sender, args);
+        }
     }
 }
