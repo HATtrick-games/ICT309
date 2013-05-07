@@ -148,8 +148,7 @@ namespace ICT309Game.GameObjects.Board
                         if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
                         {
                             // Move character to selected square
-                            TurnManager.CurrentTurn.PosX = IndexI;
-                            TurnManager.CurrentTurn.PosY = IndexJ;
+                            GameActions.MoveCharacter(TurnManager.CurrentTurn, IndexI, IndexJ);
 
                             TurnManager.ChangeStatus();
                         }

@@ -7,6 +7,10 @@ using DigitalRune.Game.UI.Controls;
 using DigitalRune.Game.UI.Rendering;
 using Microsoft.Xna.Framework;
 using DigitalRune.Mathematics.Algebra;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using ICT309Game.GameObjects.Board;
 
 namespace ICT309Game.Game_Components.UI
 {
@@ -14,24 +18,22 @@ namespace ICT309Game.Game_Components.UI
     {
         TextBlock _text;
         Button _turnButton;
-
-        public String CurrentCharacterName { get; set; }
-        public bool PlayerTurn { get; set; }
-        public bool MovementPhase { get; set; }
+        Image _hudOverlay;
+        Image _currentCharacterImage;
+        
+        public TurnManager TurnManagerObject { get; set; }
 
         public bool EndButtonClicked { get; private set; }
 
-        public MainGameHUD(string name, IUIRenderer renderer)
+        public MainGameHUD(string name, IUIRenderer renderer, TurnManager turnManager)
             : base(name, renderer)
         {
-            
+            TurnManagerObject = turnManager;
         }
 
         protected override void OnLoad()
         {
-            CurrentCharacterName = " ";
-            PlayerTurn = false;
-            MovementPhase = false;
+            var content = ServiceLocator.Current.GetInstance<ContentManager>();
 
             _text = new TextBlock
             {
@@ -50,10 +52,28 @@ namespace ICT309Game.Game_Components.UI
                 VerticalAlignment = VerticalAlignment.Bottom,
             };
             _turnButton.Click += (s, e) => EndButtonClicked = true;
-            
 
+            _currentCharacterImage = new Image
+            {
+                Width = 80,
+                Height = 80,
+                Texture = null,
+                X = 20,
+                Y = 630,
+            };
+
+            _hudOverlay = new Image
+            {
+                Texture = content.Load<Texture2D>("UI/UIOverlay"),
+            };
+
+            Children.Add(_hudOverlay);
+            Children.Add(_currentCharacterImage);
             Children.Add(_text);
             Children.Add(_turnButton);
+
+            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
+            Children.Add(gameLog);
 
             base.OnLoad();
         }
@@ -61,9 +81,11 @@ namespace ICT309Game.Game_Components.UI
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             EndButtonClicked = false;
-            _text.Text = "Current Turn " + CurrentCharacterName;
+            _text.Text = "Current Turn " + TurnManagerObject.CurrentTurn.CharacterName;
 
-            if (MovementPhase)
+            _currentCharacterImage.Texture = TurnManagerObject.CurrentTurn.Image;
+
+            if (TurnManagerObject.CurrentTurnStatus == TurnStatus.MOVEMENT)
             {
                 _turnButton.Content = new TextBlock { Text = "End Movement Phase" };
             }
@@ -77,10 +99,17 @@ namespace ICT309Game.Game_Components.UI
 
         protected override void OnRender(UIRenderContext context)
         {
+            _hudOverlay.Render(context);
+
             _text.Render(context);
 
-            _turnButton.IsVisible = PlayerTurn;
+            _turnButton.IsVisible = TurnManagerObject.CurrentTurn.isAlly;
             _turnButton.Render(context);
+
+            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
+            gameLog.Render(context);
+
+            _currentCharacterImage.Render(context);
 
             base.OnRender(context);
         }

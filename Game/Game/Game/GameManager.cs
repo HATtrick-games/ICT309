@@ -20,6 +20,7 @@ using DigitalRune.Animation;
 using ICT309Game.Game_Components;
 using DigitalRune.Physics;
 using DigitalRune.Game.UI.Controls;
+using ICT309Game.Game_Components.UI;
 
 namespace ICT309Game
 {
@@ -38,6 +39,8 @@ namespace ICT309Game
         private UIManager _uiManager;
         private GameObjectManager _gameObjectManager;
         private DebugRenderer _debugRenderer;
+
+        private GameLog _gameLog;
 
         private MainGameComponent _mainGameComponent;
 
@@ -96,6 +99,9 @@ namespace ICT309Game
             _serviceContainer.Register(typeof(DebugRenderer), null, _debugRenderer);
 
             _serviceContainer.Register(typeof(ContentManager), null, Content);
+
+            _gameLog = new GameLog();
+            _serviceContainer.Register(typeof(GameLog), null, _gameLog);
 
             _mainGameComponent = new MainGameComponent(this);
             Components.Add(_mainGameComponent);

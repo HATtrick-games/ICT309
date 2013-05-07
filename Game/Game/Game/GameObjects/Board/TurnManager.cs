@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Practices.ServiceLocation;
+using ICT309Game.Game_Components.UI;
 
 namespace ICT309Game.GameObjects.Board
 {

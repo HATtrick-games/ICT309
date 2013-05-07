@@ -67,7 +67,7 @@ namespace ICT309Game.GameObjects
 
         public void ResetCamera()
         {
-            _position = new Vector3F(160.0f, 160.0f, 160.0f);
+            _position = new Vector3F(180.0f, 200.0f, 180.0f);
             _yaw = Microsoft.Xna.Framework.MathHelper.ToRadians(-45.0f);
             _pitch = Microsoft.Xna.Framework.MathHelper.ToRadians(45.0f);
 
@@ -128,9 +128,9 @@ namespace ICT309Game.GameObjects
 
             _orientation = QuaternionF.CreateRotationY(_pitch) * QuaternionF.CreateRotationX(_yaw);
 
-            _position.X = Microsoft.Xna.Framework.MathHelper.Clamp(_position.X, -200.0f, 200.0f);
-            _position.Y = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Y, 40.0f, 220.0f);
-            _position.Z = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Z, -200.0f, 200.0f);
+            _position.X = Microsoft.Xna.Framework.MathHelper.Clamp(_position.X, -250.0f, 250.0f);
+            _position.Y = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Y, 60.0f, 270.0f);
+            _position.Z = Microsoft.Xna.Framework.MathHelper.Clamp(_position.Z, -250.0f, 250.0f);
 
             _cameraNode.PoseWorld = new Pose(_position, _orientation);
 

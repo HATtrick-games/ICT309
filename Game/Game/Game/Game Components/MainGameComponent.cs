@@ -44,13 +44,8 @@ namespace ICT309Game.Game_Components
         public override void Initialize()
         {
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
-            var theme = Game.Content.Load<Theme>("UI/Theme");
+            var theme = Game.Content.Load<Theme>("UI/UITheme");
             var renderer = new UIRenderer(Game, theme);
-
-            _gameHUD = new MainGameHUD("GameHUD", renderer);
-
-            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
-            uiService.Screens.Add(_gameHUD);
 
             _gameBoardManager = new GameBoardManagerObject();
             _aiHandler = new AIHandlerObject();
@@ -61,17 +56,18 @@ namespace ICT309Game.Game_Components
             gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(_aiHandler);
             gameObjectService.Objects.Add(_gameBoardManager);
+
+            _gameHUD = new MainGameHUD("GameHUD", renderer, _gameBoardManager.TurnManager);
+
+            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
+            uiService.Screens.Add(_gameHUD);
         }
 
         public override void Update(GameTime gameTime)
         {
-            _gameHUD.PlayerTurn = _gameBoardManager.TurnManager.CurrentTurn.isAlly;
-            _gameHUD.MovementPhase = (_gameBoardManager.TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT);
-            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
-
             if (_gameHUD.EndButtonClicked)
             {
-                if (_gameHUD.MovementPhase) _gameBoardManager.TurnManager.ChangeStatus();
+                if (_gameBoardManager.TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT) _gameBoardManager.TurnManager.ChangeStatus();
                 else _gameBoardManager.TurnManager.ChangeTurn();
             }
 

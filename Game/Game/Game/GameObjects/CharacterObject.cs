@@ -14,6 +14,7 @@ using DigitalRune.Graphics.Effects;
 using ICT309Game.GameObjects.Board;
 using DigitalRune.Geometry;
 using DigitalRune.Mathematics.Algebra;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ICT309Game.GameObjects
 {
@@ -21,6 +22,8 @@ namespace ICT309Game.GameObjects
     {
         protected ModelNode _model;
         protected Vector4 _color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+
+        private static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
 
         public static readonly int NameID =
             CreateProperty<String>("Name", "Common", "Defines the name of the character.", "Character").Id;
@@ -51,6 +54,9 @@ namespace ICT309Game.GameObjects
 
         public static readonly int PositionYID =
             CreateProperty<int>("PosY", "Common", "Defines the Y Position on the game board.", 0).Id;
+
+        public static readonly int ImageID =
+            CreateProperty<Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Texture2D>("Placeholder")).Id;
 
         public String CharacterName
         {
@@ -110,6 +116,12 @@ namespace ICT309Game.GameObjects
         {
             get { return GetValue<int>(PositionYID); }
             set { SetValue(PositionYID, value); }
+        }
+
+        public Texture2D Image
+        {
+            get { return GetValue<Texture2D>(ImageID); }
+            set { SetValue(ImageID, value); }
         }
 
         public bool isTurn = false;
