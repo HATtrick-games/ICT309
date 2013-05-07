@@ -178,6 +178,7 @@
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="Game Components\UI\MainGameHUD.cs" />
+    <Compile Include="GameObjects\AI\AIHandlerObject.cs" />
     <Compile Include="GameObjects\AI\AIRangedCharacter.cs" />
     <Compile Include="GameObjects\AI\AIWeakCharacter.cs" />
     <Compile Include="GameObjects\AI\AIMiniBossCharacter.cs" />

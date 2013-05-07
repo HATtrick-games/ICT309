@@ -19,6 +19,8 @@ namespace ICT309Game.Game_Components.UI
         public bool PlayerTurn { get; set; }
         public bool MovementPhase { get; set; }
 
+        public bool EndButtonClicked { get; private set; }
+
         public MainGameHUD(string name, IUIRenderer renderer)
             : base(name, renderer)
         {
@@ -28,6 +30,8 @@ namespace ICT309Game.Game_Components.UI
         protected override void OnLoad()
         {
             CurrentCharacterName = " ";
+            PlayerTurn = false;
+            MovementPhase = false;
 
             _text = new TextBlock
             {
@@ -45,6 +49,8 @@ namespace ICT309Game.Game_Components.UI
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,
             };
+            _turnButton.Click += (s, e) => EndButtonClicked = true;
+            
 
             Children.Add(_text);
             Children.Add(_turnButton);
@@ -54,8 +60,17 @@ namespace ICT309Game.Game_Components.UI
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
-            //System.Console.WriteLine("GameHUD Update");
+            EndButtonClicked = false;
             _text.Text = "Current Turn " + CurrentCharacterName;
+
+            if (MovementPhase)
+            {
+                _turnButton.Content = new TextBlock { Text = "End Movement Phase" };
+            }
+            else
+            {
+                _turnButton.Content = new TextBlock { Text = "End Turn" };
+            }
 
             base.OnUpdate(deltaTime);
         }
@@ -63,6 +78,8 @@ namespace ICT309Game.Game_Components.UI
         protected override void OnRender(UIRenderContext context)
         {
             _text.Render(context);
+
+            _turnButton.IsVisible = PlayerTurn;
             _turnButton.Render(context);
 
             base.OnRender(context);

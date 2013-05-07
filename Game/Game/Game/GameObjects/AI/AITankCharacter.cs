@@ -16,7 +16,7 @@ using DigitalRune.Animation;
 
 namespace ICT309Game.GameObjects
 {
-    class AIRangedCharacter : CharacterObject
+    class AITankCharacter : CharacterObject
     {
         protected override void OnLoad()
         {

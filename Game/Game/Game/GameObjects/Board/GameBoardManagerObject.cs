@@ -49,6 +49,7 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject()
         {
+            ResetBoard();  
             // LOAD IN LEVEL FILES FROM EXTERNAL FILE
 
             for (int i = 0; i < Positions.GetLength(0); i++)
@@ -59,7 +60,7 @@ namespace ICT309Game.GameObjects.Board
                 }
             }
 
-            ResetBoard();  
+            
         }
 
         protected override void  OnLoad()
@@ -160,6 +161,7 @@ namespace ICT309Game.GameObjects.Board
                                 if (TurnManager.characterList[i].PosX == IndexI && TurnManager.characterList[i].PosY == IndexJ)
                                 {
                                     GameActions.ResolveCombat(TurnManager.CurrentTurn, TurnManager.characterList[i]);
+                                    TurnManager.ChangeTurn();
                                 }
                             }
                         }
@@ -216,7 +218,7 @@ namespace ICT309Game.GameObjects.Board
             {
                 for (int j = 0; j < GameBoard.GetLength(1); j++)
                 {
-                    GameBoard[i, j] = SquareData.EMPTY;
+                        GameBoard[i, j] = SquareData.EMPTY;
                 }
             }
         }
