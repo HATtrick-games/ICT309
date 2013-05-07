@@ -16,37 +16,38 @@ using DigitalRune.Animation;
 
 namespace ICT309Game.GameObjects
 {
-    class MainCharacter : CharacterObject
+    class MageCharacter : CharacterObject
     {
+
         protected override void OnLoad()
         {
-            LoadModel("Player/Militia");
-            _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
+            LoadModel("Player/rangedally");
 
             isAlly = true;
-            CharacterName = "Main Character";
-            HitPoints = 350;
-            Damage = 100;
-            ArmorDamage = 3;
-            Armor = 70;
-            MinArmor = 30;
-            Range = 1;
-            Movement = 3;
+            CharacterName = "Mage Character";
+            HitPoints = 200;
+            Damage = 75;
+            ArmorDamage = 0;
+            Armor = 30;
+            MinArmor = 5;
+            Range = 4;
+            Movement = 4;
+
+            PosX = 2;
+            PosY = 1;
 
             base.OnLoad();
         }
 
         protected override void OnUnload()
         {
+
             base.OnUnload();
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
-
             base.OnUpdate(deltaTime);
         }
-
-
     }
 }

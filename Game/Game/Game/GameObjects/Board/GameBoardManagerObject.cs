@@ -42,6 +42,8 @@ namespace ICT309Game.GameObjects.Board
         // CHARACTER OBJECTS
         private MainCharacter _mainCharacter;
         private RangedCharacter _rangedCharacter;
+        private AIRangedCharacter _aiRangedCharacter;
+        private AIWeakCharacter _aiWeakCharacter;
 
         public TurnManager TurnManager { get; private set; }
 
@@ -89,23 +91,32 @@ namespace ICT309Game.GameObjects.Board
 
             _mainCharacter = new MainCharacter();
             _rangedCharacter = new RangedCharacter();
+            _aiRangedCharacter = new AIRangedCharacter();
+            _aiWeakCharacter = new AIWeakCharacter();
 
             gameObjectService.Objects.Add(_mainCharacter);
             gameObjectService.Objects.Add(_rangedCharacter);
+            gameObjectService.Objects.Add(_aiRangedCharacter);
+            gameObjectService.Objects.Add(_aiWeakCharacter);
 
             TurnManager = new TurnManager();
             TurnManager.AddToList(_mainCharacter);
+            TurnManager.AddToList(_aiRangedCharacter);
             TurnManager.AddToList(_rangedCharacter);
+            TurnManager.AddToList(_aiWeakCharacter);
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             ResetBoard();
 
-            if (TurnManager.CurrentTurn.isAlly && TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT)
+            for (int i = 0; i < TurnManager.characterList.Count; i++)
             {
-                ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+                GameBoard[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = SquareData.OCCUPIED;
+            }
 
+            if (TurnManager.CurrentTurn.isAlly)
+            {
                 var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
                 var inputService = ServiceLocator.Current.GetInstance<IInputService>();
                 CameraObject camera;
@@ -113,6 +124,16 @@ namespace ICT309Game.GameObjects.Board
 
                 Vector3F mousePos = new Vector3F();
 
+                if (TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT)
+                {
+                    ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+                }
+
+                if (TurnManager.CurrentTurnStatus == TurnStatus.ACTION)
+                {
+                    ShowAttackRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Range);
+                }
+                
                 if (inputService.IsPressed(MouseButtons.Right, false))
                 {
                     mousePos = camera.MousePosition;
@@ -124,18 +145,26 @@ namespace ICT309Game.GameObjects.Board
                     {
                         if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
                         {
+                            // Move character to selected square
                             TurnManager.CurrentTurn.PosX = IndexI;
                             TurnManager.CurrentTurn.PosY = IndexJ;
 
                             TurnManager.ChangeStatus();
                         }
+
+                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDBLUE)
+                        {
+                            // Attacking the target at the selected square
+                            for (int i = 0; i < TurnManager.characterList.Count; i++)
+                            {
+                                if (TurnManager.characterList[i].PosX == IndexI && TurnManager.characterList[i].PosY == IndexJ)
+                                {
+                                    GameActions.ResolveCombat(TurnManager.CurrentTurn, TurnManager.characterList[i]);
+                                }
+                            }
+                        }
                     }
                 }
-            }
-
-            if (TurnManager.CurrentTurn.isAlly && TurnManager.CurrentTurnStatus == TurnStatus.ACTION)
-            {
-                ShowAttackRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Range);
             }
 
             for (int i = 0; i < GameBoard.GetLength(0); i++)
@@ -166,7 +195,7 @@ namespace ICT309Game.GameObjects.Board
                             break;
                         case SquareData.OCCUPIED:
                             redGameBoard[i, j].InUse = false;
-                            whiteGameBoard[i, j].InUse = false;
+                            whiteGameBoard[i, j].InUse = true;
                             blueGameBoard[i, j].InUse = false;
                             break;
                     }
@@ -233,8 +262,10 @@ namespace ICT309Game.GameObjects.Board
             for (int i = 0; i < nodeList.Count; i++)
             {
                 if (CheckRange(nodeList[i].First) && CheckRange(nodeList[i].Second))
-                    // TODO 
-                    GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDRED;
+                    if (GameBoard[nodeList[i].First, nodeList[i].Second] != SquareData.OCCUPIED && GameBoard[nodeList[i].First, nodeList[i].Second] != SquareData.BLOCKED)
+                    {
+                        GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDRED;
+                    }
             }
         }
 
@@ -267,8 +298,23 @@ namespace ICT309Game.GameObjects.Board
 
             for (int i = 0; i < nodeList.Count; i++)
             {
-                if (CheckRange(nodeList[i].First) && CheckRange(nodeList[i].Second))
-                    GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDBLUE;
+                if (GameBoard[nodeList[i].First, nodeList[i].Second] != SquareData.BLOCKED)
+                {
+                    if (nodeList[i].First == x && nodeList[i].Second == z) continue;
+
+                    if (GameBoard[nodeList[i].First, nodeList[i].Second] != SquareData.OCCUPIED) continue;
+
+                    for (int j = 0; j < TurnManager.characterList.Count; j++)
+                    {
+                        if (TurnManager.characterList[j].PosX == nodeList[i].First && TurnManager.characterList[j].PosY == nodeList[i].Second)
+                        {
+                            if (!TurnManager.characterList[j].isAlly)
+                            {
+                                GameBoard[nodeList[i].First, nodeList[i].Second] = SquareData.HIGHLIGHTEDBLUE;
+                            }
+                        }
+                    }    
+                }
             }
         }
 

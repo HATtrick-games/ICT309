@@ -57,16 +57,12 @@ namespace ICT309Game.Game_Components
             gameObjectService.Objects.Add(new CameraObject());
             gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(_gameBoardManager);
-            //gameObjectService.Objects.Add(new MainCharacter());
-            //gameObjectService.Objects.Add(new AIRangedCharacter());
         }
 
         public override void Update(GameTime gameTime)
         {
-            //_Scene.Update(gameTime.ElapsedGameTime);
-            //_gameScreen.DebugRenderer.Clear();
 
-            //_gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
+            _gameHUD.CurrentCharacterName = _gameBoardManager.TurnManager.CurrentTurn.CharacterName;
             base.Update(gameTime);
         }
 

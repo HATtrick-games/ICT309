@@ -37,6 +37,9 @@ namespace ICT309Game.GameObjects
         public static readonly int ArmorID =
             CreateProperty<int>("Armor", "Common", "Defines the amount of damage reduced by attacks.", 0).Id;
 
+        public static readonly int MinArmorID =
+            CreateProperty<int>("MinArmor", "Common", "Defines the minimum armor value for the character", 0).Id;
+
         public static readonly int RangeID =
             CreateProperty<int>("Range", "Common", "Defines the distance at which a character can attack.", 1).Id;
 
@@ -77,6 +80,12 @@ namespace ICT309Game.GameObjects
         {
             get { return GetValue<int>(ArmorID); }
             set { SetValue(ArmorID, value); }
+        }
+
+        public int MinArmor
+        {
+            get { return GetValue<int>(ArmorID); }
+            set { SetValue(MinArmorID, value); }
         }
 
         public int Range

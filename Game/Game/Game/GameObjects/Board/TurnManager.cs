@@ -13,7 +13,7 @@ namespace ICT309Game.GameObjects.Board
 
     class TurnManager
     {
-        private List<CharacterObject> characterList = new List<CharacterObject>();
+        public List<CharacterObject> characterList { get; private set; }
 
         public CharacterObject CurrentTurn { get; private set; }
         public TurnStatus CurrentTurnStatus { get; private set; }
@@ -21,6 +21,7 @@ namespace ICT309Game.GameObjects.Board
         public TurnManager()
         {
             CurrentTurnStatus = TurnStatus.MOVEMENT;
+            characterList = new List<CharacterObject>();
         }
 
         public void AddToList(CharacterObject element)

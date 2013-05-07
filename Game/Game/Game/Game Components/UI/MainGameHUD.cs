@@ -16,6 +16,8 @@ namespace ICT309Game.Game_Components.UI
         Button _turnButton;
 
         public String CurrentCharacterName { get; set; }
+        public bool PlayerTurn { get; set; }
+        public bool MovementPhase { get; set; }
 
         public MainGameHUD(string name, IUIRenderer renderer)
             : base(name, renderer)
@@ -38,8 +40,7 @@ namespace ICT309Game.Game_Components.UI
             _turnButton = new Button
             {
                 Margin = new Vector4F(10),
-                Width = 200,
-                Height = 60,
+                Background = new Color(0.0f, 0.0f, 0.0f),
                 Content = new TextBlock { Text = "End Turn" },
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,

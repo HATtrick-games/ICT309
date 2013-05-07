@@ -22,7 +22,17 @@ namespace ICT309Game.GameObjects
         {
             _color = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
             LoadModel("AI/rangedenemy");
-            
+
+            isAlly = false;
+            CharacterName = "AI Ranged Character";
+            HitPoints = 160;
+            Damage = 200;
+            ArmorDamage = 3;
+            Armor = 35;
+            MinArmor = 10;
+            Range = 4;
+            Movement = 4;
+
             PosX = 3;
 
             base.OnLoad();

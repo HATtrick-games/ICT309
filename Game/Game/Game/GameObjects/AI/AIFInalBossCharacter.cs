@@ -16,28 +16,31 @@ using DigitalRune.Animation;
 
 namespace ICT309Game.GameObjects
 {
-    class MainCharacter : CharacterObject
+    class AIRangedCharacter : CharacterObject
     {
         protected override void OnLoad()
         {
-            LoadModel("Player/Militia");
-            _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
+            _color = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+            LoadModel("AI/rangedenemy");
 
-            isAlly = true;
-            CharacterName = "Main Character";
-            HitPoints = 350;
-            Damage = 100;
-            ArmorDamage = 3;
-            Armor = 70;
-            MinArmor = 30;
+            isAlly = false;
+            CharacterName = "AI Final Boss Character";
+            HitPoints = 1000;
+            Damage = 180;
+            ArmorDamage = 10;
+            Armor = 60;
+            MinArmor = 60;
             Range = 1;
-            Movement = 3;
+            Movement = 4;
+
+            PosX = 3;
 
             base.OnLoad();
         }
 
         protected override void OnUnload()
         {
+
             base.OnUnload();
         }
 
@@ -46,7 +49,6 @@ namespace ICT309Game.GameObjects
 
             base.OnUpdate(deltaTime);
         }
-
 
     }
 }

@@ -194,8 +194,6 @@ namespace ICT309Game.GameObjects
                     MousePosition += cameraDirection;
                 }
             }
-
-            
         }
     }
 }

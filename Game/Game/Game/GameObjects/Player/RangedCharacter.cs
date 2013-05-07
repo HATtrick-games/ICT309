@@ -16,15 +16,25 @@ using DigitalRune.Animation;
 
 namespace ICT309Game.GameObjects
 {
-    class RangedCharacter : CharacterObject
+    class MeleeHealerCharacter : CharacterObject
     {
 
         protected override void OnLoad()
         {
             LoadModel("Player/rangedally");
 
+            isAlly = true;
             CharacterName = "Ranged Character";
-            Range = 4;
+            HitPoints = 200;
+            Damage = 70;
+            ArmorDamage = 8;
+            Armor = 45;
+            MinArmor = 15;
+            Range = 5;
+            Movement = 5;
+
+            PosX = 2;
+            PosY = 1;
 
             base.OnLoad();
         }
