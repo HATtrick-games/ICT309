@@ -3,158 +3,297 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ICT309Game.PathFinding
+namespace ICT309Game.Pathfinding
 {
     class PathFinder
     {
-        int onClosedList = 0;
-        //length and width of the map in number of squares.
-        private int mapWidth = 10, mapHeight = 10;
-        //constants
-        const int walkable = 0, unwalkable = 1;
-        const bool found = true, notfound = false;
-        //arrays.
-        private int[,] walkability;
-        private int[] openList;
-        private int[,] whichList;
-        private int[] openX;
-        private int[] openY;
-        private int[,] parentX;
-        private int[,] parentY;
-        private int[] fCost;
-        private int[,] gCost;
-        private int[] hCost;
-        private int[] pathLength;
-        private int[] pathLocation;
 
-        //sets up all arrays
-        public void Intialise()
+        public struct node
         {
-            walkability = new int[mapWidth, mapHeight];
-            openList = new int[mapWidth * mapHeight + 2];
-            whichList = new int[mapWidth+1,mapHeight+1];
-            openX = new int[mapWidth * mapHeight + 2];
-            openY = new int[mapWidth * mapHeight + 2];
-            parentX = new int[mapWidth + 1, mapHeight + 1];
-            parentY = new int[mapWidth + 1, mapHeight + 1];
-            fCost = new int[mapWidth * mapHeight + 2];
-            gCost = new int[mapWidth + 1, mapHeight + 1];
-            hCost = new int[mapWidth * mapHeight];
-            pathLength = new int[1];
-            pathLocation = new int[1];
+            public int x;
+            public int y;
+        }
+        Dictionary<node, node> cameFrom = new Dictionary<node, node>();
+        Dictionary<node, int> GcostMap = new Dictionary<node, int>();
+        Dictionary<node, int> FcostMap = new Dictionary<node, int>();
+        int length = 10;
+        int width = 10;
+        int min = 2000;
+        public int[,] walkable;
+        int openNum;
+        int closeNum;
+        int[] whereOpen;
+        int[] whereClose;
+        node[] openList;
+        node[] closedList;
+        int[] closeX;
+        int[] closeY;
+        int[] openX;
+        int[] openY;
+        node[] path;
+        int[,] WhichList;
+        public node current;
+        node[] Neighbours;
+        int pathlength;
+        int camefromsize;
+
+
+        public void SetWalkable(int xpos, int ypos, int walkablepass) //Setting to 1 will make that position unwalkable, any other value will make it walkable, places are walkable by default
+        {
+            walkable[xpos, ypos] = walkablepass;
         }
 
-        //main function for finding a  path, takes in a starting point and finishing point
-        public bool FindPath(int startingX, int startingY, int targetpassX, int targetpassY)
+        public node[] returnpath()
         {
-            int startX = startingX;
-            int startY = startingY;
-            int targetX = targetpassX;
-            int targetY = targetpassY;
-
-            int onOpenList = 0, parentXval = 0, parentYval = 0,
-             a = 0, b = 0, m = 0, u = 0, v = 0, temp = 0, corner = 0, numberOfOpenListItems = 0,
-             addedGCost = 0, tempGcost = 0, path = 0, x = 0, y = 0,
-             tempx, pathX, pathY, cellPosition,
-             newOpenListItemID = 0;
-
-
-            //if the target points is unwalkable, return not found.
-            if (walkability[targetX, targetY] == unwalkable)
+            Console.WriteLine("PATH WAS FOUND");
+            reconstruct_path(current);
+            for (int n = pathlength - 1; n > -1; n--)
             {
-                return notfound;
+                Console.Write("STEP = ");
+                Console.Write(path[n].x);
+                Console.WriteLine(path[n].y);
+            }
+            return path;
+        }
+
+        //this returns the length of the array containing the path
+        // the path begins at the end of the array so you can just use a backwards for loop
+        // starting at pathlength and continuing while iterator is greater than -1
+        public int returnpathlength()
+        {
+            return pathlength - 1;
+        }
+
+
+        public PathFinder()
+        {
+            camefromsize = 0;
+            pathlength = 0;
+            path = new node[length * width + 10];
+            cameFrom = new Dictionary<node, node>();
+            GcostMap = new Dictionary<node, int>();
+            FcostMap = new Dictionary<node, int>();
+            walkable = new int[length, width];
+            openList = new node[length * width + 3];
+            closedList = new node[length * width + 3];
+            WhichList = new int[length, width];
+            Neighbours = new node[4];
+        }
+
+        public void Intiialise()
+        {
+            pathlength = 0;
+            path = new node[length * width + 10];
+            cameFrom = new Dictionary<node, node>();
+            GcostMap = new Dictionary<node, int>();
+            FcostMap = new Dictionary<node, int>();
+            walkable = new int[length, width];
+            openList = new node[length * width + 3];
+            closedList = new node[length * width + 3];
+            WhichList = new int[length, width];
+            Neighbours = new node[4];
+        }
+
+        int Gcost(int x, int y, node pass)
+        {
+            int Gx = (x - pass.x);
+            if (Gx < 0)
+            {
+                Gx = Gx * -1;
+            }
+            int Gy = (y - pass.y);
+            if (Gy < 0)
+            {
+                Gy = Gy * -1;
             }
 
-            //resest the which list array
-            for (x = 0; x < mapWidth; x++)
+            return (Gx + Gy);
+
+        }
+
+        int numNeighbours(node spot)
+        {
+            int place = 0;
+            node temp = spot;
+            if (spot.x + 1 < 11)
             {
-                for (y = 0; y < mapHeight; y++)
-                    whichList[x,y] = 0;
-            }
-
-            onClosedList = 2;
-            onOpenList = 1;
-            gCost[startX, startY] = 0;
-
-            numberOfOpenListItems = 1;
-            openList[1] = 1;
-            openX[1] = startX; openY[1] = startY;
-
-
-            //***************************************MAIN LOOP STARTS HERE*************************************************//
-           do
-           {
-                //if there are items in the open list do this
-                if (numberOfOpenListItems != 0)
+                if (walkable[spot.x + 1, spot.y] != 1)
                 {
-                    parentXval = openX[openList[1]];
-                    parentYval = openY[openList[1]];
-                    whichList[parentXval, parentYval] = onClosedList;
+                    temp.x += 1;
+                    Neighbours[place] = temp;
+                    place++;
+                    temp = spot;
+                }
+            }
+            if (spot.y + 1 < 11)
+            {
+                if (walkable[spot.x, spot.y + 1] != 1)
+                {
+                    temp.y += 1;
+                    Neighbours[place] = temp;
+                    place++;
+                    temp = spot;
+                }
+            }
+            if (spot.x - 1 > 0)
+            {
+                if (walkable[spot.x - 1, spot.y] != 1)
+                {
+                    temp.x -= 1;
+                    Neighbours[place] = temp;
+                    place++;
+                    temp = spot;
+                }
+            }
+            if (spot.y - 1 > 0)
+            {
+                if (walkable[spot.x, spot.y - 1] != 1)
+                {
+                    temp.y -= 1;
+                    Neighbours[place] = temp;
+                    place++;
+                    temp = spot;
+                }
+            }
+            return place;
+        }
 
-                    numberOfOpenListItems = numberOfOpenListItems - 1;
-                    openList[1] = openList[numberOfOpenListItems + 1];
-                    v = 1;
+        public bool FindPath(int startX, int startY, int endX, int endY)
+        {
+            node tempNode;
+            node tempNode2;
+            tempNode.x = startX;
+            tempNode.y = startY;
 
+            openList[0] = tempNode;
+            closeNum = 0;
+            openNum = 1;
+            // whereOpen[0] = 0;
+            current = tempNode;
+            tempNode2.x = endX;
+            tempNode2.y = endY;
 
+            GcostMap.Add(current, 0);
+            FcostMap.Add(current, GcostMap[current] + Gcost(startX, startY, tempNode2));
+            // FcostMap[current] = GcostMap[current] + Gcost(startX, startY, tempNode2);
+            //Console.WriteLine(Gcost(startX, startY, tempNode2));
 
-                    do
+            while (openNum != 0)
+            {
+                // Console.WriteLine("OPEN NUM =");
+                //  Console.WriteLine(openNum);
+                int minspot = 0;
+                min = 20;
+
+                if (openNum > 1)
+                    for (int a = 0; a < openNum; a++)
                     {
-                        u = v;
-                        if (2 * u + 1 <= numberOfOpenListItems)
+                        //  Console.WriteLine(openList[a].x);
+                        // Console.WriteLine(openList[a].y);
+                        //  Console.WriteLine(openList[a].x);
+                        // Console.WriteLine(openList[a].y);
+                        // Console.WriteLine(GcostMap[openList[a]]);
+                        // Console.WriteLine("========");
+                        if (GcostMap[openList[a]] + Gcost(openList[a].x, openList[a].y, tempNode2) <= min)
                         {
-                            if (fCost[openList[u]] >= fCost[openList[2 * u]])
-                            {
-                                v = 2 * u;
-                            }
-                            if (fCost[openList[v]] >= fCost[openList[2 * u + 1]])
-                            {
-                                v = 2 * u + 1;
-                            }
-                        }
-                        else
-                        {
-                            if (28U <= numberOfOpenListItems)
-                            {
-                                if(fCost[openList[u]] >= fCost[openList[2*u]])
-                                v = 2 * u;
-                            }
-                        }
 
-                        if (u != v)
-                        {
-                            temp = openList[u];
-                            openList[u] = openList[v];
-                            openList[v] = temp;
+                            min = GcostMap[openList[a]] + Gcost(openList[a].x, openList[a].y, tempNode2);
+                            minspot = a;
                         }
-                        else
-                        {
-                            break;
-                        }
+                    }
+                else
+                    minspot = 0;
 
-                        //break;
-                    } while (true);
+                current = openList[minspot];
+                // Console.WriteLine()
+                // Console.WriteLine(current.x);
+                // Console.WriteLine(current.y);
+                // Console.WriteLine("NEXt");
 
+                if (current.x == endX && current.y == endY)
+                {
+                    path = returnpath();
+                    return true;
 
                 }
 
+                openNum--;
+
+                closedList[closeNum] = current;
+                WhichList[current.x, current.y] = 2;
+                closeNum += 1;
+
+                for (int x = 0; x < numNeighbours(current); x++)
+                {
+                    // Console.WriteLine(current.x);
+                    //  Console.WriteLine(current.y);
+                    //  Console.WriteLine(Neighbours[x].x);
+                    //  Console.WriteLine(Neighbours[x].y);
+                    // Console.WriteLine("////////////////");
+                    int tentativeGscore = Gcost(startX, startY, current) + Gcost(current.x, current.y, Neighbours[x]);
+                    if (WhichList[Neighbours[x].x, Neighbours[x].y] == 2)
+                    {
+                        //Console.Write("ON CLOSED LIST");
+                        if (tentativeGscore >= GcostMap[current] + Gcost(current.x, current.y, Neighbours[x]))
+                        {
+                            // Console.Write("ON CLOSED LIST");
+                            continue;
+                        }
+                    }
+                    if (WhichList[Neighbours[x].x, Neighbours[x].y] != 1)
+                    {
+                        cameFrom.Add(Neighbours[x], current);
+                        GcostMap.Add(Neighbours[x], tentativeGscore);
+                        FcostMap.Add(Neighbours[x], GcostMap[Neighbours[x]] + Gcost(Neighbours[x].x, Neighbours[x].y, tempNode2));
+                        //cameFrom[Neighbours[x]] = current;
+                        //GcostMap[Neighbours[x]] = tentativeGscore;
+                        //FcostMap[Neighbours[x]] = GcostMap[Neighbours[x]] + Gcost(Neighbours[x].x, Neighbours[x].y, tempNode2);
+                        if (WhichList[Neighbours[x].x, Neighbours[x].y] != 1)
+                        {
+                            // Console.WriteLine(Neighbours[x].x);
+                            // Console.WriteLine(Neighbours[x].y);
+                            openList[openNum] = Neighbours[x];
+                            WhichList[Neighbours[x].x, Neighbours[x].y] = 1;
+                            openNum++;
+                        }
+                    }
+                }
+                //Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+
+
+            }
+
+
+            // Console.WriteLine(current.x);
+            //  Console.WriteLine(current.y);
+            Console.WriteLine("DID NOT FIND PATH");
+            return false;
+        }
 
 
 
 
-                break;
+        public void reconstruct_path(node nodepass)//camefrom, current)
+        {
 
-            } while (true);
-
-
-
-
-
-
-            return found;
-         }
+            if (cameFrom.ContainsKey(nodepass))
+            {
+                //Console.WriteLine(pathlength);
+                path[pathlength] = nodepass;
+                pathlength++;
+                reconstruct_path(cameFrom[nodepass]);//came_from, came_from[current_node])
+                //return (p + current);
+            }
+            else
+            {
+                //return current;
+            }
+        }
 
 
 
 
     }
 }
+
