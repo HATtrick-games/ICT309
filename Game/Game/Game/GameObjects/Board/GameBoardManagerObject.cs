@@ -49,8 +49,9 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject()
         {
-            ResetBoard();  
+            InitialiseBoard();  
             // LOAD IN LEVEL FILES FROM EXTERNAL FILE
+            GameBoard[5, 5] = SquareData.BLOCKED;
 
             for (int i = 0; i < Positions.GetLength(0); i++)
             {
@@ -212,12 +213,24 @@ namespace ICT309Game.GameObjects.Board
             base.OnUnload();
         }
 
+        private void InitialiseBoard()
+        {
+            for (int i = 0; i < GameBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < GameBoard.GetLength(1); j++)
+                {
+                    GameBoard[i, j] = SquareData.EMPTY;
+                }
+            }
+        }
+
         private void ResetBoard()
         {
             for (int i = 0; i < GameBoard.GetLength(0); i++)
             {
                 for (int j = 0; j < GameBoard.GetLength(1); j++)
                 {
+                    if(GameBoard[i,j] != SquareData.BLOCKED)
                         GameBoard[i, j] = SquareData.EMPTY;
                 }
             }
@@ -243,19 +256,19 @@ namespace ICT309Game.GameObjects.Board
                 {
                     // UP
                     if (CheckRange(nodeList[i].First + 1))
-                        nodeList.Add(new Pair<int>(nodeList[i].First + 1, nodeList[i].Second));
+                        if (GameBoard[nodeList[i].First + 1, nodeList[i].Second] == SquareData.EMPTY) nodeList.Add(new Pair<int>(nodeList[i].First + 1, nodeList[i].Second));
 
                     // DOWN
                     if (CheckRange(nodeList[i].First - 1))
-                        nodeList.Add(new Pair<int>(nodeList[i].First - 1, nodeList[i].Second));
+                        if(GameBoard[nodeList[i].First - 1, nodeList[i].Second] == SquareData.EMPTY) nodeList.Add(new Pair<int>(nodeList[i].First - 1, nodeList[i].Second));
 
                     // LEFT
                     if (CheckRange(nodeList[i].Second + 1))
-                        nodeList.Add(new Pair<int>(nodeList[i].First, nodeList[i].Second + 1));
+                        if (GameBoard[nodeList[i].First, nodeList[i].Second + 1] == SquareData.EMPTY) nodeList.Add(new Pair<int>(nodeList[i].First, nodeList[i].Second + 1));
 
                     // RIGHT
                     if (CheckRange(nodeList[i].Second - 1))
-                        nodeList.Add(new Pair<int>(nodeList[i].First, nodeList[i].Second - 1));
+                        if (GameBoard[nodeList[i].First, nodeList[i].Second - 1] == SquareData.EMPTY) nodeList.Add(new Pair<int>(nodeList[i].First, nodeList[i].Second - 1));
                 }
 
                 range--;
