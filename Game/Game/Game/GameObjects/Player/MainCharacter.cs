@@ -26,6 +26,7 @@ namespace ICT309Game.GameObjects
             isAlly = true;
             CharacterName = "Main Character";
             HitPoints = 350;
+            MaxHitPoints = 350;
             Damage = 100;
             ArmorDamage = 3;
             Armor = 70;

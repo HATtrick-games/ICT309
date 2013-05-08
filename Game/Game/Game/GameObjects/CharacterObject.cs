@@ -31,6 +31,9 @@ namespace ICT309Game.GameObjects
         public static readonly int HitPointsID = 
             CreateProperty<int>("HP", "Common", "Defines the number of hit points remaining.", 100).Id;
 
+        public static readonly int MaxHitPointsID =
+            CreateProperty<int>("MaxHP", "Common", "Defines the maximum number of hit points.", 100).Id;
+
         public static readonly int DamageID = 
             CreateProperty<int>("Damage", "Common", "Defines the amount of damage done with attacks.", 0).Id;
 
@@ -68,6 +71,12 @@ namespace ICT309Game.GameObjects
         {
             get { return GetValue<int>(HitPointsID); }
             set { SetValue(HitPointsID, value); }
+        }
+
+        public int MaxHitPoints
+        {
+            get { return GetValue<int>(MaxHitPointsID); }
+            set { SetValue(MaxHitPointsID, value); }
         }
 
         public int Damage

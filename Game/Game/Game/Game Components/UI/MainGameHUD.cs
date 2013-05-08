@@ -16,10 +16,20 @@ namespace ICT309Game.Game_Components.UI
 {
     class MainGameHUD : UIScreen
     {
-        TextBlock _text;
         Button _turnButton;
         Image _hudOverlay;
         Image _currentCharacterImage;
+        Image _statsBox;
+
+        Image _endTurnButton;
+        Image _endMovementButton;
+
+        TextBlock _health;
+        TextBlock _damage;
+        TextBlock _range;
+        TextBlock _armor;
+        TextBlock _armorDamage;
+        TextBlock _movement;
         
         public TurnManager TurnManagerObject { get; set; }
 
@@ -35,19 +45,22 @@ namespace ICT309Game.Game_Components.UI
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
 
-            _text = new TextBlock
-            {
-                Text = "Current Turn",
-                Background = Color.Black,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Bottom,
+            _endTurnButton = new Image { Texture = content.Load<Texture2D>("UI/endturnbutton"), };
+            _endMovementButton = new Image { Texture = content.Load<Texture2D>("UI/endmovementbutton"), };
+
+            _statsBox = new Image 
+            { 
+                Texture = content.Load<Texture2D>("UI/characterbox"),
+                X = 100,
+                Y = 630,
             };
 
             _turnButton = new Button
             {
                 Margin = new Vector4F(10),
-                Background = new Color(0.0f, 0.0f, 0.0f),
-                Content = new TextBlock { Text = "End Turn" },
+                X = 1010,
+                Y = 630,
+                Content = _endTurnButton,
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Bottom,
             };
@@ -67,10 +80,65 @@ namespace ICT309Game.Game_Components.UI
                 Texture = content.Load<Texture2D>("UI/UIOverlay"),
             };
 
+            _health = new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 130,
+                Y = 640,
+            };
+
+            _damage = new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 130,
+                Y = 662,
+            };
+
+            _range= new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 130,
+                Y = 684,
+            };
+
+            _armor = new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 215,
+                Y = 640,
+            };
+
+            _armorDamage = new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 215,
+                Y = 662,
+            };
+
+            _movement = new TextBlock
+            {
+                Font = "stattext",
+                Text = "100",
+                X = 215,
+                Y = 684,
+            };
+
             Children.Add(_hudOverlay);
             Children.Add(_currentCharacterImage);
-            Children.Add(_text);
             Children.Add(_turnButton);
+            Children.Add(_statsBox);
+
+            Children.Add(_health);
+            Children.Add(_damage);
+            Children.Add(_range);
+            Children.Add(_armor);
+            Children.Add(_armorDamage);
+            Children.Add(_movement);
 
             var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
             Children.Add(gameLog);
@@ -81,18 +149,24 @@ namespace ICT309Game.Game_Components.UI
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             EndButtonClicked = false;
-            _text.Text = "Current Turn " + TurnManagerObject.CurrentTurn.CharacterName;
 
             _currentCharacterImage.Texture = TurnManagerObject.CurrentTurn.Image;
 
             if (TurnManagerObject.CurrentTurnStatus == TurnStatus.MOVEMENT)
             {
-                _turnButton.Content = new TextBlock { Text = "End Movement Phase" };
+                _turnButton.Content = _endMovementButton;
             }
             else
             {
-                _turnButton.Content = new TextBlock { Text = "End Turn" };
+                _turnButton.Content = _endTurnButton;
             }
+
+            _health.Text = TurnManagerObject.CurrentTurn.HitPoints.ToString() + " / " + TurnManagerObject.CurrentTurn.MaxHitPoints.ToString();
+            _damage.Text = TurnManagerObject.CurrentTurn.Damage.ToString();
+            _range.Text = TurnManagerObject.CurrentTurn.Range.ToString();
+            _armor.Text = TurnManagerObject.CurrentTurn.Armor.ToString();
+            _armorDamage.Text = TurnManagerObject.CurrentTurn.ArmorDamage.ToString();
+            _movement.Text = TurnManagerObject.CurrentTurn.Movement.ToString();
 
             base.OnUpdate(deltaTime);
         }
@@ -100,8 +174,6 @@ namespace ICT309Game.Game_Components.UI
         protected override void OnRender(UIRenderContext context)
         {
             _hudOverlay.Render(context);
-
-            _text.Render(context);
 
             _turnButton.IsVisible = TurnManagerObject.CurrentTurn.isAlly;
             _turnButton.Render(context);

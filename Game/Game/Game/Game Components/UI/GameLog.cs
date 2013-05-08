@@ -10,6 +10,7 @@ namespace ICT309Game.Game_Components.UI
     class GameLog : TextBox
     {
         String _log = "";
+        int messageCount = 0;
 
         public GameLog()
             : base()

@@ -4,6 +4,7 @@
   <Fonts>
     <Font Name="Default" File="MiramonteBold.spritefont" IsDefault="true"/>
     <Font Name="Consolas" File="Consolas.spritefont"/>
+    <Font Name="stattext" File="stattext.spritefont"/>
   </Fonts>
 
   <Textures>
