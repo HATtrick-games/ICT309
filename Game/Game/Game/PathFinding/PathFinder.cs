@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
+/*
+ * to use this class create an instance of this object
+ * then call the function FindPath, before every call of this function make sure to call initialise function first
+ * the parameters for FindPath are the x and y of the starting point and the x and y of the finish point. if the function returns true, a path has been found
+ * calling return path will then return an array of x and y structs starting at the end point and ending at the first step after the start point.
+ * the position in the array of the end point is returned by the returnpathlength function. 
+ * 
+ * 
+ * 
+ */
+
+
+
+
 namespace ICT309Game.Pathfinding
 {
     class PathFinder
@@ -22,20 +37,14 @@ namespace ICT309Game.Pathfinding
         public int[,] walkable;
         int openNum;
         int closeNum;
-        int[] whereOpen;
-        int[] whereClose;
         node[] openList;
         node[] closedList;
-        int[] closeX;
-        int[] closeY;
-        int[] openX;
-        int[] openY;
         node[] path;
         int[,] WhichList;
         public node current;
         node[] Neighbours;
         int pathlength;
-        int camefromsize;
+     
 
 
         public void SetWalkable(int xpos, int ypos, int walkablepass) //Setting to 1 will make that position unwalkable, any other value will make it walkable, places are walkable by default
@@ -67,7 +76,7 @@ namespace ICT309Game.Pathfinding
 
         public PathFinder()
         {
-            camefromsize = 0;
+          
             pathlength = 0;
             path = new node[length * width + 10];
             cameFrom = new Dictionary<node, node>();
@@ -168,32 +177,24 @@ namespace ICT309Game.Pathfinding
             openList[0] = tempNode;
             closeNum = 0;
             openNum = 1;
-            // whereOpen[0] = 0;
             current = tempNode;
             tempNode2.x = endX;
             tempNode2.y = endY;
 
             GcostMap.Add(current, 0);
             FcostMap.Add(current, GcostMap[current] + Gcost(startX, startY, tempNode2));
-            // FcostMap[current] = GcostMap[current] + Gcost(startX, startY, tempNode2);
-            //Console.WriteLine(Gcost(startX, startY, tempNode2));
+            
 
             while (openNum != 0)
             {
-                // Console.WriteLine("OPEN NUM =");
-                //  Console.WriteLine(openNum);
+                
                 int minspot = 0;
                 min = 20;
 
                 if (openNum > 1)
                     for (int a = 0; a < openNum; a++)
                     {
-                        //  Console.WriteLine(openList[a].x);
-                        // Console.WriteLine(openList[a].y);
-                        //  Console.WriteLine(openList[a].x);
-                        // Console.WriteLine(openList[a].y);
-                        // Console.WriteLine(GcostMap[openList[a]]);
-                        // Console.WriteLine("========");
+                       
                         if (GcostMap[openList[a]] + Gcost(openList[a].x, openList[a].y, tempNode2) <= min)
                         {
 
@@ -205,10 +206,7 @@ namespace ICT309Game.Pathfinding
                     minspot = 0;
 
                 current = openList[minspot];
-                // Console.WriteLine()
-                // Console.WriteLine(current.x);
-                // Console.WriteLine(current.y);
-                // Console.WriteLine("NEXt");
+                
 
                 if (current.x == endX && current.y == endY)
                 {
@@ -225,18 +223,14 @@ namespace ICT309Game.Pathfinding
 
                 for (int x = 0; x < numNeighbours(current); x++)
                 {
-                    // Console.WriteLine(current.x);
-                    //  Console.WriteLine(current.y);
-                    //  Console.WriteLine(Neighbours[x].x);
-                    //  Console.WriteLine(Neighbours[x].y);
-                    // Console.WriteLine("////////////////");
+                    
                     int tentativeGscore = Gcost(startX, startY, current) + Gcost(current.x, current.y, Neighbours[x]);
                     if (WhichList[Neighbours[x].x, Neighbours[x].y] == 2)
                     {
-                        //Console.Write("ON CLOSED LIST");
+                        
                         if (tentativeGscore >= GcostMap[current] + Gcost(current.x, current.y, Neighbours[x]))
                         {
-                            // Console.Write("ON CLOSED LIST");
+                            
                             continue;
                         }
                     }
@@ -245,28 +239,21 @@ namespace ICT309Game.Pathfinding
                         cameFrom.Add(Neighbours[x], current);
                         GcostMap.Add(Neighbours[x], tentativeGscore);
                         FcostMap.Add(Neighbours[x], GcostMap[Neighbours[x]] + Gcost(Neighbours[x].x, Neighbours[x].y, tempNode2));
-                        //cameFrom[Neighbours[x]] = current;
-                        //GcostMap[Neighbours[x]] = tentativeGscore;
-                        //FcostMap[Neighbours[x]] = GcostMap[Neighbours[x]] + Gcost(Neighbours[x].x, Neighbours[x].y, tempNode2);
                         if (WhichList[Neighbours[x].x, Neighbours[x].y] != 1)
                         {
-                            // Console.WriteLine(Neighbours[x].x);
-                            // Console.WriteLine(Neighbours[x].y);
                             openList[openNum] = Neighbours[x];
                             WhichList[Neighbours[x].x, Neighbours[x].y] = 1;
                             openNum++;
                         }
                     }
                 }
-                //Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+               
 
 
 
             }
-
-
-            // Console.WriteLine(current.x);
-            //  Console.WriteLine(current.y);
+            
+            
             Console.WriteLine("DID NOT FIND PATH");
             return false;
         }
@@ -274,21 +261,18 @@ namespace ICT309Game.Pathfinding
 
 
 
-        public void reconstruct_path(node nodepass)//camefrom, current)
+        public void reconstruct_path(node nodepass)
         {
 
             if (cameFrom.ContainsKey(nodepass))
             {
-                //Console.WriteLine(pathlength);
+                
                 path[pathlength] = nodepass;
                 pathlength++;
-                reconstruct_path(cameFrom[nodepass]);//came_from, came_from[current_node])
-                //return (p + current);
+                reconstruct_path(cameFrom[nodepass]);
+                
             }
-            else
-            {
-                //return current;
-            }
+            
         }
 
 
