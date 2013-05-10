@@ -199,8 +199,6 @@
     <Compile Include="GameObjects\Player\MeleeHealerCharacter.cs" />
     <Compile Include="GameObjects\Player\RangedCharacter.cs" />
     <Compile Include="Graphics\BasicScreen.cs" />
-    <Compile Include="Graphics\GameScreen.cs" />
-    <Compile Include="Graphics\SceneQuery.cs" />
     <Compile Include="GameObjects\Player\MainCharacter.cs" />
     <Compile Include="PathFinding\PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

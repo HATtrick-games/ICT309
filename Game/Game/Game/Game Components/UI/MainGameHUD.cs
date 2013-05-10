@@ -11,6 +11,8 @@ using Microsoft.Practices.ServiceLocation;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ICT309Game.GameObjects.Board;
+using DigitalRune.Game;
+using ICT309Game.GameObjects;
 
 namespace ICT309Game.Game_Components.UI
 {
@@ -23,6 +25,13 @@ namespace ICT309Game.Game_Components.UI
 
         Image _endTurnButton;
         Image _endMovementButton;
+
+        List<Image> _healthBars;
+        List<Image> _healthAmounts;
+
+        List<Image> _turnListBoxes;
+        List<Image> _turnListImages;
+        List<Image> _turnListHealth;
 
         TextBlock _health;
         TextBlock _damage;
@@ -47,6 +56,27 @@ namespace ICT309Game.Game_Components.UI
 
             _endTurnButton = new Image { Texture = content.Load<Texture2D>("UI/endturnbutton"), };
             _endMovementButton = new Image { Texture = content.Load<Texture2D>("UI/endmovementbutton"), };
+
+            _healthBars = new List<Image>(TurnManagerObject.characterList.Count);
+            _healthAmounts = new List<Image>(_healthBars.Count);
+            _turnListBoxes = new List<Image>();
+            _turnListImages = new List<Image>();
+            _turnListHealth = new List<Image>();
+            for (int i = 0; i < TurnManagerObject.characterList.Count;  i++)
+            {
+                _healthBars.Add(new Image { Texture = content.Load<Texture2D>("UI/Healthbar") });
+                _healthAmounts.Add(new Image { Texture = content.Load<Texture2D>("UI/health") });
+
+                _turnListBoxes.Add(new Image { Texture = content.Load<Texture2D>("UI/turnlistbox"),});
+                _turnListImages.Add(new Image {
+                    Texture = content.Load<Texture2D>("Placeholder"), 
+                    X = 1,
+                    Width = 50, Height = 50,
+                });
+                _turnListHealth.Add(new Image { Texture = content.Load<Texture2D>("UI/turnlisthealth"), X = 1 });
+            }
+
+
 
             _statsBox = new Image 
             { 
@@ -128,7 +158,15 @@ namespace ICT309Game.Game_Components.UI
                 Y = 684,
             };
 
+            foreach (Image bar in _healthBars) Children.Add(bar);
+            foreach (Image bar in _healthAmounts) Children.Add(bar);
+
             Children.Add(_hudOverlay);
+
+            foreach (Image bar in _turnListBoxes) Children.Add(bar);
+            foreach (Image bar in _turnListImages) Children.Add(bar);
+            foreach (Image bar in _turnListHealth) Children.Add(bar);
+
             Children.Add(_currentCharacterImage);
             Children.Add(_turnButton);
             Children.Add(_statsBox);
@@ -167,6 +205,43 @@ namespace ICT309Game.Game_Components.UI
             _armor.Text = TurnManagerObject.CurrentTurn.Armor.ToString();
             _armorDamage.Text = TurnManagerObject.CurrentTurn.ArmorDamage.ToString();
             _movement.Text = TurnManagerObject.CurrentTurn.Movement.ToString();
+
+            // draw health bars
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+            CameraObject camera;
+            gameObjectService.Objects.TryGet("Camera", out camera);
+            Matrix mat = Matrix.Identity * camera.View * camera.Projection;
+
+            for (int i = 0; i < _healthBars.Count; i++)
+            {
+                if (i < TurnManagerObject.characterList.Count)
+                {
+                    Vector4 v4 = Vector4.Transform(TurnManagerObject.characterList[i].Position + new Vector3(0.0f, 40.0f, 0.0f), mat);
+                    var pt = new Point((int)((v4.X / v4.W + 1) * (1280 / 2)), (int)((1 - v4.Y / v4.W) * (720 / 2)));
+
+                    _healthBars[i].X = pt.X - 25;
+                    _healthBars[i].Y = pt.Y;
+
+                    _healthAmounts[i].Width = (int)(((float)TurnManagerObject.characterList[i].HitPoints / (float)TurnManagerObject.characterList[i].MaxHitPoints) * 48.0f);
+                    _healthAmounts[i].X = pt.X - 24;
+                    _healthAmounts[i].Y = pt.Y + 1;
+
+                    _turnListBoxes[i].Y = 559 - (i * 58);
+                    _turnListImages[i].Texture = TurnManagerObject.characterList[i].Image;
+                    _turnListImages[i].Y = 560 - (i * 58);
+                    _turnListHealth[i].Y = 611 - (i * 58);
+                    _turnListHealth[i].Width = (int)(((float)TurnManagerObject.characterList[i].HitPoints / (float)TurnManagerObject.characterList[i].MaxHitPoints) * 50.0f);
+                }
+                else
+                {
+                    _healthAmounts[i].IsVisible = false;
+                    _healthBars[i].IsVisible = false;
+
+                    _turnListBoxes[i].IsVisible = false;
+                    _turnListHealth[i].IsVisible = false;
+                    _turnListImages[i].IsVisible = false;
+                }
+            }
 
             base.OnUpdate(deltaTime);
         }

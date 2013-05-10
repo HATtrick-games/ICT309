@@ -26,6 +26,7 @@ namespace ICT309Game.GameObjects
             isAlly = false;
             CharacterName = "AI Mini Boss Character";
             HitPoints = 650;
+            MaxHitPoints = 650;
             Damage = 60;
             ArmorDamage = 5;
             Armor = 45;

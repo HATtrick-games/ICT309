@@ -26,6 +26,7 @@ namespace ICT309Game.GameObjects
             isAlly = false;
             CharacterName = "AI Tank Character";
             HitPoints = 300;
+            MaxHitPoints = 300;
             Damage = 35;
             ArmorDamage = 8;
             Armor = 60;

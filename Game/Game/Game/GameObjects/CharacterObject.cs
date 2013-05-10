@@ -133,6 +133,11 @@ namespace ICT309Game.GameObjects
             set { SetValue(ImageID, value); }
         }
 
+        public Vector3 Position
+        {
+            get { return _model.PoseWorld.Position.ToXna(); }
+        }
+
         public bool isTurn = false;
         public bool isAlly { get; protected set; }
 
@@ -145,11 +150,18 @@ namespace ICT309Game.GameObjects
         {
             _model.PoseWorld = new Pose(GameBoardManagerObject.Positions[PosX, PosY]);
 
+            if (MaxHitPoints < HitPoints) HitPoints = MaxHitPoints;
+
             base.OnUpdate(deltaTime);
         }
 
         protected override void OnUnload()
         {
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+
+            screen.Scene.Children.Remove(_model);
+
             if(_model != null) _model.Dispose();
 
             base.OnUnload();

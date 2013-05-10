@@ -26,6 +26,7 @@ namespace ICT309Game.GameObjects
             isAlly = false;
             CharacterName = "AI Final Boss Character";
             HitPoints = 1000;
+            MaxHitPoints = 1000;
             Damage = 180;
             ArmorDamage = 10;
             Armor = 60;
