@@ -76,8 +76,6 @@ namespace ICT309Game.Game_Components.UI
                 _turnListHealth.Add(new Image { Texture = content.Load<Texture2D>("UI/turnlisthealth"), X = 1 });
             }
 
-
-
             _statsBox = new Image 
             { 
                 Texture = content.Load<Texture2D>("UI/characterbox"),
@@ -226,11 +224,20 @@ namespace ICT309Game.Game_Components.UI
                     _healthAmounts[i].X = pt.X - 24;
                     _healthAmounts[i].Y = pt.Y + 1;
 
-                    _turnListBoxes[i].Y = 559 - (i * 58);
-                    _turnListImages[i].Texture = TurnManagerObject.characterList[i].Image;
-                    _turnListImages[i].Y = 560 - (i * 58);
-                    _turnListHealth[i].Y = 611 - (i * 58);
-                    _turnListHealth[i].Width = (int)(((float)TurnManagerObject.characterList[i].HitPoints / (float)TurnManagerObject.characterList[i].MaxHitPoints) * 50.0f);
+                    if (i != 0)
+                    {
+                        _turnListBoxes[i].Y = 617 - (i * 58);
+                        _turnListImages[i].Texture = TurnManagerObject.characterList[i].Image;
+                        _turnListImages[i].Y = 618 - (i * 58);
+                        _turnListHealth[i].Y = 669 - (i * 58);
+                        _turnListHealth[i].Width = (int)(((float)TurnManagerObject.characterList[i].HitPoints / (float)TurnManagerObject.characterList[i].MaxHitPoints) * 50.0f);
+                    }
+                    else
+                    {
+                        _turnListBoxes[i].IsVisible = false;
+                        _turnListHealth[i].IsVisible = false;
+                        _turnListImages[i].IsVisible = false;
+                    }
                 }
                 else
                 {

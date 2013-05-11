@@ -17,7 +17,7 @@ namespace ICT309Game.Game_Components.UI
         {
             HorizontalAlignment = DigitalRune.Game.UI.HorizontalAlignment.Center;
             Width = 700;
-            Height = 80;
+            Height = 78;
             Text = _log;
             Background = new Microsoft.Xna.Framework.Color(0.0f, 0.0f, 0.0f, 0.5f);
             Y = 630;

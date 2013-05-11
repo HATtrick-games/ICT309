@@ -60,8 +60,6 @@ namespace ICT309Game.GameObjects.Board
                     Positions[i, j] = new Vector3F(gap * i + startPos, 0.0f, gap * j + startPos);
                 }
             }
-
-            
         }
 
         protected override void  OnLoad()
