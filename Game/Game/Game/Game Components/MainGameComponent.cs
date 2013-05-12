@@ -18,6 +18,8 @@ using Microsoft.Xna.Framework.Content;
 using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Graphics.SceneGraph;
 using ICT309Game.GameObjects.AI;
+using Microsoft.Xna.Framework.Input;
+using DigitalRune.Game.UI.Controls;
 
 namespace ICT309Game.Game_Components
 {
@@ -25,6 +27,9 @@ namespace ICT309Game.Game_Components
     {
         private BasicScreen _gameScreen;
         private MainGameHUD _gameHUD;
+
+        private UIScreen _uiScreen;
+        private PauseWindow _pauseWindow;
 
         // GAME OBJECTS
         private GameBoardManagerObject _gameBoardManager;
@@ -39,6 +44,14 @@ namespace ICT309Game.Game_Components
                 Name = "Default",
             };
             graphicsService.Screens.Add(_gameScreen);
+
+            _pauseWindow = new PauseWindow
+            {
+                HideOnClose = true,
+            };
+
+            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
+            _uiScreen = uiService.Screens["Default"];
         }
 
         public override void Initialize()
@@ -65,6 +78,17 @@ namespace ICT309Game.Game_Components
 
         public override void Update(GameTime gameTime)
         {
+            var inputService = ServiceLocator.Current.GetInstance<IInputService>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+
+            if (inputService.IsPressed(Keys.Escape, false))
+            {
+                System.Console.WriteLine("Pause Screen");
+                _pauseWindow.Show(_uiScreen);
+            }
+
+
             if (_gameHUD.EndButtonClicked)
             {
                 if (_gameBoardManager.TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT) _gameBoardManager.TurnManager.ChangeStatus();

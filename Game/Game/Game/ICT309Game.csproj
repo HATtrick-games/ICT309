@@ -179,6 +179,8 @@
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="Game Components\UI\GameLog.cs" />
     <Compile Include="Game Components\UI\MainGameHUD.cs" />
+    <Compile Include="Game Components\UI\OptionsWindow.cs" />
+    <Compile Include="Game Components\UI\PauseWindow.cs" />
     <Compile Include="GameObjects\AI\AIHandlerObject.cs" />
     <Compile Include="GameObjects\AI\AIRangedCharacter.cs" />
     <Compile Include="GameObjects\AI\AIWeakCharacter.cs" />
