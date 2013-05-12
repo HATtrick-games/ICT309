@@ -175,8 +175,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game Components\AboutComponent.cs" />
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
+    <Compile Include="Game Components\StartScreenComponent.cs" />
     <Compile Include="Game Components\UI\GameLog.cs" />
     <Compile Include="Game Components\UI\MainGameHUD.cs" />
     <Compile Include="Game Components\UI\OptionsWindow.cs" />

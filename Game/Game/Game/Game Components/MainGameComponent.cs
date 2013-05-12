@@ -23,13 +23,10 @@ using DigitalRune.Game.UI.Controls;
 
 namespace ICT309Game.Game_Components
 {
-    class MainGameComponent: GameComponent
+    class MainGameComponent: DrawableGameComponent
     {
         private BasicScreen _gameScreen;
         private MainGameHUD _gameHUD;
-
-        private UIScreen _uiScreen;
-        private PauseWindow _pauseWindow;
 
         // GAME OBJECTS
         private GameBoardManagerObject _gameBoardManager;
@@ -44,14 +41,6 @@ namespace ICT309Game.Game_Components
                 Name = "Default",
             };
             graphicsService.Screens.Add(_gameScreen);
-
-            _pauseWindow = new PauseWindow
-            {
-                HideOnClose = true,
-            };
-
-            var uiService = ServiceLocator.Current.GetInstance<IUIService>();
-            _uiScreen = uiService.Screens["Default"];
         }
 
         public override void Initialize()
@@ -79,15 +68,6 @@ namespace ICT309Game.Game_Components
         public override void Update(GameTime gameTime)
         {
             var inputService = ServiceLocator.Current.GetInstance<IInputService>();
-            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
-
-            if (inputService.IsPressed(Keys.Escape, false))
-            {
-                System.Console.WriteLine("Pause Screen");
-                _pauseWindow.Show(_uiScreen);
-            }
-
 
             if (_gameHUD.EndButtonClicked)
             {
@@ -107,10 +87,10 @@ namespace ICT309Game.Game_Components
             if (disposing)
             {
                 var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-                gameObjectService.Objects.Clear();
+                if(gameObjectService != null) gameObjectService.Objects.Clear();
 
                 var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-                graphicsService.Screens.Clear();
+                if(graphicsService != null) graphicsService.Screens.Clear();
             }
 
             base.Dispose(disposing);
