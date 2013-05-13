@@ -204,6 +204,7 @@
     <Compile Include="GameObjects\Player\RangedCharacter.cs" />
     <Compile Include="Graphics\BasicScreen.cs" />
     <Compile Include="GameObjects\Player\MainCharacter.cs" />
+    <Compile Include="Levels\FirstLevel.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="PathFinding\PathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

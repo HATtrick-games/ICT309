@@ -20,6 +20,7 @@ using DigitalRune.Graphics.SceneGraph;
 using ICT309Game.GameObjects.AI;
 using Microsoft.Xna.Framework.Input;
 using DigitalRune.Game.UI.Controls;
+using ICT309Game.Levels;
 
 namespace ICT309Game.Game_Components
 {
@@ -49,13 +50,12 @@ namespace ICT309Game.Game_Components
             var theme = Game.Content.Load<Theme>("UI/UITheme");
             var renderer = new UIRenderer(Game, theme);
 
-            _gameBoardManager = new GameBoardManagerObject();
+            _gameBoardManager = new GameBoardManagerObject(new FirstLevel());
             _aiHandler = new AIHandlerObject();
 
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
             gameObjectService.Objects.Add(new CameraObject());
-            gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(_aiHandler);
             gameObjectService.Objects.Add(_gameBoardManager);
 

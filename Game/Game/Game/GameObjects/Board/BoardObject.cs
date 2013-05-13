@@ -16,7 +16,14 @@ namespace ICT309Game.GameObjects.Board
 {
     class BoardObject:GameObject
     {
+        public string _modelFile = null;
         private ModelNode _model;
+
+
+        public BoardObject(string model)
+        {
+            _modelFile = model;
+        }
 
         protected override void OnLoad()
         {
@@ -24,7 +31,7 @@ namespace ICT309Game.GameObjects.Board
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
-            _model = contentManager.Load<ModelNode>("Board/testmodel");
+            _model = contentManager.Load<ModelNode>(_modelFile);
             _model = _model.Clone();
 
             foreach (var meshNode in _model.GetSubtree().OfType<MeshNode>())
