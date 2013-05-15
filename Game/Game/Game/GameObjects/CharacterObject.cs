@@ -241,7 +241,7 @@ namespace ICT309Game.GameObjects
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
-            _model = Content.Load<Model>("Player/DudeMain");
+            _model = Content.Load<Model>("Player/Golem");
             var additionalData = (Dictionary<string, object>)_model.Tag;
             var skeleton = (Skeleton)additionalData["Skeleton"];
             _skeletonPose = SkeletonPose.Create(skeleton);
