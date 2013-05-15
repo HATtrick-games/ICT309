@@ -17,7 +17,7 @@ namespace ICT309Game.Levels
         public FirstLevel()
             : base()
         {
-            _levelModel = "Board/testmodel";
+            _levelModel = "Level/castlelevel";
             _boardData = new bool[10, 10];
 
             for (int i = 0; i < _boardData.GetLength(0); i++)
