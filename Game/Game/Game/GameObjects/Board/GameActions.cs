@@ -29,7 +29,7 @@ namespace ICT309Game.GameObjects.Board
             defender.Armor -= attacker.ArmorDamage;
             defender.Armor = (int)MathHelper.Max((float)defender.Armor, (float)defender.MinArmor);
 
-            defender.HitPoints -= totalDamage;
+            defender.HitPoints -= totalDamage; 
 
             var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
             gameLog.AddMessage(attacker.CharacterName + " attacked " + defender.CharacterName + " dealing " + totalDamage + " damage.");

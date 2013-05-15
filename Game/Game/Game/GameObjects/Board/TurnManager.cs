@@ -34,13 +34,25 @@ namespace ICT309Game.GameObjects.Board
             if (characterList.Count == 1) CurrentTurn = characterList[0];
         }
 
-        public void RemoveFromList(CharacterObject element)
+        public void UpdateList()
         {
-            characterList.Remove(element);
+            for (int i = 0; i < characterList.Count; i++)
+            {
+                if (characterList[i].HitPoints <= 0)
+                {
+                    System.Console.WriteLine(characterList[i].CharacterName);
+                    System.Console.WriteLine(characterList.ElementAt(i).CharacterName);
+                    characterList[i].Unload();                                        
+                    characterList.RemoveAt(i);
+
+                }
+            }
         }
 
         public void ChangeTurn()
         {
+            UpdateList();
+
             if (characterList.Count == 1) return;
 
             characterList.RemoveAt(0);

@@ -16,7 +16,7 @@ using DigitalRune.Animation;
 
 namespace ICT309Game.GameObjects
 {
-    class MeleeHealerCharacter : CharacterObject
+    class RangedCharacter : CharacterObject
     {
 
         protected override void OnLoad()
@@ -27,6 +27,7 @@ namespace ICT309Game.GameObjects
             isAlly = true;
             CharacterName = "Ranged Character";
             HitPoints = 200;
+            MaxHitPoints = 200;
             Damage = 70;
             ArmorDamage = 8;
             Armor = 45;

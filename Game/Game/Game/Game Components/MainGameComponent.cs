@@ -18,10 +18,13 @@ using Microsoft.Xna.Framework.Content;
 using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Graphics.SceneGraph;
 using ICT309Game.GameObjects.AI;
+using Microsoft.Xna.Framework.Input;
+using DigitalRune.Game.UI.Controls;
+using ICT309Game.Levels;
 
 namespace ICT309Game.Game_Components
 {
-    class MainGameComponent: GameComponent
+    class MainGameComponent: DrawableGameComponent
     {
         private BasicScreen _gameScreen;
         private MainGameHUD _gameHUD;
@@ -48,13 +51,12 @@ namespace ICT309Game.Game_Components
             var theme = Game.Content.Load<Theme>("UI/UITheme");
             var renderer = new UIRenderer(Game, theme);
 
-            _gameBoardManager = new GameBoardManagerObject();
+            _gameBoardManager = new GameBoardManagerObject(new FirstLevel());
             _aiHandler = new AIHandlerObject();
 
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
             gameObjectService.Objects.Add(new CameraObject());
-            gameObjectService.Objects.Add(new BoardObject());
             gameObjectService.Objects.Add(_aiHandler);
             gameObjectService.Objects.Add(_gameBoardManager);
 
@@ -66,6 +68,8 @@ namespace ICT309Game.Game_Components
 
         public override void Update(GameTime gameTime)
         {
+            var inputService = ServiceLocator.Current.GetInstance<IInputService>();
+
             if (_gameHUD.EndButtonClicked)
             {
                 if (_gameBoardManager.TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT) _gameBoardManager.TurnManager.ChangeStatus();
@@ -84,10 +88,10 @@ namespace ICT309Game.Game_Components
             if (disposing)
             {
                 var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-                gameObjectService.Objects.Clear();
+                if(gameObjectService != null) gameObjectService.Objects.Clear();
 
                 var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
-                graphicsService.Screens.Clear();
+                if(graphicsService != null) graphicsService.Screens.Clear();
             }
 
             base.Dispose(disposing);

@@ -96,32 +96,32 @@ namespace ICT309Game.GameObjects
 
             if (_inputService.IsDown(Keys.W))
             {
-                _position -= new Vector3F(GetForwardVector().X, 0.0f, GetForwardVector().Z);
+                _position -= (deltaTime.Milliseconds / 10.0f) * new Vector3F(GetForwardVector().X, 0.0f, GetForwardVector().Z);
             }
 
             if (_inputService.IsDown(Keys.A))
             {
-                _position -= GetRightVector();
+                _position -= (deltaTime.Milliseconds / 10.0f) * GetRightVector();
             }
 
             if (_inputService.IsDown(Keys.S))
             {
-                _position += new Vector3F(GetForwardVector().X, 0.0f, GetForwardVector().Z);
+                _position += (deltaTime.Milliseconds / 10.0f) * new Vector3F(GetForwardVector().X, 0.0f, GetForwardVector().Z);
             }
 
             if (_inputService.IsDown(Keys.D))
             {
-                _position += GetRightVector();
+                _position += (deltaTime.Milliseconds / 10.0f) * GetRightVector();
             }
 
             if (_inputService.IsDown(Keys.E))
             {
-                _pitch -= Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
+                _pitch -= Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 20.0f);
             }
 
             if (_inputService.IsDown(Keys.Q))
             {
-                _pitch += Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 50.0f);
+                _pitch += Microsoft.Xna.Framework.MathHelper.ToRadians(deltaTime.Milliseconds / 20.0f);
             }
 
             _position -= new Vector3F(0.0f, (_inputService.MouseWheelDelta / 20.0f) * GetUpVector().Y, 0.0f);

@@ -21,6 +21,7 @@ using ICT309Game.Game_Components;
 using DigitalRune.Physics;
 using DigitalRune.Game.UI.Controls;
 using ICT309Game.Game_Components.UI;
+using DigitalRune.Game.UI.Rendering;
 
 namespace ICT309Game
 {
@@ -39,6 +40,7 @@ namespace ICT309Game
         private UIManager _uiManager;
         private GameObjectManager _gameObjectManager;
         private DebugRenderer _debugRenderer;
+        private SpriteBatch _spriteBatch;
 
         private GameLog _gameLog;
 
@@ -100,11 +102,25 @@ namespace ICT309Game
 
             _serviceContainer.Register(typeof(ContentManager), null, Content);
 
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _serviceContainer.Register(typeof(SpriteBatch), null, _spriteBatch);
+
             _gameLog = new GameLog();
             _serviceContainer.Register(typeof(GameLog), null, _gameLog);
 
+            var uiTheme = Content.Load<Theme>("UI/UITheme");
+            UIRenderer renderer = new UIRenderer(this, uiTheme);
+
+            var screen = new UIScreen("Default", renderer)
+            {
+                Background = new Color(0, 0, 0, 0),
+            };
+
+            _uiManager.Screens.Add(screen);
+
             _mainGameComponent = new MainGameComponent(this);
-            Components.Add(_mainGameComponent);
+            Components.Add(new StartScreenComponent(this));
+            Components.Add(new GamerServicesComponent(this));
 
             //_updateAnimation = () => _animationManager.Update(_deltaTime);
 

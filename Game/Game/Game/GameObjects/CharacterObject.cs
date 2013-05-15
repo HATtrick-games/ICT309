@@ -15,7 +15,11 @@ using ICT309Game.GameObjects.Board;
 using DigitalRune.Geometry;
 using DigitalRune.Mathematics.Algebra;
 using Microsoft.Xna.Framework.Graphics;
+<<<<<<< HEAD
 using DigitalRune.Animation.Character;
+=======
+using DigitalRune.Game.UI;
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
 
 namespace ICT309Game.GameObjects
 {
@@ -142,7 +146,14 @@ namespace ICT309Game.GameObjects
             set { SetValue(ImageID, value); }
         }
 
+<<<<<<< HEAD
         
+=======
+        public Vector3 Position
+        {
+            get { return _model.PoseWorld.Position.ToXna(); }
+        }
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
 
         public bool isTurn = false;
         public bool isAlly { get; protected set; }
@@ -169,6 +180,7 @@ namespace ICT309Game.GameObjects
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
+<<<<<<< HEAD
             if (Moving == false)
             {
                 //Console.WriteLine("DIS");
@@ -181,12 +193,25 @@ namespace ICT309Game.GameObjects
                 screen.SetPos(ID,  MovingPos);
             }
           
+=======
+            if (MaxHitPoints < HitPoints) HitPoints = MaxHitPoints;
+
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
             base.OnUpdate(deltaTime);
         }
 
         protected override void OnUnload()
         {
+<<<<<<< HEAD
             //if(_model != null) _model.Dispose();
+=======
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+
+            screen.Scene.Children.Remove(_model);
+
+            if(_model != null) _model.Dispose();
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
 
             base.OnUnload();
         }

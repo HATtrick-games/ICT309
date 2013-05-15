@@ -27,6 +27,7 @@ namespace ICT309Game.GameObjects
             isAlly = true;
             CharacterName = "Mage Character";
             HitPoints = 200;
+            MaxHitPoints = 200;
             Damage = 75;
             ArmorDamage = 0;
             Armor = 30;

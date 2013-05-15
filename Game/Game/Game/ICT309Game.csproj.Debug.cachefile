@@ -6,11 +6,26 @@ Content\Player\Militia.xnb
 Content\AI\rangedenemy.xnb
 Content\AI\weakenemy.xnb
 Content\Player\rangedally.xnb
+<<<<<<< HEAD
 Content\Player\skined.xnb
 Content\Player\Soldier_animated_jump.xnb
 Content\Player\DudeMain.xnb
 Content\Board\checkerboard.xnb
 Content\UI\UIOverlay.xnb
+=======
+Content\Board\checkerboard.xnb
+Content\UI\MiramonteBold.xnb
+Content\ground_grass_gen_05_0.xnb
+Content\ground_grass_gen_05_1.xnb
+Content\Player\Militia-Texture_0.xnb
+Content\Player\Militia-Texture_1.xnb
+Content\Default.xnb
+Content\UI\UITheme.xnb
+Content\UITexture.xnb
+Content\UI\UIOverlay.xnb
+Content\UI\Consolas.xnb
+Content\Consolas.xnb
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
 Content\Placeholder.xnb
 Content\UI\endmovementbutton.xnb
 Content\UI\endturnbutton.xnb
@@ -28,4 +43,19 @@ Content\Player\Spearman\SpearMapReal_0.xnb
 Content\Default.xnb
 Content\Consolas.xnb
 Content\stattext.xnb
+<<<<<<< HEAD
 Content\UITexture.xnb
+=======
+Content\UI\Healthbar.xnb
+Content\UI\health.xnb
+Content\UI\turnlistbox.xnb
+Content\UI\turnlisthealth.xnb
+Content\Screens\splashscreen.xnb
+Content\Level\castlelevel.xnb
+Content\Concrete.Precast Structural Conc_0.xnb
+Content\JP_Brick01_Bump_0.xnb
+Content\Concrete.Precast Structural Conc_1.xnb
+Content\JP_Brick01_Bump_1.xnb
+Content\Cutscenes\Cutscene.xnb
+Content\Cutscenes\Cutscene.wmv
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17

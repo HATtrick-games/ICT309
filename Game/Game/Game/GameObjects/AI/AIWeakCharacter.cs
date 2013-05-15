@@ -27,6 +27,7 @@ namespace ICT309Game.GameObjects
             isAlly = false;
             CharacterName = "AI Weak Character";
             HitPoints = 100;
+            MaxHitPoints = 100;
             Damage = 30;
             ArmorDamage = 2;
             Armor = 0;
@@ -42,13 +43,11 @@ namespace ICT309Game.GameObjects
 
         protected override void OnUnload()
         {
-
             base.OnUnload();
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
-
             base.OnUpdate(deltaTime);
         }
 

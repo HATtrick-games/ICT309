@@ -26,6 +26,7 @@ namespace ICT309Game.GameObjects
             isAlly = false;
             CharacterName = "AI Ranged Character";
             HitPoints = 160;
+            MaxHitPoints = 160;
             Damage = 200;
             ArmorDamage = 3;
             Armor = 35;

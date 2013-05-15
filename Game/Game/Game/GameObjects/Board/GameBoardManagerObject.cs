@@ -12,6 +12,7 @@ using DigitalRune.Geometry;
 using DigitalRune.Graphics;
 using Microsoft.Xna.Framework;
 using DigitalRune.Collections;
+using ICT309Game.Levels;
 
 namespace ICT309Game.GameObjects.Board
 {
@@ -45,22 +46,24 @@ namespace ICT309Game.GameObjects.Board
 
         public SquareData[,] GameBoard = new SquareData[boardSize, boardSize];
 
-        // CHARACTER OBJECTS
-        private MainCharacter _mainCharacter;
-        private RangedCharacter _rangedCharacter;
-        private AIRangedCharacter _aiRangedCharacter;
-        private AIWeakCharacter _aiWeakCharacter;
-
         public TurnManager TurnManager { get; private set; }
 
-        public GameBoardManagerObject()
+        public GameBoardManagerObject(Level level)
         {
+<<<<<<< HEAD
             moves = 0;
             MovementInProgress = false;
             Pather = new PathFinder();
             InitialiseBoard();  
             // LOAD IN LEVEL FILES FROM EXTERNAL FILE
             GameBoard[5, 5] = SquareData.BLOCKED;
+=======
+            InitialiseBoard();
+
+            TurnManager = new TurnManager();
+
+            LoadLevel(level);
+>>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
 
             for (int i = 0; i < Positions.GetLength(0); i++)
             {
@@ -69,8 +72,30 @@ namespace ICT309Game.GameObjects.Board
                     Positions[i, j] = new Vector3F(gap * i + startPos, 0.0f, gap * j + startPos);
                 }
             }
+        }
 
-            
+        private void LoadLevel(Level level)
+        {
+            for (int i = 0; i < level._boardData.GetLength(0); i++)
+            {
+                for (int j = 0; j < level._boardData.GetLength(1); j++)
+                {
+                    if (!level._boardData[i, j])
+                    {
+                        GameBoard[i, j] = SquareData.BLOCKED;
+                    }
+                }
+            }
+
+            var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+
+            gameObjectService.Objects.Add(new BoardObject(level._levelModel));
+
+            for (int x = 0; x < level._characters.Count; x++)
+            {
+                gameObjectService.Objects.Add(level._characters[x]);
+                TurnManager.AddToList(level._characters[x]);
+            }
         }
 
         protected override void  OnLoad()
@@ -99,22 +124,6 @@ namespace ICT309Game.GameObjects.Board
                     gameObjectService.Objects.Add(whiteGameBoard[i, j]);
                 }
             }
-
-            _mainCharacter = new MainCharacter();
-            _rangedCharacter = new RangedCharacter();
-            _aiRangedCharacter = new AIRangedCharacter();
-            _aiWeakCharacter = new AIWeakCharacter();
-
-            gameObjectService.Objects.Add(_mainCharacter);
-            gameObjectService.Objects.Add(_rangedCharacter);
-            gameObjectService.Objects.Add(_aiRangedCharacter);
-            gameObjectService.Objects.Add(_aiWeakCharacter);
-
-            TurnManager = new TurnManager();
-            TurnManager.AddToList(_mainCharacter);
-            TurnManager.AddToList(_aiRangedCharacter);
-            TurnManager.AddToList(_rangedCharacter);
-            TurnManager.AddToList(_aiWeakCharacter);
         }
 
         void Pathfinding(int pX, int pY)
