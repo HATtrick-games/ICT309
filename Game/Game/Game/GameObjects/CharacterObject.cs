@@ -15,6 +15,7 @@ using ICT309Game.GameObjects.Board;
 using DigitalRune.Geometry;
 using DigitalRune.Mathematics.Algebra;
 using Microsoft.Xna.Framework.Graphics;
+using DigitalRune.Game.UI;
 
 namespace ICT309Game.GameObjects
 {

@@ -39,6 +39,5 @@ namespace ICT309Game.Levels
             _characters.Add(_RangedCharacter);
             _characters.Add(_AIWeakCharacter);
         }
-        
     }
 }

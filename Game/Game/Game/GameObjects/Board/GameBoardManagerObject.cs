@@ -40,15 +40,6 @@ namespace ICT309Game.GameObjects.Board
 
         public SquareData[,] GameBoard = new SquareData[boardSize, boardSize];
 
-        // LEVEL OBJECT
-        
-
-        // CHARACTER OBJECTS
-        private MainCharacter _mainCharacter;
-        private RangedCharacter _rangedCharacter;
-        private AIRangedCharacter _aiRangedCharacter;
-        private AIWeakCharacter _aiWeakCharacter;
-
         public TurnManager TurnManager { get; private set; }
 
         public GameBoardManagerObject(Level level)

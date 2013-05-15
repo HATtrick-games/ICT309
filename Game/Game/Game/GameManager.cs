@@ -120,6 +120,7 @@ namespace ICT309Game
 
             _mainGameComponent = new MainGameComponent(this);
             Components.Add(new StartScreenComponent(this));
+            Components.Add(new GamerServicesComponent(this));
 
             //_updateAnimation = () => _animationManager.Update(_deltaTime);
 

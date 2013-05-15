@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Components\AboutComponent.cs" />
+    <Compile Include="Game Components\CutSceneComponent.cs" />
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="Game Components\StartScreenComponent.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="GameObjects\Player\MeleeFighterCharacter.cs" />
     <Compile Include="GameObjects\Player\MeleeHealerCharacter.cs" />
     <Compile Include="GameObjects\Player\RangedCharacter.cs" />
+    <Compile Include="GameObjects\TrapObject.cs" />
     <Compile Include="Graphics\BasicScreen.cs" />
     <Compile Include="GameObjects\Player\MainCharacter.cs" />
     <Compile Include="Levels\FirstLevel.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Save\SaveLoadGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
