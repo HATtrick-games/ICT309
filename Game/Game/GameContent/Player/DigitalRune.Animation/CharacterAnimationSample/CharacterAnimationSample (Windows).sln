@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterAnimationSample (Windows)", "CharacterAnimationSample\CharacterAnimationSample (Windows).csproj", "{06581FE2-E5AB-4763-AD4A-661BB326D26C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "Content\Content.contentproj", "{F515A5C2-1E90-4917-A961-052C32FFECBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentPipelineExtensions", "ContentPipelineExtensions\ContentPipelineExtensions.csproj", "{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06581FE2-E5AB-4763-AD4A-661BB326D26C}.Debug|x86.ActiveCfg = Debug|x86
+		{06581FE2-E5AB-4763-AD4A-661BB326D26C}.Debug|x86.Build.0 = Debug|x86
+		{06581FE2-E5AB-4763-AD4A-661BB326D26C}.Release|x86.ActiveCfg = Release|x86
+		{06581FE2-E5AB-4763-AD4A-661BB326D26C}.Release|x86.Build.0 = Release|x86
+		{F515A5C2-1E90-4917-A961-052C32FFECBD}.Debug|x86.ActiveCfg = Debug|x86
+		{F515A5C2-1E90-4917-A961-052C32FFECBD}.Release|x86.ActiveCfg = Release|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.Build.0 = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

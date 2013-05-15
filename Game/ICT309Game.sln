@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICT309Game", "Game\Game\ICT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICT309GameContent", "Game\GameContent\ICT309GameContent.contentproj", "{AC58AC1D-B784-4322-B455-F8EC0A149786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentPipelineExtensions", "Game\GameContent\Player\DigitalRune.Animation\CharacterAnimationSample\ContentPipelineExtensions\ContentPipelineExtensions.csproj", "{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,6 +19,10 @@ Global
 		{BC438015-24FB-479A-A6C7-5E198D051068}.Release|x86.Build.0 = Release|x86
 		{AC58AC1D-B784-4322-B455-F8EC0A149786}.Debug|x86.ActiveCfg = Debug|x86
 		{AC58AC1D-B784-4322-B455-F8EC0A149786}.Release|x86.ActiveCfg = Release|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Debug|x86.Build.0 = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.ActiveCfg = Debug|x86
+		{ED9C6368-E1A0-4461-B6DF-95786F1E69D1}.Release|x86.Build.0 = Debug|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,6 +17,7 @@ namespace ICT309Game.GameObjects.Board
     {
         public List<CharacterObject> characterList { get; private set; }
 
+        
         public CharacterObject CurrentTurn { get; private set; }
         public TurnStatus CurrentTurnStatus { get; private set; }
 

@@ -18,7 +18,7 @@ using System.Text;
 
 
 
-namespace ICT309Game.Pathfinding
+namespace ICT309Game.GameObjects
 {
     class PathFinder
     {
@@ -51,6 +51,17 @@ namespace ICT309Game.Pathfinding
         {
             walkable[xpos, ypos] = walkablepass;
         }
+
+        public int returnX(int index)
+        {
+            return path[index].x;
+        }
+
+        public int returnY(int index)
+        {
+            return path[index].y;
+        }
+
 
         public node[] returnpath()
         {
@@ -124,7 +135,7 @@ namespace ICT309Game.Pathfinding
         {
             int place = 0;
             node temp = spot;
-            if (spot.x + 1 < 11)
+            if (spot.x + 1 < 10)
             {
                 if (walkable[spot.x + 1, spot.y] != 1)
                 {
@@ -134,7 +145,7 @@ namespace ICT309Game.Pathfinding
                     temp = spot;
                 }
             }
-            if (spot.y + 1 < 11)
+            if (spot.y + 1 < 10)
             {
                 if (walkable[spot.x, spot.y + 1] != 1)
                 {
@@ -144,7 +155,7 @@ namespace ICT309Game.Pathfinding
                     temp = spot;
                 }
             }
-            if (spot.x - 1 > 0)
+            if (spot.x - 1 > -1)
             {
                 if (walkable[spot.x - 1, spot.y] != 1)
                 {
@@ -154,7 +165,7 @@ namespace ICT309Game.Pathfinding
                     temp = spot;
                 }
             }
-            if (spot.y - 1 > 0)
+            if (spot.y - 1 > -1)
             {
                 if (walkable[spot.x, spot.y - 1] != 1)
                 {

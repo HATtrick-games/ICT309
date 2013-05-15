@@ -116,7 +116,7 @@ namespace ICT309Game
             _inputManager.Update(_deltaTime);
 
             //_updateAnimationTask.Wait();
-
+            _animationManager.Update(_deltaTime);
             _animationManager.ApplyAnimations();
             //Parallel.RunCallbacks();
 

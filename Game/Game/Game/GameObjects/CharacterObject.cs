@@ -15,12 +15,21 @@ using ICT309Game.GameObjects.Board;
 using DigitalRune.Geometry;
 using DigitalRune.Mathematics.Algebra;
 using Microsoft.Xna.Framework.Graphics;
+using DigitalRune.Animation.Character;
 
 namespace ICT309Game.GameObjects
 {
     class CharacterObject : GameObject
     {
-        protected ModelNode _model;
+        public Vector3F MovingPos;
+        public bool Moving;
+        protected Model _model;
+        private Pose _pose = new Pose(new Vector3F(0.5f, 0, 0));
+        private SkeletonPose _skeletonPose;
+        public int ID;
+        public int RotationAmount;
+
+       // protected ModelNode _model;
         protected Vector4 _color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
         private static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -133,6 +142,8 @@ namespace ICT309Game.GameObjects
             set { SetValue(ImageID, value); }
         }
 
+        
+
         public bool isTurn = false;
         public bool isAlly { get; protected set; }
 
@@ -141,30 +152,83 @@ namespace ICT309Game.GameObjects
             base.OnLoad();
         }
 
+        public void Rotation(int rotate)
+        {
+            RotationAmount = rotate;
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            screen.Rotation(ID, rotate);
+        }
+
         protected override void OnUpdate(TimeSpan deltaTime)
-        {
-            _model.PoseWorld = new Pose(GameBoardManagerObject.Positions[PosX, PosY]);
-
-            base.OnUpdate(deltaTime);
-        }
-
-        protected override void OnUnload()
-        {
-            if(_model != null) _model.Dispose();
-
-            base.OnUnload();
-        }
-
-        protected void LoadModel(string filepath)
         {
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
-            _model = contentManager.Load<ModelNode>(filepath).Clone();
+            if (Moving == false)
+            {
+                //Console.WriteLine("DIS");
+                screen.SetPos(ID, new Pose(GameBoardManagerObject.Positions[PosX, PosY], Matrix33F.CreateRotationY(MathHelper.ToRadians(RotationAmount))));
+                //_model.PoseWorld = new Pose(GameBoardManagerObject.Positions[PosX, PosY]);
+            }
+            else if(Moving == true)
+            {
+                //Console.WriteLine("MOVING FUCKERE");
+                screen.SetPos(ID,  MovingPos);
+            }
+          
+            base.OnUpdate(deltaTime);
+        }
 
-            foreach (var meshNode in _model.GetSubtree().OfType<MeshNode>())
+        protected override void OnUnload()
+        {
+            //if(_model != null) _model.Dispose();
+
+            base.OnUnload();
+        }
+
+        public void LoopWalk()
+        {
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            screen.Walk(ID);
+
+        }
+
+        public void PauseWalk()
+        {
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            screen.PauseWalk(ID);
+        }
+
+        protected void LoadModel(string filepath)
+        {
+
+            Moving = false;
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+
+            _model = Content.Load<Model>("Player/DudeMain");
+            var additionalData = (Dictionary<string, object>)_model.Tag;
+            var skeleton = (Skeleton)additionalData["Skeleton"];
+            _skeletonPose = SkeletonPose.Create(skeleton);
+           // var animations = (Dictionary<string, SkeletonKeyFrameAnimation>)additionalData["Animations"];
+          //  SkeletonKeyFrameAnimation walkAnimation = animations.Values.First();
+
+            //_model = contentManager.Load<ModelNode>(filepath).Clone();
+
+          /*  foreach (var meshNode in _model.GetSubtree().OfType<MeshNode>())
             {
                 Mesh mesh = meshNode.Mesh;
                 foreach (var material in mesh.Materials)
@@ -173,9 +237,11 @@ namespace ICT309Game.GameObjects
                     effectBinding.Set("DiffuseColor", _color);
                     ((BasicEffectBinding)effectBinding).LightingEnabled = false;
                 }
-            }
+            }*/
 
-            screen.Scene.Children.Add(_model);
+           ID = screen.Add(_model, _pose, _skeletonPose);
+           
+            //screen.Scene.Children.Add(_model);
         }
     }
 }

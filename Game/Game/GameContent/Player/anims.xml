@@ -1,0 +1,5 @@
+<Animations>
+  <Framerate>30</Framerate>
+  <Animation Name="First" StartFrame="1" EndFrame="80" />
+  <Animation Name="Second" StartFrame="100" EndFrame="180" />
+</Animations>

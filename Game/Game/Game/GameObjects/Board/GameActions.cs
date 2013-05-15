@@ -11,6 +11,13 @@ namespace ICT309Game.GameObjects.Board
 {
     class GameActions
     {
+        
+
+        public GameActions()
+        {
+            //Pather = new PathFinder();
+        }
+
         public static bool ResolveCombat(CharacterObject attacker, CharacterObject defender)
         {
             if (attacker.isAlly == defender.isAlly)
@@ -30,11 +37,19 @@ namespace ICT309Game.GameObjects.Board
             return true;
         }
 
+        public static void MovePattern(CharacterObject character, int posX, int posY)
+        {
+
+           // Pather.Intiialise();
+           // Pather.FindPath(character.PosX, character.PosY, posX, posY);
+        }
+
         public static bool MoveCharacter(CharacterObject character, int posX, int posY)
         {
             if (posX >= 10 || posX < 0) return false;
             if (posY >= 10 || posY < 0) return false;
 
+            MovePattern(character, posX, posY);
             character.PosX = posX;
             character.PosY = posY;
 

@@ -26,6 +26,12 @@ namespace ICT309Game.GameObjects.Board
 
     class GameBoardManagerObject:GameObject
     {
+        public int counter;
+        public int moves;
+        public int endx = 0;
+        public int endy = 0;
+        public bool MovementInProgress;
+        public PathFinder Pather;
         private const float startPos = -114.5f;
         private const float gap = 25.5f;
         private const int boardSize = 10;
@@ -49,6 +55,9 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject()
         {
+            moves = 0;
+            MovementInProgress = false;
+            Pather = new PathFinder();
             InitialiseBoard();  
             // LOAD IN LEVEL FILES FROM EXTERNAL FILE
             GameBoard[5, 5] = SquareData.BLOCKED;
@@ -108,9 +117,88 @@ namespace ICT309Game.GameObjects.Board
             TurnManager.AddToList(_aiWeakCharacter);
         }
 
+        void Pathfinding(int pX, int pY)
+        {
+            TurnManager.CurrentTurn.LoopWalk();
+            Pather.Intiialise();
+            endx = pX;
+            endy = pY;
+            Pather.FindPath(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, pX, pY);
+            counter = Pather.returnpathlength();
+            TurnManager.CurrentTurn.Moving = true;
+            MovementInProgress = true;
+            TurnManager.CurrentTurn.MovingPos = GameBoardManagerObject.Positions[TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY];
+        }
+
+        bool twoVectors(Vector3F first, Vector3F second)
+        {
+            if ((first.X - second.X > -0.06) && (first.X - second.X < 0.06))
+            {
+                if ((first.Y - second.Y > -0.06) && (first.Y - second.Y < 0.06))
+                {
+                    if ((first.Z - second.Z > -0.06) && (first.Z - second.Z < 0.06))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+         }
+        
+        void Path()
+        {
+            if(counter < 0 )
+            {
+                TurnManager.CurrentTurn.PauseWalk();
+                MovementInProgress = false;
+                TurnManager.CurrentTurn.Moving = false;
+                GameActions.MoveCharacter(TurnManager.CurrentTurn, endx,endy);
+                TurnManager.ChangeStatus();
+            }
+            else if (twoVectors(TurnManager.CurrentTurn.MovingPos, GameBoardManagerObject.Positions[Pather.returnX(counter), Pather.returnY(counter)])) 
+            {
+                moves = 0;
+                TurnManager.CurrentTurn.PosX = Pather.returnX(counter);
+                TurnManager.CurrentTurn.PosY = Pather.returnY(counter);
+                counter -= 1;
+                
+            }
+            else 
+            {
+                if(TurnManager.CurrentTurn.PosX - Pather.returnX(counter) == -1)
+                {
+                    TurnManager.CurrentTurn.Rotation(90);
+                }
+                else if (TurnManager.CurrentTurn.PosX - Pather.returnX(counter) == 1)
+                {
+                    TurnManager.CurrentTurn.Rotation(270);
+                }
+                else if (TurnManager.CurrentTurn.PosY - Pather.returnY(counter) == 1)
+                {
+                    TurnManager.CurrentTurn.Rotation(180);
+                }
+                else if (TurnManager.CurrentTurn.PosY - Pather.returnY(counter) == -1)
+                {
+                    TurnManager.CurrentTurn.Rotation(360);
+                }
+
+                TurnManager.CurrentTurn.MovingPos += ((GameBoardManagerObject.Positions[Pather.returnX(counter), Pather.returnY(counter)] - GameBoardManagerObject.Positions[TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY]) / 50);
+                
+               // Console.WriteLine(((GameBoardManagerObject.Positions[Pather.returnX(counter), Pather.returnY(counter)] - GameBoardManagerObject.Positions[TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY]) / 50));
+                moves++;
+                                             
+            }
+        }
+
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             ResetBoard();
+            if (MovementInProgress == true)
+            {
+                Path();
+            }
+
 
             for (int i = 0; i < TurnManager.characterList.Count; i++)
             {
@@ -148,9 +236,11 @@ namespace ICT309Game.GameObjects.Board
                         if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
                         {
                             // Move character to selected square
-                            GameActions.MoveCharacter(TurnManager.CurrentTurn, IndexI, IndexJ);
 
-                            TurnManager.ChangeStatus();
+                            Pathfinding(IndexI, IndexJ);
+                           // GameActions.MoveCharacter(TurnManager.CurrentTurn, IndexI, IndexJ);
+
+                           // TurnManager.ChangeStatus();
                         }
 
                         if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDBLUE)

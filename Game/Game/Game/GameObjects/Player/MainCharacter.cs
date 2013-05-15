@@ -20,8 +20,9 @@ namespace ICT309Game.GameObjects
     {
         protected override void OnLoad()
         {
-            LoadModel("Player/Militia");
-            _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
+            LoadModel("Player/Soldier");
+            //LoadModel("Player/militia");
+           // _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
 
             isAlly = true;
             CharacterName = "Main Character";

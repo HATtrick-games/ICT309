@@ -21,7 +21,8 @@ namespace ICT309Game.GameObjects
 
         protected override void OnLoad()
         {
-            LoadModel("Player/rangedally");
+            LoadModel("Player/Soldier");
+            // LoadModel("Player/rangedally");
 
             isAlly = true;
             CharacterName = "Melee Fighter Character";

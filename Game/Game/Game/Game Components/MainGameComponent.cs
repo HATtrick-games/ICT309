@@ -38,6 +38,7 @@ namespace ICT309Game.Game_Components
             {
                 Name = "Default",
             };
+            
             graphicsService.Screens.Add(_gameScreen);
         }
 
