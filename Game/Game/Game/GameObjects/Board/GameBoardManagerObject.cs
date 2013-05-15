@@ -50,20 +50,20 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject(Level level)
         {
-<<<<<<< HEAD
+
             moves = 0;
             MovementInProgress = false;
             Pather = new PathFinder();
             InitialiseBoard();  
             // LOAD IN LEVEL FILES FROM EXTERNAL FILE
             GameBoard[5, 5] = SquareData.BLOCKED;
-=======
+
             InitialiseBoard();
 
             TurnManager = new TurnManager();
 
             LoadLevel(level);
->>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
+
 
             for (int i = 0; i < Positions.GetLength(0); i++)
             {

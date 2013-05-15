@@ -176,30 +176,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Player\skined.FBX">
-      <Name>skined</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_Scale>0.3</ProcessorParameters_Scale>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Player\Soldier_animated_jump.fbx">
-      <Name>Soldier_animated_jump</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_Scale>0.3</ProcessorParameters_Scale>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Player\DudeMain.FBX">
-      <Name>DudeMain</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>SkinnedModelProcessor</Processor>
-      <ProcessorParameters_SplitAnimationsFile>anims.xml</ProcessorParameters_SplitAnimationsFile>
-      <ProcessorParameters_Scale>0.15</ProcessorParameters_Scale>
-=======
     <Compile Include="UI\Healthbar.png">
       <Name>Healthbar</Name>
       <Importer>TextureImporter</Importer>
@@ -245,7 +221,6 @@
       <Name>Cutscene</Name>
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
->>>>>>> 5c015188de5cd7f71c059e9827ffd2de98f04f17
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
