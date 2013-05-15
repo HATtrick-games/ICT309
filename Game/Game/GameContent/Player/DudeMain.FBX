@@ -3278,8 +3278,8 @@ Objects:  {
             Property: "UseMipMap", "bool", "",0
         }
         Media: "Video::Map #13"
-        FileName: "A:\IT\GitHub\ICT309\Game\Game\GameContent\Player\Spearman\SpearMapReal.png"
-        RelativeFilename: "A:\IT\GitHub\ICT309\Game\Game\GameContent\Player\Spearman\SpearMapReal.png"
+        FileName: "SpearMapReal.png"
+        RelativeFilename: "SpearMapReal.png"
         ModelUVTranslation: 0,0
         ModelUVScaling: 1,1
         Texture_Alpha_Source: "Alpha_Black"
