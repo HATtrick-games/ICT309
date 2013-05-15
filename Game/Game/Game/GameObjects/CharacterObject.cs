@@ -222,6 +222,23 @@ namespace ICT309Game.GameObjects
             screen.Walk(ID);
 
         }
+        public void Attack()
+        {
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            screen.Attack(ID);
+        }
+
+        public void idle()
+        {
+            var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
+            var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+            var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            var screen = ((BasicScreen)graphicsService.Screens["Default"]);
+            screen.idle(ID);
+        }
 
         public void PauseWalk()
         {
@@ -241,7 +258,7 @@ namespace ICT309Game.GameObjects
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
-            _model = Content.Load<Model>("Player/Golem");
+            _model = Content.Load<Model>("Player/Archer");
             var additionalData = (Dictionary<string, object>)_model.Tag;
             var skeleton = (Skeleton)additionalData["Skeleton"];
             _skeletonPose = SkeletonPose.Create(skeleton);

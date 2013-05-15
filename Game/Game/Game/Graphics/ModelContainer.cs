@@ -38,17 +38,21 @@ namespace ICT309Game.Container
             
 
             _animations = new ITimeline[animations.Count];
-            foreach (var animation in animations.Values)
-            {
-                
-                _animations[index] = new AnimationClip<SkeletonPose>(animations["First"])
+                           
+                _animations[0] = new AnimationClip<SkeletonPose>(animations["First"])
                 {
                     LoopBehavior = LoopBehavior.Cycle,
                     Duration = TimeSpan.MaxValue
                 };
                 index++;
-                
-            }
+
+                _animations[1] = new AnimationClip<SkeletonPose>(animations["Second"]);
+
+                _animations[2] = new AnimationClip<SkeletonPose>(animations["Second"])
+                {
+                    LoopBehavior = LoopBehavior.Cycle,
+                    Duration = TimeSpan.MaxValue
+                };
             
            
         }

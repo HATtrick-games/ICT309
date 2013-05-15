@@ -72,12 +72,31 @@ namespace ICT309Game.Graphics
             Map[ID]._pose.Position =  passed;
         }
 
+        public void idle(int ID)
+        {
+            var AnimateService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            _animationController = AnimateService.StartAnimation(Map[ID]._animations[2], (IAnimatableProperty)Map[ID]._skeleton);
+            _animationController.UpdateAndApply();
+            _animationController.AutoRecycle();
+            _animationController.Stop();
+
+        }
+
+        public void Attack(int ID)
+        {
+            var AnimateService = ServiceLocator.Current.GetInstance<IAnimationService>();
+            _animationController = AnimateService.StartAnimation(Map[ID]._animations[1], (IAnimatableProperty)Map[ID]._skeleton);
+            _animationController.UpdateAndApply();
+            _animationController.AutoRecycle();
+            
+        }
+
         public void Walk(int ID)
         {
            // Map[0].animate();
             var AnimateService = ServiceLocator.Current.GetInstance<IAnimationService>();
           // AnimateService.StartAnimation(Map[ID]._animations[0], (IAnimatableProperty)Map[ID]._skeleton).AutoRecycle();
-            _animationController = AnimateService.StartAnimation(Map[ID]._animations[1], (IAnimatableProperty)Map[ID]._skeleton);
+            _animationController = AnimateService.StartAnimation(Map[ID]._animations[0], (IAnimatableProperty)Map[ID]._skeleton);
             _animationController.Speed += 5;
            //ServiceLocator.Current.GetInstance<IAnimationService>().StartAnimation(Map[ID].loopingAnimation, (IAnimatableProperty)Map[ID]._skeleton).AutoRecycle();
            _animationController.UpdateAndApply();
@@ -98,6 +117,7 @@ namespace ICT309Game.Graphics
             NumModels++;
            // Map[0]._model = _model;
            // Walk(NumModels-1);
+            idle(NumModels - 1);
             return NumModels - 1;
                        
         }
