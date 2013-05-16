@@ -15,8 +15,8 @@ namespace ICT309Game.GameObjects.AI
         bool AttackTarget = false;
         bool TurnCompleted = false;
         int target;
-        int max = -200;
-        int min = 200;
+        float max = -200;
+        float min = 200;
         int minx;
         int miny;
         int maxindex = 0;
@@ -76,17 +76,22 @@ Mage	5
         */
         public int SelectTarget()
         {
-            min = 200;
-            int[] scores = new int[GameBoardObj.TurnManager.characterList.Count];
+            max = -1000;
+            float[] scores = new float[GameBoardObj.TurnManager.characterList.Count];
+            float[] distances = new float[GameBoardObj.TurnManager.characterList.Count];
+            float[] damages = new float[GameBoardObj.TurnManager.characterList.Count];
 
             for (int i = 0; i < GameBoardObj.TurnManager.characterList.Count; i++)
             {
+                distances[i] = Distance(GameBoardObj.TurnManager.CurrentTurn, GameBoardObj.TurnManager.characterList[i]) - GameBoardObj.TurnManager.CurrentTurn.Movement;
+                damages[i] = (GameBoardObj.TurnManager.CurrentTurn.Damage - ((GameBoardObj.TurnManager.CurrentTurn.Damage*GameBoardObj.TurnManager.characterList[i].Armor) / 100));
                 if (GameBoardObj.TurnManager.characterList[i].isAlly)
                 {
-                    scores[i] = Distance(GameBoardObj.TurnManager.CurrentTurn, GameBoardObj.TurnManager.characterList[i]);
-                    if ((scores[i] < min)&&(scores[i] != 0))
+                    scores[i] = damages[i] / (10 + GameBoardObj.TurnManager.characterList[i].importance + distances[i]);
+                    if ((scores[i] > max)&&(distances[i] != GameBoardObj.TurnManager.CurrentTurn.Movement))
                     {
-                        min = scores[i];
+                        Console.WriteLine(scores[i]);
+                        max = scores[i];
                         maxindex = i;
                     }
                 }
@@ -108,19 +113,20 @@ Mage	5
                     target = SelectTarget();
                     if (Distance(GameBoardObj.TurnManager.CurrentTurn, GameBoardObj.TurnManager.characterList[target]) == 1)
                     {
-                        Console.WriteLine("I AM BESIDE MY TARGET");
+                        //Console.WriteLine("I AM BESIDE MY TARGET");
+
                     }
                     else
                     {
                         min = 200;
                         for (int x = 0; x < 10; x++)
                         {
-                            Console.WriteLine("DERp");
+                            //Console.WriteLine("DERp");
                             for (int y = 0; y < 10; y++)
                             {
                                 if (GameBoardObj.GameBoard[x, y] == SquareData.HIGHLIGHTEDRED)
                                 {
-                                    Console.WriteLine("DERp");
+                                   // Console.WriteLine("DERp");
                                    
                                     if (Distance(x, y, GameBoardObj.TurnManager.characterList[target].PosX, GameBoardObj.TurnManager.characterList[target].PosY)<min)
                                     {
@@ -133,8 +139,7 @@ Mage	5
                             }
                         }
                     }
-                    Console.WriteLine(minx);
-                    Console.WriteLine(miny);
+                    
                     if (MoveToTarget == true)
                     {
                         GameBoardObj.Pathfinding(minx, miny);
@@ -148,6 +153,13 @@ Mage	5
 
             if ((GameBoardObj.MovementInProgress == false)&&(turn<-15))
             {
+                if (Distance(GameBoardObj.TurnManager.CurrentTurn, GameBoardObj.TurnManager.characterList[target]) == 1)
+                {
+                    Console.WriteLine("I AM BESIDE MY TARGET");
+                    GameActions.ResolveCombat(GameBoardObj.TurnManager.CurrentTurn, GameBoardObj.TurnManager.characterList[target]);
+                    
+                }
+
                 EndAITurn = true;
                 MoveToTarget = false;
                 turn = 1;

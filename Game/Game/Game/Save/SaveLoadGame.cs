@@ -44,7 +44,7 @@ namespace ICT309Game.Save
 
         private static void SaveToDevice(IAsyncResult result)
         {
-            device = StorageDevice.EndShowSelector(result);
+            /*device = StorageDevice.EndShowSelector(result);
             if (device != null && device.IsConnected)
             {
                 IAsyncResult r = device.BeginOpenContainer(containerName, null, null);
@@ -58,7 +58,7 @@ namespace ICT309Game.Save
                 stream.Close();
                 container.Dispose();
                 result.AsyncWaitHandle.Close();
-            }
+            }*/
         }
 
         private static SaveGame currentLoad;
@@ -75,7 +75,7 @@ namespace ICT309Game.Save
         }
 
         private static void LoadFromDevice(IAsyncResult result)
-        {
+        {/*
             device = StorageDevice.EndShowSelector(result);
             IAsyncResult r = device.BeginOpenContainer(containerName, null, null);
             result.AsyncWaitHandle.WaitOne();
@@ -88,7 +88,7 @@ namespace ICT309Game.Save
                 currentLoad = (SaveGame)serializer.Deserialize(stream);
                 stream.Close();
                 container.Dispose();
-            }
+            }*/
         }
     }
 }
