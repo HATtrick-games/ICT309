@@ -34,7 +34,7 @@ namespace ICT309Game.GameObjects
        // protected ModelNode _model;
         protected Vector4 _color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-        private static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
+        public static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
 
         public static readonly int NameID =
             CreateProperty<String>("Name", "Common", "Defines the name of the character.", "Character").Id;
@@ -70,7 +70,7 @@ namespace ICT309Game.GameObjects
             CreateProperty<int>("PosY", "Common", "Defines the Y Position on the game board.", 0).Id;
 
         public static readonly int ImageID =
-            CreateProperty<Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Texture2D>("Placeholder")).Id;
+            CreateProperty<Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Texture2D>("grate")).Id;
 
         public String CharacterName
         {
