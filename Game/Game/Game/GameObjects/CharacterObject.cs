@@ -34,7 +34,7 @@ namespace ICT309Game.GameObjects
        // protected ModelNode _model;
         protected Vector4 _color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-        private static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
+        protected static ContentManager Content = ServiceLocator.Current.GetInstance<ContentManager>();
 
         public static readonly int NameID =
             CreateProperty<String>("Name", "Common", "Defines the name of the character.", "Character").Id;

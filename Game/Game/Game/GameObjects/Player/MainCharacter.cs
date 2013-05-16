@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using DigitalRune.Graphics.Effects;
 using DigitalRune.Mathematics.Algebra;
 using DigitalRune.Animation;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace ICT309Game.GameObjects
@@ -34,6 +35,8 @@ namespace ICT309Game.GameObjects
             MinArmor = 30;
             Range = 1;
             Movement = 3;
+
+            Image = Content.Load<Texture2D>("Player/MainCharacterImage");
 
             base.OnLoad();
         }
