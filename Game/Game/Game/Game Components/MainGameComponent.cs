@@ -78,7 +78,20 @@ namespace ICT309Game.Game_Components
 
             _aiHandler.IsAITurn = !_gameBoardManager.TurnManager.CurrentTurn.isAlly;
 
-            if (_aiHandler.IsAITurn) _gameBoardManager.TurnManager.ChangeTurn();
+            if (_aiHandler.IsAITurn && _aiHandler.EndAITurn)
+            {
+                _aiHandler.EndAITurn = false;
+                _gameBoardManager.TurnManager.ChangeTurn();
+            }
+
+            if (_gameBoardManager.TurnManager.allyWin || _gameBoardManager.TurnManager.enemyWin)
+            {
+                System.Console.WriteLine("Game over");
+                Game.Components.Add(new EndLevelComponent(Game, _gameBoardManager.TurnManager.allyWin, 1, _gameBoardManager.TurnManager.characterList));
+                Game.Components.Remove(this);
+                
+                Dispose(true);
+            }
 
             base.Update(gameTime);
         }
@@ -87,6 +100,9 @@ namespace ICT309Game.Game_Components
         {
             if (disposing)
             {
+                var uiService = ServiceLocator.Current.GetInstance<IUIService>();
+                uiService.Screens.Remove(_gameHUD);
+
                 var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
                 if(gameObjectService != null) gameObjectService.Objects.Clear();
 

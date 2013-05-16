@@ -9,10 +9,12 @@ namespace ICT309Game.GameObjects.AI
     class AIHandlerObject : GameObject
     {
         public bool IsAITurn { get; set; }
+        public bool EndAITurn { get; set; }
 
         public AIHandlerObject()
         {
             IsAITurn = false;
+            EndAITurn = false;
         }
 
         protected override void OnLoad()
@@ -22,7 +24,11 @@ namespace ICT309Game.GameObjects.AI
 
         protected override void OnUpdate(TimeSpan deltaTime)
         {
-            if(IsAITurn) Console.WriteLine("Is AI Turn");
+            if (IsAITurn)
+            {
+                EndAITurn = true; 
+                Console.WriteLine("Is AI Turn");
+            }
 
             base.OnUpdate(deltaTime);
         }

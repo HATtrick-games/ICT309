@@ -16,13 +16,18 @@ namespace ICT309Game.GameObjects.Board
     class TurnManager
     {
         public List<CharacterObject> characterList { get; private set; }
-
         
         public CharacterObject CurrentTurn { get; private set; }
         public TurnStatus CurrentTurnStatus { get; private set; }
 
+        public bool allyWin { get; private set; }
+        public bool enemyWin { get; private set; }
+
         public TurnManager()
         {
+            allyWin = false;
+            enemyWin = false;
+
             CurrentTurnStatus = TurnStatus.MOVEMENT;
             characterList = new List<CharacterObject>();
         }
@@ -45,8 +50,26 @@ namespace ICT309Game.GameObjects.Board
                     characterList[i].Unload();                                        
                     characterList.RemoveAt(i);
 
+                    CheckWinConditions();
                 }
             }
+        }
+
+        private void CheckWinConditions()
+        {
+            bool enemyRemaining = false;
+            bool allyRemaining = false;
+
+            for (int i = 0; i < characterList.Count; i++)
+            {
+                if (characterList[i].isAlly) allyRemaining = true;
+                if (!characterList[i].isAlly) enemyRemaining = true;
+
+                if (enemyRemaining && allyRemaining) break;
+            }
+
+            if (!enemyRemaining) allyWin = true;
+            if (!allyRemaining) enemyWin = true;
         }
 
         public void ChangeTurn()

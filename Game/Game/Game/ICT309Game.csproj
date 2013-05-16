@@ -177,6 +177,7 @@
   <ItemGroup>
     <Compile Include="Game Components\AboutComponent.cs" />
     <Compile Include="Game Components\CutSceneComponent.cs" />
+    <Compile Include="Game Components\EndLevelComponent.cs" />
     <Compile Include="Game Components\MainGameComponent.cs" />
     <Compile Include="Game Components\MainMenuComponent.cs" />
     <Compile Include="Game Components\StartScreenComponent.cs" />

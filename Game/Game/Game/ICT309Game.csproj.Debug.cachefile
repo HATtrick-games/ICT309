@@ -7,6 +7,10 @@ Content\AI\rangedenemy.xnb
 Content\AI\weakenemy.xnb
 Content\Player\rangedally.xnb
 Content\Level\castlelevel.xnb
+Content\Player\DudeMain.xnb
+Content\Player\Archer.xnb
+Content\Player\Golem.xnb
+Content\Player\Orc.xnb
 Content\Board\checkerboard.xnb
 Content\UI\UIOverlay.xnb
 Content\Placeholder.xnb
@@ -18,6 +22,9 @@ Content\UI\health.xnb
 Content\UI\turnlistbox.xnb
 Content\UI\turnlisthealth.xnb
 Content\Screens\splashscreen.xnb
+Content\OrcPic.xnb
+Content\grate.xnb
+Content\Player\MainCharacterImage.xnb
 Content\UI\UITheme.xnb
 Content\UI\MiramonteBold.xnb
 Content\UI\Consolas.xnb
@@ -27,25 +34,16 @@ Content\ground_grass_gen_05_0.xnb
 Content\ground_grass_gen_05_1.xnb
 Content\Player\Militia-Texture_0.xnb
 Content\Militia-Texture_0.xnb
+Content\Level\Concrete.Precast Structural Conc_0.xnb
+Content\Level\stone2_0.xnb
+Content\Level\Concrete.Precast Structural Conc_1.xnb
+Content\Level\stone2_1.xnb
+Content\Player\SpearMapReal_0.xnb
+Content\Player\ArcherTextureFinal_0.xnb
+Content\Player\Enemy1Final_0.xnb
+Content\Player\Enemy2TexFinal_0.xnb
 Content\Default.xnb
 Content\Consolas.xnb
 Content\stattext.xnb
 Content\UITexture.xnb
-Content\Level\Concrete.Precast Structural Conc_0.xnb
-Content\Level\Concrete.Precast Structural Conc_1.xnb
-Content\Player\SpearMapReal_0.xnb
-Content\stone2_0.xnb
-Content\stone2_1.xnb
-Content\Player\DudeMain.xnb
-Content\Player\Archer.xnb
-Content\Player\Golem.xnb
-Content\Player\Orc.xnb
-Content\Player\ArcherTextureFinal_0.xnb
-Content\Player\Enemy1Final_0.xnb
-Content\Player\Enemy2TexFinal_0.xnb
-Content\OrcPic.xnb
-Content\grate.xnb
-Content\Player\MainCharacterImage.xnb
-Content\Player\EnemyCaster.xnb
-Content\Player\Enemy3TexFinal_0.xnb
 Content\Cutscenes\Cutscene.wmv

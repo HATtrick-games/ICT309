@@ -13,35 +13,38 @@ namespace ICT309Game.Save
 {
     class SaveLoadGame
     {
-        StorageDevice device;
-        string containerName = "GamesStorage";
-        string filename = "mysave.sav";
+        static StorageDevice device;
+        static string containerName = "GamesStorage";
+        static string filename = "mysave.sav";
 
         [Serializable]
         public struct SaveGame
         {
             public int levelsCompleted;
             public List<CharacterObject> playerObjects;
+
+            //public SaveGame(int level, List<CharacterObject> objects) { }
         }
 
-        private SaveGame currentSave;
+        private static SaveGame currentSave;
 
-        public void InitiateSave(int levels, List<CharacterObject> playerCharacters)
+        public static void InitiateSave(int levels, List<CharacterObject> playerCharacters)
         {
             if (!Guide.IsVisible)
             {
                 device = null;
-                StorageDevice.BeginShowSelector(PlayerIndex.One, this.SaveToDevice, null);
-            }
 
-            currentSave = new SaveGame()
-            {
-                levelsCompleted = levels,
-                playerObjects = playerCharacters,
-            };
+                currentSave = new SaveGame()
+                {
+                    levelsCompleted = levels,
+                    playerObjects = playerCharacters,
+                };
+
+                StorageDevice.BeginShowSelector(PlayerIndex.One, SaveToDevice, null);
+            }
         }
 
-        private void SaveToDevice(IAsyncResult result)
+        private static void SaveToDevice(IAsyncResult result)
         {
             device = StorageDevice.EndShowSelector(result);
             if (device != null && device.IsConnected)
@@ -60,20 +63,20 @@ namespace ICT309Game.Save
             }
         }
 
-        private SaveGame currentLoad;
+        private static SaveGame currentLoad;
 
-        public SaveGame InitiateLoad()
+        public static SaveGame InitiateLoad()
         {
             if (Guide.IsVisible)
             {
                 device = null;
-                StorageDevice.BeginShowSelector(PlayerIndex.One, this.LoadFromDevice, null);
+                StorageDevice.BeginShowSelector(PlayerIndex.One, LoadFromDevice, null);
             }
 
             return currentLoad;
         }
 
-        private void LoadFromDevice(IAsyncResult result)
+        private static void LoadFromDevice(IAsyncResult result)
         {
             device = StorageDevice.EndShowSelector(result);
             IAsyncResult r = device.BeginOpenContainer(containerName, null, null);
