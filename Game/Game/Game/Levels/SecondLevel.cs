@@ -7,17 +7,17 @@ using ICT309Game.GameObjects;
 
 namespace ICT309Game.Levels
 {
-    class FirstLevel : Level
+    class SecondLevel : Level
     {
         MainCharacter _MainCharacter;
         AIRangedCharacter _AIRangedCharacter;
         RangedCharacter _RangedCharacter;
         AIWeakCharacter _AIWeakCharacter;
 
-        public FirstLevel()
+        public SecondLevel()
             : base()
         {
-            _levelModel = "Board/testmodel";
+            _levelModel = "Level/castlelevel";
             _boardData = new bool[10, 10];
 
             for (int i = 0; i < _boardData.GetLength(0); i++)

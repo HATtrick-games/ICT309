@@ -229,99 +229,102 @@ namespace ICT309Game.GameObjects.Board
             {
                 Path();
             }
-
-
-            for (int i = 0; i < TurnManager.characterList.Count; i++)
+            else
             {
-                GameBoard[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = SquareData.OCCUPIED;
 
-            }
 
-            if (TurnManager.CurrentTurn.isAlly)
-            {
-                var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-                var inputService = ServiceLocator.Current.GetInstance<IInputService>();
-                CameraObject camera;
-                gameObjectService.Objects.TryGet("Camera", out camera);
-
-                Vector3F mousePos = new Vector3F();
-
-                if (TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT)
+                for (int i = 0; i < TurnManager.characterList.Count; i++)
                 {
-                    ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+                    GameBoard[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = SquareData.OCCUPIED;
+
                 }
 
-                if (TurnManager.CurrentTurnStatus == TurnStatus.ACTION)
+                if (TurnManager.CurrentTurn.isAlly)
                 {
-                    ShowAttackRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Range);
-                }
-                
-                if (inputService.IsPressed(MouseButtons.Right, false))
-                {
-                    mousePos = camera.MousePosition;
+                    var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
+                    var inputService = ServiceLocator.Current.GetInstance<IInputService>();
+                    CameraObject camera;
+                    gameObjectService.Objects.TryGet("Camera", out camera);
 
-                    int IndexI = (int)((mousePos.X - startPos + (gap / 2.0f)) / gap);
-                    int IndexJ = (int)((mousePos.Z - startPos + (gap / 2.0f)) / gap);
+                    Vector3F mousePos = new Vector3F();
 
-                    if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
+                    if (TurnManager.CurrentTurnStatus == TurnStatus.MOVEMENT)
                     {
-                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
+                        ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+                    }
+
+                    if (TurnManager.CurrentTurnStatus == TurnStatus.ACTION)
+                    {
+                        ShowAttackRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Range);
+                    }
+
+                    if (inputService.IsPressed(MouseButtons.Right, false))
+                    {
+                        mousePos = camera.MousePosition;
+
+                        int IndexI = (int)((mousePos.X - startPos + (gap / 2.0f)) / gap);
+                        int IndexJ = (int)((mousePos.Z - startPos + (gap / 2.0f)) / gap);
+
+                        if (IndexI >= 0 && IndexI <= 9 && IndexJ >= 0 && IndexJ <= 9)
                         {
-                            // Move character to selected square
-
-                            Pathfinding(IndexI, IndexJ);
-                           // GameActions.MoveCharacter(TurnManager.CurrentTurn, IndexI, IndexJ);
-
-                           // TurnManager.ChangeStatus();
-                        }
-
-                        if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDBLUE)
-                        {
-                            // Attacking the target at the selected square
-                            for (int i = 0; i < TurnManager.characterList.Count; i++)
+                            if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDRED)
                             {
-                                if (TurnManager.characterList[i].PosX == IndexI && TurnManager.characterList[i].PosY == IndexJ)
+                                // Move character to selected square
+
+                                Pathfinding(IndexI, IndexJ);
+                                // GameActions.MoveCharacter(TurnManager.CurrentTurn, IndexI, IndexJ);
+
+                                // TurnManager.ChangeStatus();
+                            }
+
+                            if (GameBoard[IndexI, IndexJ] == SquareData.HIGHLIGHTEDBLUE)
+                            {
+                                // Attacking the target at the selected square
+                                for (int i = 0; i < TurnManager.characterList.Count; i++)
                                 {
-                                    GameActions.ResolveCombat(TurnManager.CurrentTurn, TurnManager.characterList[i]);
-                                    TurnManager.ChangeTurn();
+                                    if (TurnManager.characterList[i].PosX == IndexI && TurnManager.characterList[i].PosY == IndexJ)
+                                    {
+                                        GameActions.ResolveCombat(TurnManager.CurrentTurn, TurnManager.characterList[i]);
+                                        TurnManager.ChangeTurn();
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            for (int i = 0; i < GameBoard.GetLength(0); i++)
-            {
-                for (int j = 0; j < GameBoard.GetLength(1); j++)
+                for (int i = 0; i < GameBoard.GetLength(0); i++)
                 {
-                    switch(GameBoard[i,j])
+                    for (int j = 0; j < GameBoard.GetLength(1); j++)
                     {
-                        case SquareData.BLOCKED:
-                            redGameBoard[i, j].InUse = false;
-                            whiteGameBoard[i, j].InUse = false;
-                            blueGameBoard[i, j].InUse = false;
-                            break;
-                        case SquareData.EMPTY:
-                            redGameBoard[i, j].InUse = false;
-                            whiteGameBoard[i, j].InUse = true;
-                            blueGameBoard[i, j].InUse = false;
-                            break;
-                        case SquareData.HIGHLIGHTEDRED:
-                            redGameBoard[i, j].InUse = true;
-                            whiteGameBoard[i, j].InUse = false;
-                            blueGameBoard[i, j].InUse = false;
-                            break;
-                        case SquareData.HIGHLIGHTEDBLUE:
-                            redGameBoard[i, j].InUse = false;
-                            whiteGameBoard[i, j].InUse = false;
-                            blueGameBoard[i, j].InUse = true;
-                            break;
-                        case SquareData.OCCUPIED:
-                            redGameBoard[i, j].InUse = false;
-                            whiteGameBoard[i, j].InUse = true;
-                            blueGameBoard[i, j].InUse = false;
-                            break;
+                        switch (GameBoard[i, j])
+                        {
+                            case SquareData.BLOCKED:
+                                redGameBoard[i, j].InUse = false;
+                                whiteGameBoard[i, j].InUse = false;
+                                blueGameBoard[i, j].InUse = false;
+                                break;
+                            case SquareData.EMPTY:
+                                redGameBoard[i, j].InUse = false;
+                                whiteGameBoard[i, j].InUse = true;
+                                blueGameBoard[i, j].InUse = false;
+                                break;
+                            case SquareData.HIGHLIGHTEDRED:
+                                redGameBoard[i, j].InUse = true;
+                                whiteGameBoard[i, j].InUse = false;
+                                blueGameBoard[i, j].InUse = false;
+                                break;
+                            case SquareData.HIGHLIGHTEDBLUE:
+                                redGameBoard[i, j].InUse = false;
+                                whiteGameBoard[i, j].InUse = false;
+                                blueGameBoard[i, j].InUse = true;
+                                break;
+                            case SquareData.OCCUPIED:
+                                redGameBoard[i, j].InUse = false;
+                                whiteGameBoard[i, j].InUse = true;
+                                blueGameBoard[i, j].InUse = false;
+                                break;
+                        }
                     }
                 }
             }

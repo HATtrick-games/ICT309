@@ -209,6 +209,7 @@
     <Compile Include="Graphics\ModelContainer.cs" />
     <Compile Include="Graphics\SceneQuery.cs" />
     <Compile Include="GameObjects\Player\MainCharacter.cs" />
+    <Compile Include="Levels\SecondLevel.cs" />
     <Compile Include="Levels\FirstLevel.cs" />
     <Compile Include="Levels\Level.cs" />
     <Compile Include="PathFinding\PathFinder.cs" />
