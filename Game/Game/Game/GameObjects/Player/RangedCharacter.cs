@@ -38,7 +38,7 @@ namespace ICT309Game.GameObjects
 
             PosX = 2;
             PosY = 1;
-            Image = Content.Load<Texture2D>("OrcPic");
+            Image = Content.Load<Texture2D>("ArcherPic");
             base.OnLoad();
         }
 
