@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using DigitalRune.Graphics.Effects;
 using DigitalRune.Mathematics.Algebra;
 using DigitalRune.Animation;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace ICT309Game.GameObjects
@@ -37,7 +38,7 @@ namespace ICT309Game.GameObjects
 
             PosX = 2;
             PosY = 1;
-
+            Image = Content.Load<Texture2D>("OrcPic");
             base.OnLoad();
         }
 
