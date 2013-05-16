@@ -26,6 +26,8 @@ namespace ICT309Game.Graphics
         private List<SkeletonPose> SkeletonPoses = new List<SkeletonPose>();
         private AnimationController _animationController;
         private List<int> DeadCharacters = new List<int>();
+        private List<int> CompleteDeadCharacters = new List<int>();
+        int deathdelay = 0;
         
 
         public Scene Scene { get; set; }
@@ -159,6 +161,16 @@ namespace ICT309Game.Graphics
             for (int z = 0; z < NumModels; z++ )
             {
                 if (DeadCharacters.Contains(z))
+                {
+                    deathdelay++;
+                    if(deathdelay>100)
+                    {
+                        CompleteDeadCharacters.Add(z);
+                        deathdelay = 0;
+                    }
+                }
+
+                if (CompleteDeadCharacters.Contains(z))
                 {
                     continue;
                 }

@@ -18,10 +18,51 @@ namespace ICT309Game.GameObjects.Board
             //Pather = new PathFinder();
         }
 
+       /* public void AnimateCombat(CharacterObject attacker, CharacterObject defender)
+        {
+            if (attacker.PosX - defender.PosX < 0)
+            {
+                attacker.Rotation(90);
+            }
+            else if (attacker.PosX - defender.PosX > 0)
+            {
+                attacker.Rotation(270);
+            }
+            else if (attacker.PosY - defender.PosY > 0)
+            {
+                attacker.Rotation(180);
+            }
+            else if (attacker.PosY - defender.PosY < 0)
+            {
+                attacker.Rotation(360);
+            }
+        }*/
+
         public static bool ResolveCombat(CharacterObject attacker, CharacterObject defender)
         {
             if (attacker.isAlly == defender.isAlly)
                 return false;
+
+            /**********ATTACK ANIMATION*********/
+            if (attacker.PosX - defender.PosX < 0)
+            {
+                attacker.Rotation(90);
+            }
+            else if (attacker.PosX - defender.PosX > 0)
+            {
+                attacker.Rotation(270);
+            }
+            else if (attacker.PosY - defender.PosY > 0)
+            {
+                attacker.Rotation(180);
+            }
+            else if (attacker.PosY - defender.PosY < 0)
+            {
+                attacker.Rotation(360);
+            }
+
+            attacker.Attack();
+            /******************************************/
 
             int totalDamage = attacker.Damage - ((attacker.Damage * defender.Armor) / 100);
             
