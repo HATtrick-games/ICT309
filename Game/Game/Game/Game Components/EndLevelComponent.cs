@@ -38,21 +38,6 @@ namespace ICT309Game.Game_Components
 
             var uiService = ServiceLocator.Current.GetInstance<IUIService>();
             uiService.Screens.Add(_endLevelUI);
-             
-            if (GameSettings.LevelNumber == 1)
-            {
-                GameSettings.LevelNumber = 0;
-                LoadCredits();
-            }
-            else if(allyWin)
-            {
-                GameSettings.LevelNumber++;
-                AllyWin();
-            }
-            else
-            {
-                EnemyWin();
-            }
 
             _returnToMenu = new Button
             {
@@ -72,6 +57,21 @@ namespace ICT309Game.Game_Components
 
             _endLevelUI.Children.Add(_background);
             _endLevelUI.Children.Add(_returnToMenu);
+             
+            if (GameSettings.LevelNumber == 1)
+            {
+                GameSettings.LevelNumber = 0;
+                LoadCredits();
+            }
+            else if(allyWin)
+            {
+                GameSettings.LevelNumber++;
+                AllyWin();
+            }
+            else
+            {
+                EnemyWin();
+            }
         }
 
         private void EndToMenu()
@@ -97,16 +97,46 @@ namespace ICT309Game.Game_Components
 
         private void AllyWin()
         {
-            Game.Components.Remove(this);
-            Game.Components.Add(new MainGameComponent(Game));
-            Dispose(true);
+            _nextLevel = new Button
+            {
+                Margin = new Vector4F(10),
+                Width = 300,
+                Height = 60,
+                Y = 360,
+                X = 200,
+                Content = new TextBlock { Text = "Continue", }
+            };
+            _nextLevel.Click += (s, e) => ReturnToGame(); 
+
+            _saveGame = new Button
+            {
+                Margin = new Vector4F(10),
+                Width = 300,
+                Height = 60,
+                Y = 420,
+                X = 200,
+                Content = new TextBlock { Text = "Save Game", }
+            };
+            _saveGame.Click += (s, e) => SaveLoadGame.InitiateSave(GameSettings.LevelNumber);
+
+            _endLevelUI.Children.Add(_nextLevel);
+            _endLevelUI.Children.Add(_saveGame);
         }
 
         private void EnemyWin()
         {
-            Game.Components.Remove(this);
-            Game.Components.Add(new MainGameComponent(Game));
-            Dispose(true);
+            _nextLevel = new Button
+            {
+                Margin = new Vector4F(10),
+                Width = 300,
+                Height = 60,
+                Y = 360,
+                X = 200,
+                Content = new TextBlock { Text = "Try Again?", }
+            };
+            _nextLevel.Click += (s, e) => ReturnToGame();
+
+            _endLevelUI.Children.Add(_nextLevel);
         }
 
         protected override void Dispose(bool disposing)
@@ -115,6 +145,13 @@ namespace ICT309Game.Game_Components
             if (uiService != null) uiService.Screens.Remove(_endLevelUI);
 
             base.Dispose(disposing);
+        }
+
+        public void ReturnToGame()
+        {
+            Game.Components.Remove(this);
+            Game.Components.Add(new MainGameComponent(Game));
+            Dispose(true);
         }
     }
 }

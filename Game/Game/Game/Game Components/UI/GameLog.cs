@@ -7,42 +7,25 @@ using DigitalRune.Mathematics.Algebra;
 
 namespace ICT309Game.Game_Components.UI
 {
-    class GameLog : TextBox
+    class GameLog
     {
-        String _log = "";
+        public String _log { get; private set; }
         int messageCount = 0;
 
         public GameLog()
-            : base()
         {
-            HorizontalAlignment = DigitalRune.Game.UI.HorizontalAlignment.Center;
-            Width = 700;
-            Height = 78;
-            Text = _log;
-            Background = new Microsoft.Xna.Framework.Color(0.0f, 0.0f, 0.0f, 0.5f);
-            Y = 630;
-            MinLines = 3;
-            MaxLines = 3;
-            IsReadOnly = true;
-            Font = "Consolas";
-        }
-
-        protected override void OnUpdate(TimeSpan deltaTime)
-        {
-            Text = _log;
-
-            base.OnUpdate(deltaTime);
-        }
-
-        protected override void OnHandleInput(InputContext context)
-        {
-
-            base.OnHandleInput(context);
+            _log = "";
         }
 
         public void AddMessage(string message)
         {
-            _log = message + "\n" + Text;
+            _log += message + "\n";
+            messageCount++;
+        }
+
+        public void ResetLog()
+        {
+            _log = "";
         }
     }
 }

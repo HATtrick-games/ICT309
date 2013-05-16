@@ -66,17 +66,14 @@ namespace ICT309Game.Game_Components
 
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-            System.Console.WriteLine("Camera: " + gameObjectService.Objects.Contains(_camera));
-            System.Console.WriteLine("GameBoard: " + gameObjectService.Objects.Contains(_gameBoardManager));
-            System.Console.WriteLine("AI Handler: " + gameObjectService.Objects.Contains(_aiHandler));
             gameObjectService.Objects.Add(_camera);
             gameObjectService.Objects.Add(_gameBoardManager);
             gameObjectService.Objects.Add(_aiHandler);
-            System.Console.WriteLine("Camera: " + gameObjectService.Objects.Contains(_camera));
-            System.Console.WriteLine("GameBoard: " + gameObjectService.Objects.Contains(_gameBoardManager));
-            System.Console.WriteLine("AI Handler: " + gameObjectService.Objects.Contains(_aiHandler));
 
             _gameHUD = new MainGameHUD("GameHUD", renderer, _gameBoardManager.TurnManager);
+
+            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
+            gameLog.ResetLog();
 
             var uiService = ServiceLocator.Current.GetInstance<IUIService>();
             uiService.Screens.Add(_gameHUD);
@@ -102,11 +99,10 @@ namespace ICT309Game.Game_Components
 
             if (_gameBoardManager.TurnManager.allyWin || _gameBoardManager.TurnManager.enemyWin)
             {
-                System.Console.WriteLine("Game over");
-                Game.Components.Add(new EndLevelComponent(Game, _gameBoardManager.TurnManager.allyWin));
+                System.Console.WriteLine("Game over"); 
                 Game.Components.Remove(this);
-                
                 Dispose(true);
+                Game.Components.Add(new EndLevelComponent(Game, _gameBoardManager.TurnManager.allyWin));               
             }
 
             base.Update(gameTime);

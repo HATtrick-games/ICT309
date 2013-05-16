@@ -39,6 +39,8 @@ namespace ICT309Game.Game_Components.UI
         TextBlock _armor;
         TextBlock _armorDamage;
         TextBlock _movement;
+
+        TextBox _gameLog;
         
         public TurnManager TurnManagerObject { get; set; }
 
@@ -156,6 +158,19 @@ namespace ICT309Game.Game_Components.UI
                 Y = 684,
             };
 
+            _gameLog = new TextBox
+            {
+                HorizontalAlignment = DigitalRune.Game.UI.HorizontalAlignment.Center,
+                Width = 700,
+                Height = 78,
+                Background = new Microsoft.Xna.Framework.Color(0.0f, 0.0f, 0.0f, 0.5f),
+                Y = 630,
+                MinLines = 3,
+                MaxLines = 3,
+                IsReadOnly = true,
+                Font = "Consolas",
+            };
+
             foreach (Image bar in _healthBars) Children.Add(bar);
             foreach (Image bar in _healthAmounts) Children.Add(bar);
 
@@ -176,16 +191,13 @@ namespace ICT309Game.Game_Components.UI
             Children.Add(_armorDamage);
             Children.Add(_movement);
 
-            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
-            if(!Children.Contains(gameLog)) Children.Add(gameLog);
+            Children.Add(_gameLog);
             
             base.OnLoad();
         }
 
         protected override void OnUnload()
         {
-
-
             base.OnUnload();
         }
 
@@ -258,6 +270,9 @@ namespace ICT309Game.Game_Components.UI
                     _turnListImages[i].IsVisible = false;
                 }
             }
+
+            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
+            _gameLog.Text = gameLog._log;
             
             base.OnUpdate(deltaTime);
         }
@@ -269,9 +284,6 @@ namespace ICT309Game.Game_Components.UI
 
             _turnButton.IsVisible = TurnManagerObject.CurrentTurn.isAlly;
             _turnButton.Render(context);
-
-            var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
-            gameLog.Render(context);
 
             _currentCharacterImage.Render(context);
             
