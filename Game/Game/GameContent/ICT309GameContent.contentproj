@@ -259,6 +259,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrcPic.png">
+      <Name>OrcPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="grate.png">
+      <Name>grate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Player\MainCharacterImage.png">
       <Name>MainCharacterImage</Name>
       <Importer>TextureImporter</Importer>

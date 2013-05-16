@@ -19,6 +19,10 @@ namespace ICT309Game.GameObjects
 {
     class MainCharacter : CharacterObject
     {
+
+       // public static readonly override int ImageID =
+          //  CreateProperty<Microsoft.Xna.Framework.Graphics.Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Microsoft.Xna.Framework.Graphics.Texture2D>("OrcPic")).Id;
+
         protected override void OnLoad()
         {
             LoadModel("Player/DudeMain");

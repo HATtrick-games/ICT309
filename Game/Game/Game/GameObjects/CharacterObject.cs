@@ -70,7 +70,7 @@ namespace ICT309Game.GameObjects
             CreateProperty<int>("PosY", "Common", "Defines the Y Position on the game board.", 0).Id;
 
         public static readonly int ImageID =
-            CreateProperty<Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Texture2D>("Placeholder")).Id;
+            CreateProperty<Texture2D>("Character Image", "Common", "Defines the characters splash image.", Content.Load<Texture2D>("grate")).Id;
 
         public String CharacterName
         {
