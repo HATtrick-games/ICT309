@@ -192,7 +192,10 @@ namespace ICT309Game.GameObjects
           
 
             if (MaxHitPoints < HitPoints) HitPoints = MaxHitPoints;
-
+            if (HitPoints <= 0)
+            {
+                screen.Death(ID);
+            }
 
             base.OnUpdate(deltaTime);
         }
@@ -258,7 +261,7 @@ namespace ICT309Game.GameObjects
             var animationService = ServiceLocator.Current.GetInstance<IAnimationService>();
             var screen = ((BasicScreen)graphicsService.Screens["Default"]);
 
-            _model = Content.Load<Model>("Player/Archer");
+            _model = Content.Load<Model>(filepath);
             var additionalData = (Dictionary<string, object>)_model.Tag;
             var skeleton = (Skeleton)additionalData["Skeleton"];
             _skeletonPose = SkeletonPose.Create(skeleton);

@@ -22,7 +22,7 @@ namespace ICT309Game.GameObjects
         protected override void OnLoad()
         {
             _color = new Vector4(0.0f, 1.0f, 0.0f, 1.0f);
-            LoadModel("AI/weakenemy");
+            LoadModel("Player/Golem");
 
             isAlly = false;
             CharacterName = "AI Weak Character";

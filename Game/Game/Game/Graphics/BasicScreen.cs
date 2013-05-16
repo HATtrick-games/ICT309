@@ -25,6 +25,7 @@ namespace ICT309Game.Graphics
         private List<Pose> Poses = new List<Pose>();
         private List<SkeletonPose> SkeletonPoses = new List<SkeletonPose>();
         private AnimationController _animationController;
+        private List<int> DeadCharacters = new List<int>();
         
 
         public Scene Scene { get; set; }
@@ -48,6 +49,8 @@ namespace ICT309Game.Graphics
             ActiveCamera = null;
             _renderer = new MeshRenderer();
         }
+
+        
 
         public void Rotation(int id, int rotate)
         {
@@ -122,6 +125,11 @@ namespace ICT309Game.Graphics
                        
         }
 
+        public void Death(int ID)
+        {
+            DeadCharacters.Add(ID);
+        }
+
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             Scene.Update(deltaTime);
@@ -150,7 +158,11 @@ namespace ICT309Game.Graphics
            // Map[0]._pose = new Pose(new Vector3F(10.5f, 0.0f, 0.0f));
             for (int z = 0; z < NumModels; z++ )
             {
-
+                if (DeadCharacters.Contains(z))
+                {
+                    continue;
+                }
+                
 
                 foreach (ModelMesh mesh in Map[z]._model.Meshes)
                 {

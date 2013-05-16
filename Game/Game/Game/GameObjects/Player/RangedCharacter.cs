@@ -21,7 +21,7 @@ namespace ICT309Game.GameObjects
 
         protected override void OnLoad()
         {
-            LoadModel("Player/Soldier");
+            LoadModel("Player/Archer");
             //LoadModel("Player/rangedally");
 
             isAlly = true;

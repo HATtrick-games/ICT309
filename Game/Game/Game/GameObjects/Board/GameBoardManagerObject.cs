@@ -130,6 +130,14 @@ namespace ICT309Game.GameObjects.Board
         {
             TurnManager.CurrentTurn.LoopWalk();
             Pather.Intiialise();
+            ResetWalkable();
+
+            for (int i = 0; i < TurnManager.characterList.Count; i++)
+            {
+               Pather.walkable[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = 1;
+
+            }
+
             endx = pX;
             endy = pY;
             Pather.FindPath(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, pX, pY);
@@ -200,9 +208,23 @@ namespace ICT309Game.GameObjects.Board
             }
         }
 
+        public void ResetWalkable()
+        {
+            for (int xwalk = 0; xwalk < 10; xwalk++)
+            {
+                for (int ywalk = 0; ywalk < 10; ywalk++)
+                {
+                    Pather.walkable[xwalk, ywalk] = 0;
+                }
+            }
+                
+        }
+
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             ResetBoard();
+
+
             if (MovementInProgress == true)
             {
                 Path();
@@ -212,6 +234,7 @@ namespace ICT309Game.GameObjects.Board
             for (int i = 0; i < TurnManager.characterList.Count; i++)
             {
                 GameBoard[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = SquareData.OCCUPIED;
+
             }
 
             if (TurnManager.CurrentTurn.isAlly)
