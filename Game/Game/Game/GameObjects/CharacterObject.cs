@@ -146,13 +146,10 @@ namespace ICT309Game.GameObjects
             set { SetValue(ImageID, value); }
         }
 
-
-        /*
         public Vector3 Position
         {
-            get { return _model.PoseWorld.Position.ToXna(); }
+            get { return _pose.Position.ToXna(); }
         }
-        */
 
         public bool isTurn = false;
         public bool isAlly { get; protected set; }
