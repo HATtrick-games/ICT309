@@ -23,6 +23,7 @@ namespace ICT309Game.GameObjects.AI
         public bool IsAITurn { get; set; }
         public bool EndAITurn { get; set; }
         public GameBoardManagerObject GameBoardObj;
+
         public AIHandlerObject(GameBoardManagerObject GameBoard)
         {
             GameBoardObj = GameBoard;
@@ -33,6 +34,12 @@ namespace ICT309Game.GameObjects.AI
         protected override void OnLoad()
         {
             base.OnLoad();
+        }
+
+        protected override void OnUnload()
+        {
+
+            base.OnUnload();
         }
 
         private int Distance(CharacterObject target, CharacterObject source)
@@ -173,9 +180,6 @@ Mage	5
 
 
 
-        protected override void OnUnload()
-        {
-            base.OnUnload();
-        }
+        
     }
 }

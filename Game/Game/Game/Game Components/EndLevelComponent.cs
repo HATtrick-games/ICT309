@@ -38,15 +38,15 @@ namespace ICT309Game.Game_Components
 
             var uiService = ServiceLocator.Current.GetInstance<IUIService>();
             uiService.Screens.Add(_endLevelUI);
-
-            if(allyWin) GameSettings.LevelNumber++;
              
-            if (GameSettings.LevelNumber >= 2)
+            if (GameSettings.LevelNumber == 1)
             {
+                GameSettings.LevelNumber = 0;
                 LoadCredits();
             }
             else if(allyWin)
             {
+                GameSettings.LevelNumber++;
                 AllyWin();
             }
             else
@@ -97,12 +97,16 @@ namespace ICT309Game.Game_Components
 
         private void AllyWin()
         {
-
+            Game.Components.Remove(this);
+            Game.Components.Add(new MainGameComponent(Game));
+            Dispose(true);
         }
 
         private void EnemyWin()
         {
-
+            Game.Components.Remove(this);
+            Game.Components.Add(new MainGameComponent(Game));
+            Dispose(true);
         }
 
         protected override void Dispose(bool disposing)

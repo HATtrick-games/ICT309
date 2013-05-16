@@ -32,6 +32,7 @@ namespace ICT309Game.Game_Components
         // GAME OBJECTS
         private GameBoardManagerObject _gameBoardManager;
         private AIHandlerObject _aiHandler;
+        private CameraObject _camera;
 
         private List<Level> _levelObjects;
 
@@ -58,19 +59,22 @@ namespace ICT309Game.Game_Components
             var renderer = new UIRenderer(Game, theme);
             var gameSettings = ServiceLocator.Current.GetInstance<GameSettings>();
 
-
             _gameBoardManager = new GameBoardManagerObject(_levelObjects[GameSettings.LevelNumber]);
-            //_aiHandler = new AIHandlerObject();
 
-            //_gameBoardManager = new GameBoardManagerObject(new FirstLevel());
             _aiHandler = new AIHandlerObject(_gameBoardManager);
-
+            _camera = new CameraObject();
 
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
-            gameObjectService.Objects.Add(new CameraObject());
-            gameObjectService.Objects.Add(_aiHandler);
+            System.Console.WriteLine("Camera: " + gameObjectService.Objects.Contains(_camera));
+            System.Console.WriteLine("GameBoard: " + gameObjectService.Objects.Contains(_gameBoardManager));
+            System.Console.WriteLine("AI Handler: " + gameObjectService.Objects.Contains(_aiHandler));
+            gameObjectService.Objects.Add(_camera);
             gameObjectService.Objects.Add(_gameBoardManager);
+            gameObjectService.Objects.Add(_aiHandler);
+            System.Console.WriteLine("Camera: " + gameObjectService.Objects.Contains(_camera));
+            System.Console.WriteLine("GameBoard: " + gameObjectService.Objects.Contains(_gameBoardManager));
+            System.Console.WriteLine("AI Handler: " + gameObjectService.Objects.Contains(_aiHandler));
 
             _gameHUD = new MainGameHUD("GameHUD", renderer, _gameBoardManager.TurnManager);
 

@@ -177,9 +177,16 @@ namespace ICT309Game.Game_Components.UI
             Children.Add(_movement);
 
             var gameLog = ServiceLocator.Current.GetInstance<GameLog>();
-            Children.Add(gameLog);
-
+            if(!Children.Contains(gameLog)) Children.Add(gameLog);
+            
             base.OnLoad();
+        }
+
+        protected override void OnUnload()
+        {
+
+
+            base.OnUnload();
         }
 
         protected override void OnUpdate(TimeSpan deltaTime)
@@ -251,12 +258,13 @@ namespace ICT309Game.Game_Components.UI
                     _turnListImages[i].IsVisible = false;
                 }
             }
-
+            
             base.OnUpdate(deltaTime);
         }
 
         protected override void OnRender(UIRenderContext context)
         {
+            
             _hudOverlay.Render(context);
 
             _turnButton.IsVisible = TurnManagerObject.CurrentTurn.isAlly;
@@ -266,7 +274,7 @@ namespace ICT309Game.Game_Components.UI
             gameLog.Render(context);
 
             _currentCharacterImage.Render(context);
-
+            
             base.OnRender(context);
         }
     }
