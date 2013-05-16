@@ -22,6 +22,7 @@ namespace ICT309Game.GameObjects
 
         protected override void OnLoad()
         {
+            importance = 7;
             LoadModel("Player/Archer");
             //LoadModel("Player/rangedally");
 

@@ -58,8 +58,13 @@ namespace ICT309Game.Game_Components
             var renderer = new UIRenderer(Game, theme);
             var gameSettings = ServiceLocator.Current.GetInstance<GameSettings>();
 
+
             _gameBoardManager = new GameBoardManagerObject(_levelObjects[GameSettings.LevelNumber]);
-            _aiHandler = new AIHandlerObject();
+            //_aiHandler = new AIHandlerObject();
+
+            //_gameBoardManager = new GameBoardManagerObject(new FirstLevel());
+            _aiHandler = new AIHandlerObject(_gameBoardManager);
+
 
             // Create the inital game objects
             var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();

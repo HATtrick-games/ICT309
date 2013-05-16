@@ -78,6 +78,8 @@ namespace ICT309Game.GameObjects
             set { SetValue(NameID, value); }
         }
 
+        public int importance = 10000;
+
         public int HitPoints
         {
             get { return GetValue<int>(HitPointsID); }
