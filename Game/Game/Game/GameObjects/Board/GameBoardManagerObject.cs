@@ -108,15 +108,15 @@ namespace ICT309Game.GameObjects.Board
                 {
                     blueGameBoard[i, j] = new BlueSquareObject(new Vector3F(
                                             Positions[i,j].X,
-                                            0.0f,
+                                            -2.0f,
                                             Positions[i, j].Z));
                     redGameBoard[i, j] = new RedSquareObject(new Vector3F(
                                             Positions[i, j].X,
-                                            0.0f,
+                                            -2.0f,
                                             Positions[i, j].Z));
                     whiteGameBoard[i, j] = new WhiteSquareObject(new Vector3F(
                                             Positions[i, j].X,
-                                            0.0f,
+                                            -2.0f,
                                             Positions[i, j].Z));
                     
                     gameObjectService.Objects.Add(redGameBoard[i, j]);
