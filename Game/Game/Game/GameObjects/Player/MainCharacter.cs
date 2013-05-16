@@ -25,7 +25,7 @@ namespace ICT309Game.GameObjects
 
         protected override void OnLoad()
         {
-            LoadModel("Player/DudeMain");
+            LoadModel("Player/Knight");
             //LoadModel("Player/militia");
            // _model.ScaleLocal = new Vector3F(15.0f, 15.0f, 15.0f);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DigitalRune.Game;
+using ICT309Game.GameObjects.Board;
 
 namespace ICT309Game.GameObjects.AI
 {
@@ -26,8 +27,11 @@ namespace ICT309Game.GameObjects.AI
         {
             if (IsAITurn)
             {
+
+                //GameBoardManagerObject
+
                 EndAITurn = true; 
-                Console.WriteLine("Is AI Turn");
+                //Console.WriteLine("Is AI Turn");
             }
 
             base.OnUpdate(deltaTime);
