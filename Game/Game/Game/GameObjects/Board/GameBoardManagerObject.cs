@@ -126,7 +126,7 @@ namespace ICT309Game.GameObjects.Board
             }
         }
 
-        void Pathfinding(int pX, int pY)
+       public void Pathfinding(int pX, int pY)
         {
             TurnManager.CurrentTurn.LoopWalk();
             Pather.Intiialise();
