@@ -239,6 +239,11 @@ namespace ICT309Game.GameObjects.Board
 
                 }
 
+                if ((!TurnManager.CurrentTurn.isAlly)&&(MovementInProgress==false))
+                {
+                    ShowMovementRange(TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY, TurnManager.CurrentTurn.Movement);
+                }
+
                 if (TurnManager.CurrentTurn.isAlly)
                 {
                     var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
