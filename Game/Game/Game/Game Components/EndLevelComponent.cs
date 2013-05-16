@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Game.UI;
 using DigitalRune.Mathematics.Algebra;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ICT309Game.Game_Components
 {
@@ -19,6 +20,8 @@ namespace ICT309Game.Game_Components
         private UIScreen _endLevelUI;
 
         TextBlock _gameOver;
+
+        Image _background;
 
         Button _nextLevel;
         Button _saveGame;
@@ -37,10 +40,8 @@ namespace ICT309Game.Game_Components
             uiService.Screens.Add(_endLevelUI);
 
             if(allyWin) GameSettings.LevelNumber++;
-
-            LoadCredits();
              
-            /*if (GameSettings.LevelNumber >= 2)
+            if (GameSettings.LevelNumber >= 2)
             {
                 LoadCredits();
             }
@@ -51,7 +52,7 @@ namespace ICT309Game.Game_Components
             else
             {
                 EnemyWin();
-            }*/
+            }
 
             _returnToMenu = new Button
             {
@@ -64,6 +65,12 @@ namespace ICT309Game.Game_Components
             };
             _returnToMenu.Click += (s, e) => EndToMenu();
 
+            _background = new Image
+            {
+                Texture = content.Load<Texture2D>("UI/background"),
+            };
+
+            _endLevelUI.Children.Add(_background);
             _endLevelUI.Children.Add(_returnToMenu);
         }
 

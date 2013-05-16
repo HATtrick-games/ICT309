@@ -214,8 +214,6 @@ namespace ICT309Game.Game_Components.UI
             {
                 if (i < TurnManagerObject.characterList.Count)
                 {
-
-
                     Vector4 v4 = Vector4.Transform(GameBoardManagerObject.Positions[TurnManagerObject.characterList[i].PosX, TurnManagerObject.characterList[i].PosX].ToXna() + new Vector3(0.0f, 40.0f, 0.0f), mat);
                     var pt = new Point((int)((v4.X / v4.W + 1) * (1280 / 2)), (int)((1 - v4.Y / v4.W) * (720 / 2)));
 

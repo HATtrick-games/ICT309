@@ -29,7 +29,7 @@ namespace ICT309Game.Save
 
         public static void InitiateSave(int levels)
         {
-            if (!Guide.IsVisible)
+            /*if (!Guide.IsVisible)
             {
                 device = null;
 
@@ -39,7 +39,7 @@ namespace ICT309Game.Save
                 };
 
                 StorageDevice.BeginShowSelector(PlayerIndex.One, SaveToDevice, null);
-            }
+            }*/
         }
 
         private static void SaveToDevice(IAsyncResult result)
@@ -63,15 +63,15 @@ namespace ICT309Game.Save
 
         private static SaveGame currentLoad;
 
-        public static SaveGame InitiateLoad()
+        public static void InitiateLoad()
         {
-            if (Guide.IsVisible)
+            /*if (Guide.IsVisible)
             {
                 device = null;
                 StorageDevice.BeginShowSelector(PlayerIndex.One, LoadFromDevice, null);
             }
 
-            return currentLoad;
+            return currentLoad;*/
         }
 
         private static void LoadFromDevice(IAsyncResult result)
