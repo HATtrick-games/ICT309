@@ -43,6 +43,7 @@ namespace ICT309Game
         private SpriteBatch _spriteBatch;
 
         private GameLog _gameLog;
+        private GameSettings _gameSettings;
 
         private MainGameComponent _mainGameComponent;
 
@@ -107,6 +108,9 @@ namespace ICT309Game
 
             _gameLog = new GameLog();
             _serviceContainer.Register(typeof(GameLog), null, _gameLog);
+
+            _gameSettings = new GameSettings();
+            _serviceContainer.Register(typeof(GameSettings), null, _gameSettings);
 
             var uiTheme = Content.Load<Theme>("UI/UITheme");
             UIRenderer renderer = new UIRenderer(this, uiTheme);

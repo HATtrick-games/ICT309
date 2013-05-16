@@ -11,24 +11,23 @@ using System.Xml.Serialization;
 
 namespace ICT309Game.Save
 {
+    [Serializable]
+    public struct SaveGame
+    {
+        public int levelsCompleted;
+    }
+
     class SaveLoadGame
     {
         static StorageDevice device;
         static string containerName = "GamesStorage";
         static string filename = "mysave.sav";
 
-        [Serializable]
-        public struct SaveGame
-        {
-            public int levelsCompleted;
-            public List<CharacterObject> playerObjects;
-
-            //public SaveGame(int level, List<CharacterObject> objects) { }
-        }
+        
 
         private static SaveGame currentSave;
 
-        public static void InitiateSave(int levels, List<CharacterObject> playerCharacters)
+        public static void InitiateSave(int levels)
         {
             if (!Guide.IsVisible)
             {
@@ -37,7 +36,6 @@ namespace ICT309Game.Save
                 currentSave = new SaveGame()
                 {
                     levelsCompleted = levels,
-                    playerObjects = playerCharacters,
                 };
 
                 StorageDevice.BeginShowSelector(PlayerIndex.One, SaveToDevice, null);

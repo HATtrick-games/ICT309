@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Content;
 using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Game.UI.Controls;
 using DigitalRune.Mathematics.Algebra;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ICT309Game.Game_Components
 {
@@ -23,6 +24,10 @@ namespace ICT309Game.Game_Components
         Button _startGame;
         Button _about;
         Button _exit;
+
+        Image _gameLogo;
+        Image _background;
+        Image _menuPic;
 
         public MainMenuComponent(Game game) : base(game)
         {
@@ -56,7 +61,7 @@ namespace ICT309Game.Game_Components
                 Margin = new Vector4F(10),
                 Width = 200,
                 Height = 60,
-                Y = 410,
+                Y = 405,
                 X = 200,
                 Content = new TextBlock { Text = "About Us" },
             };
@@ -73,6 +78,28 @@ namespace ICT309Game.Game_Components
             };
             _exit.Click += (s, e) => Game.Exit();
 
+            _gameLogo = new Image
+            {
+                Texture = content.Load<Texture2D>("UI/goldcrestlogo"),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Y = 100,
+            };
+
+            _background = new Image
+            {
+                Texture = content.Load<Texture2D>("UI/background"),
+            };
+
+            _menuPic = new Image
+            {
+                Texture = content.Load<Texture2D>("UI/menupic"),
+                X = 550,
+                Y = 300,
+            };
+
+            _menuUI.Children.Add(_background);
+            _menuUI.Children.Add(_menuPic);
+            _menuUI.Children.Add(_gameLogo);
             _menuUI.Children.Add(_startGame);
             _menuUI.Children.Add(_about);
             _menuUI.Children.Add(_exit);

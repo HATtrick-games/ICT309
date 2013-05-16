@@ -33,9 +33,15 @@ namespace ICT309Game.Game_Components
         private GameBoardManagerObject _gameBoardManager;
         private AIHandlerObject _aiHandler;
 
+        private List<Level> _levelObjects;
+
         public MainGameComponent(Game game):base(game)
         {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
+
+            _levelObjects = new List<Level>();
+            _levelObjects.Add(new FirstLevel());
+            _levelObjects.Add(new SecondLevel());
 
             _gameScreen = new BasicScreen(graphicsService)
             {
@@ -50,8 +56,9 @@ namespace ICT309Game.Game_Components
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
             var theme = Game.Content.Load<Theme>("UI/UITheme");
             var renderer = new UIRenderer(Game, theme);
+            var gameSettings = ServiceLocator.Current.GetInstance<GameSettings>();
 
-            _gameBoardManager = new GameBoardManagerObject(new FirstLevel());
+            _gameBoardManager = new GameBoardManagerObject(_levelObjects[GameSettings.LevelNumber]);
             _aiHandler = new AIHandlerObject();
 
             // Create the inital game objects
@@ -87,7 +94,7 @@ namespace ICT309Game.Game_Components
             if (_gameBoardManager.TurnManager.allyWin || _gameBoardManager.TurnManager.enemyWin)
             {
                 System.Console.WriteLine("Game over");
-                Game.Components.Add(new EndLevelComponent(Game, _gameBoardManager.TurnManager.allyWin, 1, _gameBoardManager.TurnManager.characterList));
+                Game.Components.Add(new EndLevelComponent(Game, _gameBoardManager.TurnManager.allyWin));
                 Game.Components.Remove(this);
                 
                 Dispose(true);
@@ -101,7 +108,7 @@ namespace ICT309Game.Game_Components
             if (disposing)
             {
                 var uiService = ServiceLocator.Current.GetInstance<IUIService>();
-                uiService.Screens.Remove(_gameHUD);
+                if(uiService != null) uiService.Screens.Remove(_gameHUD);
 
                 var gameObjectService = ServiceLocator.Current.GetInstance<IGameObjectService>();
                 if(gameObjectService != null) gameObjectService.Objects.Clear();
