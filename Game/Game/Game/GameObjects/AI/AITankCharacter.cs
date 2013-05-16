@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using DigitalRune.Graphics.Effects;
 using DigitalRune.Mathematics.Algebra;
 using DigitalRune.Animation;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace ICT309Game.GameObjects
@@ -35,7 +36,7 @@ namespace ICT309Game.GameObjects
             Movement = 2;
 
             PosX = 3;
-
+            Image = Content.Load<Texture2D>("GolemPic");
             base.OnLoad();
         }
 

@@ -40,7 +40,7 @@ namespace ICT309Game.GameObjects
             Range = 1;
             Movement = 3;
 
-            Image = Content.Load<Texture2D>("Player/MainCharacterImage");
+            Image = Content.Load<Texture2D>("SpearmanPic");
 
             base.OnLoad();
         }

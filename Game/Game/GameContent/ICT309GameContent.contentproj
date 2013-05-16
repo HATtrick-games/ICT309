@@ -259,13 +259,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrcPic.png">
-      <Name>OrcPic</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="grate.png">
       <Name>grate</Name>
       <Importer>TextureImporter</Importer>
@@ -275,6 +268,43 @@
   <ItemGroup>
     <Compile Include="Player\MainCharacterImage.png">
       <Name>MainCharacterImage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Player\EnemyCaster.FBX">
+      <Name>EnemyCaster</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.13</ProcessorParameters_Scale>
+      <ProcessorParameters_SplitAnimationsFile>anims.xml</ProcessorParameters_SplitAnimationsFile>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpearmanPic.png">
+      <Name>SpearmanPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArcherPic.png">
+      <Name>ArcherPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OrcPic.png">
+      <Name>OrcPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GolemPic.png">
+      <Name>GolemPic</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
