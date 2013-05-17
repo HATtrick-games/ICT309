@@ -13,12 +13,12 @@ using DigitalRune.Graphics;
 using Microsoft.Xna.Framework;
 using DigitalRune.Collections;
 using ICT309Game.Levels;
-<<<<<<< HEAD
+
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
-=======
+
 using ICT309Game.Game_Components.UI;
->>>>>>> Invisible Doom Traps are added
+
 
 namespace ICT309Game.GameObjects.Board
 {

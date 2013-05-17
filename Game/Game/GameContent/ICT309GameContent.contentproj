@@ -340,7 +340,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="SoundFX\end_level.mp3">
       <Name>end_level</Name>
       <Importer>Mp3Importer</Importer>

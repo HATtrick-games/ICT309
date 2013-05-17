@@ -56,14 +56,13 @@ Content\Player\KnightTexFinal_0.xnb
 Content\UI\goldcrestlogo.xnb
 Content\UI\background.xnb
 Content\UI\menupic.xnb
-Content\Player\KnightTexFinal_0.xnb
-Content\SoundFX\Menu_loop.xnb
+Content\KnightPic.xnb
 Content\SoundFX\end_level.xnb
 Content\SoundFX\second_level.xnb
+Content\SoundFX\Menu_loop.xnb
 Content\SoundFX\first_level.xnb
-Content\KnightPic.xnb
 Content\Cutscenes\Cutscene.wmv
-Content\SoundFX\Menu_loop.wma
 Content\SoundFX\end_level.wma
 Content\SoundFX\second_level.wma
+Content\SoundFX\Menu_loop.wma
 Content\SoundFX\first_level.wma
