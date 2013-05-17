@@ -21,6 +21,7 @@ using ICT309Game.GameObjects.AI;
 using Microsoft.Xna.Framework.Input;
 using DigitalRune.Game.UI.Controls;
 using ICT309Game.Levels;
+using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
@@ -50,6 +51,8 @@ namespace ICT309Game.Game_Components
             };
             
             graphicsService.Screens.Add(_gameScreen);
+
+            
         }
 
         public override void Initialize()
@@ -60,6 +63,11 @@ namespace ICT309Game.Game_Components
             var gameSettings = ServiceLocator.Current.GetInstance<GameSettings>();
 
             _gameBoardManager = new GameBoardManagerObject(_levelObjects[GameSettings.LevelNumber]);
+
+            var content = ServiceLocator.Current.GetInstance<ContentManager>();
+            Song music = content.Load<Song>(_levelObjects[GameSettings.LevelNumber]._backgroundSong);
+            MediaPlayer.Play(music);
+            MediaPlayer.IsRepeating = true;
 
             _aiHandler = new AIHandlerObject(_gameBoardManager);
             _camera = new CameraObject();

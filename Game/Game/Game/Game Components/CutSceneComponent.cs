@@ -53,7 +53,9 @@ namespace ICT309Game.Game_Components
 
             if (videoTimer > cutScene.Duration.TotalMilliseconds)
             {
-                
+                Game.Components.Remove(this);
+                Game.Components.Add(new MainGameComponent(Game));
+                Dispose(true);
             }
 
             base.Update(gameTime);

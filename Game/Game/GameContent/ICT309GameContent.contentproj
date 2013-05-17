@@ -339,6 +339,32 @@
       <ProcessorParameters_SplitAnimationsFile>anims.xml</ProcessorParameters_SplitAnimationsFile>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SoundFX\end_level.mp3">
+      <Name>end_level</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+    <Compile Include="SoundFX\second_level.mp3">
+      <Name>second_level</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SoundFX\Menu_loop.mp3">
+      <Name>Menu_loop</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SoundFX\first_level.mp3">
+      <Name>first_level</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -12,6 +12,7 @@ using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Game.UI.Controls;
 using DigitalRune.Mathematics.Algebra;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
@@ -28,6 +29,8 @@ namespace ICT309Game.Game_Components
         Image _gameLogo;
         Image _background;
         Image _menuPic;
+
+        Song backgroundMusic;
 
         public MainMenuComponent(Game game) : base(game)
         {
@@ -104,6 +107,10 @@ namespace ICT309Game.Game_Components
             _menuUI.Children.Add(_about);
             _menuUI.Children.Add(_exit);
 
+            backgroundMusic = content.Load<Song>("SoundFX/Menu_loop");
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.IsRepeating = true;
+
             base.Initialize();
         }
 
@@ -119,6 +126,7 @@ namespace ICT309Game.Game_Components
 
         protected override void Dispose(bool disposing)
         {
+            MediaPlayer.Stop();
             _menuUI.Children.RemoveRange(0, _menuUI.Children.Count);
 
             var uiService = ServiceLocator.Current.GetInstance<IUIService>();

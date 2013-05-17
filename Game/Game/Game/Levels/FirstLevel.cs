@@ -18,6 +18,7 @@ namespace ICT309Game.Levels
             : base()
         {
             _levelModel = "Board/testmodel";
+            _backgroundSong = "SoundFX/first_level";
             _boardData = new bool[10, 10];
 
             for (int i = 0; i < _boardData.GetLength(0); i++)

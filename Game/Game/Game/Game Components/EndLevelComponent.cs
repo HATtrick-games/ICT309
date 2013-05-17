@@ -12,6 +12,7 @@ using DigitalRune.Game.UI.Rendering;
 using DigitalRune.Game.UI;
 using DigitalRune.Mathematics.Algebra;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
@@ -26,6 +27,8 @@ namespace ICT309Game.Game_Components
         Button _nextLevel;
         Button _saveGame;
         Button _returnToMenu;
+
+        Song _backgroundMusic;
 
         public EndLevelComponent(Game game, bool allyWin)
             : base(game)
@@ -72,6 +75,10 @@ namespace ICT309Game.Game_Components
             {
                 EnemyWin();
             }
+
+            _backgroundMusic = content.Load<Song>("SoundFX/end_level");
+            MediaPlayer.Play(_backgroundMusic);
+            MediaPlayer.IsRepeating = true;
         }
 
         private void EndToMenu()
@@ -141,6 +148,7 @@ namespace ICT309Game.Game_Components
 
         protected override void Dispose(bool disposing)
         {
+            MediaPlayer.Stop();
             var uiService = ServiceLocator.Current.GetInstance<IUIService>();
             if (uiService != null) uiService.Screens.Remove(_endLevelUI);
 

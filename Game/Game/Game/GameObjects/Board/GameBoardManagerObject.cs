@@ -13,6 +13,8 @@ using DigitalRune.Graphics;
 using Microsoft.Xna.Framework;
 using DigitalRune.Collections;
 using ICT309Game.Levels;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Content;
 
 namespace ICT309Game.GameObjects.Board
 {
@@ -50,20 +52,14 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject(Level level)
         {
-
             moves = 0;
             MovementInProgress = false;
             Pather = new PathFinder();
-            InitialiseBoard();  
-            // LOAD IN LEVEL FILES FROM EXTERNAL FILE
-            GameBoard[5, 5] = SquareData.BLOCKED;
-
-            InitialiseBoard();
+            InitialiseBoard(); 
 
             TurnManager = new TurnManager();
 
             LoadLevel(level);
-
 
             for (int i = 0; i < Positions.GetLength(0); i++)
             {
@@ -339,6 +335,8 @@ namespace ICT309Game.GameObjects.Board
 
         protected override void OnUnload()
         {
+            MediaPlayer.Stop();
+
             base.OnUnload();
         }
 
