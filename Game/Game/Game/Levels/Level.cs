@@ -15,6 +15,7 @@ namespace ICT309Game.Levels
         public string _backgroundSong { get; protected set; }
         public bool[,] _boardData { get; protected set; }
         public List<CharacterObject> _characters { get; protected set; }
+        public int NumberOfTraps;
 
         public Level()
         {

@@ -19,6 +19,7 @@ namespace ICT309Game.Levels
         public FirstLevel()
             : base()
         {
+            NumberOfTraps = 2;
             _levelModel = "Board/testmodel";
             _backgroundSong = "SoundFX/first_level";
             _boardData = new bool[10, 10];
