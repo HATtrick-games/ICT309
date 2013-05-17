@@ -42,7 +42,8 @@ namespace ICT309Game.GameObjects.Board
         private const float startPos = -114.5f;
         private const float gap = 25.5f;
         private const int boardSize = 10;
-        private List<TrapObject> Traps = new List<TrapObject>(); 
+        private List<TrapObject> Traps = new List<TrapObject>();
+        int numtraps = 0;
 
         // BOARD PROPERTIES
         public static readonly Vector3F[,] Positions = new Vector3F[boardSize, boardSize];
@@ -57,8 +58,9 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject(Level level)
         {
-
+            Traps = new List<TrapObject>();
             moves = 0;
+            numtraps = 0;
 
             MovementInProgress = false;
             Pather = new PathFinder();
@@ -128,6 +130,7 @@ namespace ICT309Game.GameObjects.Board
 
                 taken[trap.PosX, trap.PosY] = 1;
                 Traps.Add(trap);
+                numtraps++;
                 passed = false;
                 Console.Write("Trap added at ");
                 Console.Write(trap.PosX);
@@ -215,15 +218,16 @@ namespace ICT309Game.GameObjects.Board
                 moves = 0;
                 TurnManager.CurrentTurn.PosX = Pather.returnX(counter);
                 TurnManager.CurrentTurn.PosY = Pather.returnY(counter);
-                foreach(TrapObject trap in Traps)
+                for(int f = 0; f<numtraps; f++)
                 {
-                    if ((trap.PosX == TurnManager.CurrentTurn.PosX) && (trap.PosY == TurnManager.CurrentTurn.PosY))
+                    if ((Traps[f].PosX == TurnManager.CurrentTurn.PosX) && (Traps[f].PosY == TurnManager.CurrentTurn.PosY))
                     {
                         counter = 0;
-                        TurnManager.CurrentTurn.HitPoints -= trap.Damage;
+                        TurnManager.CurrentTurn.HitPoints -= Traps[f].Damage;
                         var gamelog = ServiceLocator.Current.GetInstance<GameLog>();
-                        gamelog.AddMessage("Trap deals " + trap.Damage + " to " + TurnManager.CurrentTurn.CharacterName + "!!!");
-                        Traps.Remove(trap);
+                        gamelog.AddMessage("Trap deals " + Traps[f].Damage + " to " + TurnManager.CurrentTurn.CharacterName + "!!!");
+                        Traps.Remove(Traps[f]);
+                        numtraps--;
 
                         Console.WriteLine("TRAP HIT");
                     }
