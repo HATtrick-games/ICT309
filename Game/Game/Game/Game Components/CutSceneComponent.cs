@@ -18,15 +18,19 @@ namespace ICT309Game.Game_Components
         Texture2D videoTexture;
 
         int videoTimer;
+        string cutname;
 
         /// <summary> Constructor.</summary>
         ///
         /// <param name="game"> The game.</param>
-        public CutSceneComponent(Game game)
+        public CutSceneComponent(Game game, string name)
             : base(game)
         {
+            cutname = name;
             videoTimer = 0;
         }
+
+        
 
         /// <summary> Called when graphics resources need to be loaded. Override this
         ///           method to load any component-specific graphics resources.</summary>
@@ -34,7 +38,7 @@ namespace ICT309Game.Game_Components
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
 
-            cutScene = content.Load<Video>("Cutscenes/Cutscene");
+            cutScene = content.Load<Video>(cutname);
             player = new VideoPlayer();
 
             base.LoadContent();

@@ -16,6 +16,8 @@ namespace ICT309Game.Levels
         public bool[,] _boardData { get; protected set; }
         public List<CharacterObject> _characters { get; protected set; }
         public int NumberOfTraps;
+        public List<int> ObstructedX = new List<int>();
+        public List<int> ObstructedY = new List<int>();
 
         public Level()
         {
