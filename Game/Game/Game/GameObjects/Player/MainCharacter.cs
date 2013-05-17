@@ -41,7 +41,7 @@ namespace ICT309Game.GameObjects
             Range = 1;
             Movement = 3;
 
-            Image = Content.Load<Texture2D>("SpearmanPic");
+            Image = Content.Load<Texture2D>("KnightPic");
 
             base.OnLoad();
         }
