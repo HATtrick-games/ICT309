@@ -22,7 +22,7 @@ namespace ICT309Game.GameObjects
         protected override void OnLoad()
         {
             _color = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
-            LoadModel("Player/Golem");
+            LoadModel("Player/EnemyCaster");
 
             isAlly = false;
             CharacterName = "AI Ranged Character";
