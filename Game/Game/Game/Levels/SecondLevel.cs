@@ -17,6 +17,7 @@ namespace ICT309Game.Levels
         public SecondLevel()
             : base()
         {
+            
             NumberOfTraps = 5;
             _levelModel = "Level/castlelevel";
             _backgroundSong = "SoundFX/second_level";

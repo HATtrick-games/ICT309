@@ -19,6 +19,12 @@ namespace ICT309Game.Levels
         public FirstLevel()
             : base()
         {
+            ObstructedX.Add(5);
+            ObstructedX.Add(6);
+            ObstructedY.Add(6);
+            ObstructedY.Add(6);
+            ObstructedX.Add(1);
+            ObstructedY.Add(1);
             NumberOfTraps = 2;
             _levelModel = "Level/forestlevel";
             _backgroundSong = "SoundFX/first_level";

@@ -44,7 +44,8 @@ namespace ICT309Game.GameObjects.Board
         private const int boardSize = 10;
         private List<TrapObject> Traps = new List<TrapObject>();
         int numtraps = 0;
-
+        public List<int> ObstructedX = new List<int>();
+        public List<int> ObstructedY = new List<int>();
         // BOARD PROPERTIES
         public static readonly Vector3F[,] Positions = new Vector3F[boardSize, boardSize];
 
@@ -58,6 +59,8 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject(Level level)
         {
+            ObstructedX = level.ObstructedX;
+            ObstructedY = level.ObstructedY;
             Traps = new List<TrapObject>();
             moves = 0;
             numtraps = 0;
@@ -177,6 +180,13 @@ namespace ICT309Game.GameObjects.Board
                Pather.walkable[TurnManager.characterList[i].PosX, TurnManager.characterList[i].PosY] = 1;
 
             }
+            int index = 0;
+            foreach (int num in ObstructedX)
+            {
+                Pather.walkable[num, ObstructedY[index]] = 1;
+                index++;
+            }
+            
 
             endx = pX;
             endy = pY;
