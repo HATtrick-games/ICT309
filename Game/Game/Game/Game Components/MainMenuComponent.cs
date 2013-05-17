@@ -137,6 +137,7 @@ namespace ICT309Game.Game_Components
 
         public void MenuToGame()
         {
+            GameSettings.LevelNumber = 0;
             Game.Components.Remove(this);
             Game.Components.Add(new MainGameComponent(Game));
             Dispose(true);

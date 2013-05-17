@@ -35,7 +35,6 @@ namespace ICT309Game.GameObjects
             Range = 4;
             Movement = 4;
 
-            PosX = 3;
             Image = Content.Load<Texture2D>("GolemPic");
             base.OnLoad();
         }

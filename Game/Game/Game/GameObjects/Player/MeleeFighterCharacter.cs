@@ -27,8 +27,9 @@ namespace ICT309Game.GameObjects
             // LoadModel("Player/rangedally");
 
             isAlly = true;
-            CharacterName = "Melee Fighter Character";
+            CharacterName = "Spearman";
             HitPoints = 310;
+            MaxHitPoints = 310;
             Damage = 150;
             ArmorDamage = 5;
             Armor = 35;
@@ -36,8 +37,6 @@ namespace ICT309Game.GameObjects
             Range = 1;
             Movement = 5;
 
-            PosX = 2;
-            PosY = 1;
             Image = Content.Load<Texture2D>("SpearmanPic");
             base.OnLoad();
         }

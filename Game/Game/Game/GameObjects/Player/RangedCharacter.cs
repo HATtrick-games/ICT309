@@ -24,10 +24,9 @@ namespace ICT309Game.GameObjects
         {
             importance = 7;
             LoadModel("Player/Archer");
-            //LoadModel("Player/rangedally");
 
             isAlly = true;
-            CharacterName = "Ranged Character";
+            CharacterName = "Archer";
             HitPoints = 200;
             MaxHitPoints = 200;
             Damage = 70;
@@ -37,8 +36,6 @@ namespace ICT309Game.GameObjects
             Range = 5;
             Movement = 5;
 
-            PosX = 2;
-            PosY = 1;
             Image = Content.Load<Texture2D>("ArcherPic");
             base.OnLoad();
         }

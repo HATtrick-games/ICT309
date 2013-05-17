@@ -28,7 +28,11 @@ namespace ICT309Game.Game_Components
         Button _saveGame;
         Button _returnToMenu;
 
+        TextBlock _display;
+
         Song _backgroundMusic;
+
+        ContentManager content = ServiceLocator.Current.GetInstance<ContentManager>();
 
         public EndLevelComponent(Game game, bool allyWin)
             : base(game)
@@ -76,7 +80,6 @@ namespace ICT309Game.Game_Components
                 EnemyWin();
             }
 
-            _backgroundMusic = content.Load<Song>("SoundFX/end_level");
             MediaPlayer.Play(_backgroundMusic);
             MediaPlayer.IsRepeating = true;
         }
@@ -90,6 +93,7 @@ namespace ICT309Game.Game_Components
 
         private void LoadCredits()
         {
+            _backgroundMusic = content.Load<Song>("SoundFX/end_level");
             _gameOver = new TextBlock
             {
                 Font = "stattext",
@@ -104,6 +108,7 @@ namespace ICT309Game.Game_Components
 
         private void AllyWin()
         {
+            _backgroundMusic = content.Load<Song>("SoundFX/end_level");
             _nextLevel = new Button
             {
                 Margin = new Vector4F(10),
@@ -126,12 +131,21 @@ namespace ICT309Game.Game_Components
             };
             _saveGame.Click += (s, e) => SaveLoadGame.InitiateSave(GameSettings.LevelNumber);
 
+            _display = new TextBlock
+            {
+                Text = "YOU WIN!",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Y = 100,
+            };
+
+            _endLevelUI.Children.Add(_display);
             _endLevelUI.Children.Add(_nextLevel);
             _endLevelUI.Children.Add(_saveGame);
         }
 
         private void EnemyWin()
         {
+            _backgroundMusic = content.Load<Song>("SoundFX/enemy_win");
             _nextLevel = new Button
             {
                 Margin = new Vector4F(10),
@@ -143,6 +157,14 @@ namespace ICT309Game.Game_Components
             };
             _nextLevel.Click += (s, e) => ReturnToGame();
 
+            _display = new TextBlock
+            {
+                Text = "YOU LOSE!",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Y = 100,
+            };
+
+            _endLevelUI.Children.Add(_display);
             _endLevelUI.Children.Add(_nextLevel);
         }
 

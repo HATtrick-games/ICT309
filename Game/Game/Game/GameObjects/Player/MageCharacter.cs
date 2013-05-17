@@ -36,9 +36,6 @@ namespace ICT309Game.GameObjects
             Range = 4;
             Movement = 4;
 
-            PosX = 2;
-            PosY = 1;
-
             base.OnLoad();
         }
 

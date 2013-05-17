@@ -27,8 +27,8 @@ namespace ICT309Game.GameObjects
 
             isAlly = false;
             CharacterName = "AI Weak Character";
-            HitPoints = 100;
-            MaxHitPoints = 100;
+            HitPoints = 200;
+            MaxHitPoints = 200;
             Damage = 30;
             ArmorDamage = 2;
             Armor = 0;
@@ -36,8 +36,6 @@ namespace ICT309Game.GameObjects
             Range = 1;
             Movement = 3;
 
-            PosX = 5;
-            PosY = 5;
             Image = Content.Load<Texture2D>("OrcPic");
             base.OnLoad();
         }
