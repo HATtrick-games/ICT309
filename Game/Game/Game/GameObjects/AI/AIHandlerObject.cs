@@ -7,6 +7,7 @@ using ICT309Game.GameObjects.Board;
 
 namespace ICT309Game.GameObjects.AI
 {
+    /// <summary> Ai handler object.</summary>
     class AIHandlerObject : GameObject
     {
         int turn = 1;
@@ -24,6 +25,9 @@ namespace ICT309Game.GameObjects.AI
         public bool EndAITurn { get; set; }
         public GameBoardManagerObject GameBoardObj;
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="GameBoard"> The game board.</param>
         public AIHandlerObject(GameBoardManagerObject GameBoard)
         {
             GameBoardObj = GameBoard;
@@ -31,17 +35,25 @@ namespace ICT309Game.GameObjects.AI
             EndAITurn = false;
         }
 
+        /// <summary> Called when the game object should load its content.</summary>
         protected override void OnLoad()
         {
             base.OnLoad();
         }
 
+        /// <summary> Called when the game object should unload its content.</summary>
         protected override void OnUnload()
         {
 
             base.OnUnload();
         }
 
+        /// <summary> Distances.</summary>
+        ///
+        /// <param name="target"> Target for the.</param>
+        /// <param name="source"> Source for the.</param>
+        ///
+        /// <returns> .</returns>
         private int Distance(CharacterObject target, CharacterObject source)
         {
             int disx = source.PosX - target.PosX;

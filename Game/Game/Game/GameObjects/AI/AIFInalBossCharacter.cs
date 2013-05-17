@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ICT309Game.GameObjects
 {
+    /// <summary> Ai final boss character.</summary>
     class AIFinalBossCharacter : CharacterObject
     {
         protected override void OnLoad()

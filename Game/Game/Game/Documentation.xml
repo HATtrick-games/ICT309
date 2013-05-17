@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Game</name>
+    </assembly>
+    <members>
+        <member name="T:ICT309Game.GameObjects.AIFinalBossCharacter">
+            <summary> Ai final boss character.</summary>
+        </member>
+        <member name="T:ICT309Game.Game_Components.EndLevelComponent">
+            <summary> End level component.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.#ctor(Microsoft.Xna.Framework.Game,System.Boolean)">
+             <summary> Constructor.</summary>
+            
+             <param name="game">    The game.</param>
+             <param name="allyWin"> true to ally window.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.EndToMenu">
+            <summary> Ends to menu.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.LoadCredits">
+            <summary> Loads the credits.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.AllyWin">
+            <summary> Ally win.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.EnemyWin">
+            <summary> Enemy win.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.Dispose(System.Boolean)">
+             <summary> Releases the unmanaged resources used by the
+                       DrawableGameComponent and optionally releases the managed
+                       resources.</summary>
+            
+             <param name="disposing"> true to release both managed and unmanaged
+                                      resources; false to release only unmanaged
+                                      resources.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.EndLevelComponent.ReturnToGame">
+            <summary> Returns to game.</summary>
+        </member>
+        <member name="T:ICT309Game.Game_Components.MainGameComponent">
+            <summary> Main game component.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainGameComponent.#ctor(Microsoft.Xna.Framework.Game)">
+             <summary> Constructor.</summary>
+            
+             <param name="game"> The game.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainGameComponent.Initialize">
+            <summary> Initializes the component. Override this method to load any non-
+                      graphics resources and query for any required services.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainGameComponent.Update(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the GameComponent needs to be updated. Override this
+                       method with component-specific update code.</summary>
+            
+             <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainGameComponent.Dispose(System.Boolean)">
+             <summary> Releases the unmanaged resources used by the
+                       DrawableGameComponent and optionally releases the managed
+                       resources.</summary>
+            
+             <param name="disposing"> true to release both managed and unmanaged
+                                      resources; false to release only unmanaged
+                                      resources.</param>
+        </member>
+        <member name="T:ICT309Game.Game_Components.CutSceneComponent">
+            <summary> Cut scene component.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.#ctor(Microsoft.Xna.Framework.Game)">
+             <summary> Constructor.</summary>
+            
+             <param name="game"> The game.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.LoadContent">
+            <summary> Called when graphics resources need to be loaded. Override this
+                      method to load any component-specific graphics resources.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.Dispose(System.Boolean)">
+             <summary> Releases the unmanaged resources used by the
+                       DrawableGameComponent and optionally releases the managed
+                       resources.</summary>
+            
+             <param name="disposing"> true to release both managed and unmanaged
+                                      resources; false to release only unmanaged
+                                      resources.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.Update(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the GameComponent needs to be updated. Override this
+                       method with component-specific update code.</summary>
+            
+             <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.Draw(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the DrawableGameComponent needs to be drawn. Override
+                       this method with component-specific drawing code. Reference
+                       page contains links to related conceptual articles.</summary>
+            
+             <param name="gameTime"> Time passed since the last call to Draw.</param>
+            
+             ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="T:ICT309Game.Game_Components.StartScreenComponent">
+            <summary> Start screen component.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.StartScreenComponent.#ctor(Microsoft.Xna.Framework.Game)">
+             <summary> Constructor.</summary>
+            
+             <param name="game"> The game.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.StartScreenComponent.LoadContent">
+            <summary> Called when graphics resources need to be loaded. Override this
+                      method to load any component-specific graphics resources.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.StartScreenComponent.Update(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the GameComponent needs to be updated. Override this
+                       method with component-specific update code.</summary>
+            
+             <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.StartScreenComponent.Draw(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the DrawableGameComponent needs to be drawn. Override
+                       this method with component-specific drawing code. Reference
+                       page contains links to related conceptual articles.</summary>
+            
+             <param name="gameTime"> Time passed since the last call to Draw.</param>
+            
+             ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Program.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:ICT309Game.Game_Components.UI.MainGameHUD">
+             <summary> Main game HUD.</summary>
+            
+             Displays the main game heads up display.
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.MainGameHUD.#ctor(System.String,DigitalRune.Game.UI.Rendering.IUIRenderer,ICT309Game.GameObjects.Board.TurnManager)">
+             <summary> Constructor.</summary>
+            
+             <param name="name">        The name.</param>
+             <param name="renderer">    The renderer.</param>
+             <param name="turnManager"> Manager for turn.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.MainGameHUD.OnLoad">
+            <summary> Called when the game object should load its content.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.MainGameHUD.OnUnload">
+            <summary> Called when the game object should unload its content.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.MainGameHUD.OnUpdate(System.TimeSpan)">
+             <summary> Called when the game object should be updated.</summary>
+            
+             <param name="deltaTime"> The elapsed time since the last frame.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.MainGameHUD.OnRender(DigitalRune.Game.UI.Controls.UIRenderContext)">
+             <summary> Called when the control and its visual children should be
+                       rendered.</summary>
+            
+             <param name="context"> The render context.</param>
+        </member>
+        <member name="P:ICT309Game.Game_Components.UI.MainGameHUD.TurnManagerObject">
+             <summary> Gets or sets the turn manager object.</summary>
+            
+             <value> The turn manager object.</value>
+        </member>
+        <member name="P:ICT309Game.Game_Components.UI.MainGameHUD.EndButtonClicked">
+             <summary> Gets or sets a value indicating whether the end button
+                       clicked.</summary>
+            
+             <value> true if end button clicked, false if not.</value>
+        </member>
+        <member name="T:ICT309Game.GameManager">
+            <summary>
+            This is the main type for your game
+            </summary>
+        </member>
+        <member name="T:ICT309Game.Game_Components.UI.GameLog">
+             <summary> Game log.</summary>
+            
+             Displays a summary of all major actions that take place within the 
+             game.
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.GameLog.#ctor">
+            <summary> Default constructor.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.GameLog.AddMessage(System.String)">
+             <summary> Adds a message to the game log.</summary>
+            
+             <param name="message"> The message.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.UI.GameLog.ResetLog">
+            <summary> Clears/resets the game log.</summary>
+        </member>
+        <member name="P:ICT309Game.Game_Components.UI.GameLog._log">
+             <summary> Gets or sets the log.</summary>
+            
+             <value> The log.</value>
+        </member>
+        <member name="T:ICT309Game.Game_Components.MainMenuComponent">
+            <summary> Main menu component.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.#ctor(Microsoft.Xna.Framework.Game)">
+             <summary> Constructor.</summary>
+            
+             <param name="game"> The game.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.Initialize">
+            <summary> Initializes the component. Override this method to load any non-
+                      graphics resources and query for any required services.</summary>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.Update(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the GameComponent needs to be updated. Override this
+                       method with component-specific update code.</summary>
+            
+             <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.Draw(Microsoft.Xna.Framework.GameTime)">
+             <summary> Called when the DrawableGameComponent needs to be drawn. Override
+                       this method with component-specific drawing code. Reference
+                       page contains links to related conceptual articles.</summary>
+            
+             <param name="gameTime"> Time passed since the last call to Draw.</param>
+            
+             ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.Dispose(System.Boolean)">
+             <summary> Releases the unmanaged resources used by the
+                       DrawableGameComponent and optionally releases the managed
+                       resources.</summary>
+            
+             <param name="disposing"> true to release both managed and unmanaged
+                                      resources; false to release only unmanaged
+                                      resources.</param>
+        </member>
+        <member name="M:ICT309Game.Game_Components.MainMenuComponent.MenuToGame">
+            <summary> Menu to game.</summary>
+        </member>
+    </members>
+</doc>

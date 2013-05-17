@@ -15,6 +15,7 @@ namespace ICT309Game.Levels
         AIWeakCharacter _AIWeakCharacter1;
         AIWeakCharacter _AIWeakCharacter2;
         MeleeFighterCharacter _MeleeFighterCharacter;
+        AITankCharacter _AITankCharacter;
 
         public FirstLevel()
             : base()
@@ -54,6 +55,9 @@ namespace ICT309Game.Levels
             _MeleeFighterCharacter = new MeleeFighterCharacter();
             _MeleeFighterCharacter.PosX = 6;
             _MeleeFighterCharacter.PosY = 0;
+            _AITankCharacter = new AITankCharacter();
+            _AITankCharacter.PosX = 7;
+            _AITankCharacter.PosY = 9;
 
             _characters = new List<CharacterObject>();
             _characters.Add(_MainCharacter);
@@ -62,6 +66,7 @@ namespace ICT309Game.Levels
             _characters.Add(_AIWeakCharacter1);
             _characters.Add(_AIWeakCharacter2);
             _characters.Add(_MeleeFighterCharacter);
+            _characters.Add(_AITankCharacter);
         }
     }
 }

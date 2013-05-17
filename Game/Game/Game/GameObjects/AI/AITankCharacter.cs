@@ -35,7 +35,7 @@ namespace ICT309Game.GameObjects
             Range = 1;
             Movement = 2;
 
-            Image = Content.Load<Texture2D>("GolemPic");
+            Image = Content.Load<Texture2D>("OrcPic");
             base.OnLoad();
         }
 

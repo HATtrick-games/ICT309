@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace ICT309Game.GameObjects
 {
+    /// <summary> Ai weak character.</summary>
     class AIWeakCharacter : CharacterObject
     {
 
