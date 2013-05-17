@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
+    /// <summary> End level component.</summary>
     class EndLevelComponent : DrawableGameComponent
     {
         private UIScreen _endLevelUI;
@@ -34,6 +35,10 @@ namespace ICT309Game.Game_Components
 
         ContentManager content = ServiceLocator.Current.GetInstance<ContentManager>();
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="game">    The game.</param>
+        /// <param name="allyWin"> true to ally window.</param>
         public EndLevelComponent(Game game, bool allyWin)
             : base(game)
         {
@@ -84,6 +89,7 @@ namespace ICT309Game.Game_Components
             MediaPlayer.IsRepeating = true;
         }
 
+        /// <summary> Ends to menu.</summary>
         private void EndToMenu()
         {
             Game.Components.Remove(this);
@@ -91,6 +97,7 @@ namespace ICT309Game.Game_Components
             Dispose(true);
         }
 
+        /// <summary> Loads the credits.</summary>
         private void LoadCredits()
         {
             _backgroundMusic = content.Load<Song>("SoundFX/end_level");
@@ -106,6 +113,7 @@ namespace ICT309Game.Game_Components
             _endLevelUI.Children.Add(_gameOver);
         }
 
+        /// <summary> Ally win.</summary>
         private void AllyWin()
         {
             _backgroundMusic = content.Load<Song>("SoundFX/end_level");
@@ -143,6 +151,7 @@ namespace ICT309Game.Game_Components
             _endLevelUI.Children.Add(_saveGame);
         }
 
+        /// <summary> Enemy win.</summary>
         private void EnemyWin()
         {
             _backgroundMusic = content.Load<Song>("SoundFX/enemy_win");
@@ -168,6 +177,13 @@ namespace ICT309Game.Game_Components
             _endLevelUI.Children.Add(_nextLevel);
         }
 
+        /// <summary> Releases the unmanaged resources used by the
+        ///           DrawableGameComponent and optionally releases the managed
+        ///           resources.</summary>
+        ///
+        /// <param name="disposing"> true to release both managed and unmanaged
+        ///                          resources; false to release only unmanaged
+        ///                          resources.</param>
         protected override void Dispose(bool disposing)
         {
             MediaPlayer.Stop();
@@ -177,6 +193,7 @@ namespace ICT309Game.Game_Components
             base.Dispose(disposing);
         }
 
+        /// <summary> Returns to game.</summary>
         public void ReturnToGame()
         {
             Game.Components.Remove(this);

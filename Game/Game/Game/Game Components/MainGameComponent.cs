@@ -25,6 +25,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
+    /// <summary> Main game component.</summary>
     class MainGameComponent: DrawableGameComponent
     {
         private BasicScreen _gameScreen;
@@ -37,6 +38,9 @@ namespace ICT309Game.Game_Components
 
         private List<Level> _levelObjects;
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="game"> The game.</param>
         public MainGameComponent(Game game):base(game)
         {
             var graphicsService = ServiceLocator.Current.GetInstance<IGraphicsService>();
@@ -55,6 +59,8 @@ namespace ICT309Game.Game_Components
             
         }
 
+        /// <summary> Initializes the component. Override this method to load any non-
+        ///           graphics resources and query for any required services.</summary>
         public override void Initialize()
         {
             var contentManager = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -87,6 +93,10 @@ namespace ICT309Game.Game_Components
             uiService.Screens.Add(_gameHUD);
         }
 
+        /// <summary> Called when the GameComponent needs to be updated. Override this
+        ///           method with component-specific update code.</summary>
+        ///
+        /// <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Update(GameTime gameTime)
         {
             var inputService = ServiceLocator.Current.GetInstance<IInputService>();
@@ -116,6 +126,13 @@ namespace ICT309Game.Game_Components
             base.Update(gameTime);
         }
 
+        /// <summary> Releases the unmanaged resources used by the
+        ///           DrawableGameComponent and optionally releases the managed
+        ///           resources.</summary>
+        ///
+        /// <param name="disposing"> true to release both managed and unmanaged
+        ///                          resources; false to release only unmanaged
+        ///                          resources.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

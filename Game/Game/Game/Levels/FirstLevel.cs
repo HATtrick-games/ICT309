@@ -20,7 +20,7 @@ namespace ICT309Game.Levels
             : base()
         {
             NumberOfTraps = 2;
-            _levelModel = "Board/testmodel";
+            _levelModel = "Level/forestlevel";
             _backgroundSong = "SoundFX/first_level";
             _boardData = new bool[10, 10];
 
@@ -31,6 +31,10 @@ namespace ICT309Game.Levels
                     _boardData[i, j] = true;
                 }
             }
+
+            _boardData[1, 1] = false;
+            _boardData[5, 6] = false;
+            _boardData[6, 6] = false;
 
             _MainCharacter = new MainCharacter();
             _MainCharacter.PosX = 5;

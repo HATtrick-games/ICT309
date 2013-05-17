@@ -179,7 +179,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game Components\AboutComponent.cs" />
     <Compile Include="Game Components\CutSceneComponent.cs" />
     <Compile Include="Game Components\EndLevelComponent.cs" />
     <Compile Include="Game Components\MainGameComponent.cs" />
@@ -187,8 +186,6 @@
     <Compile Include="Game Components\StartScreenComponent.cs" />
     <Compile Include="Game Components\UI\GameLog.cs" />
     <Compile Include="Game Components\UI\MainGameHUD.cs" />
-    <Compile Include="Game Components\UI\OptionsWindow.cs" />
-    <Compile Include="Game Components\UI\PauseWindow.cs" />
     <Compile Include="GameObjects\AI\AIHandlerObject.cs" />
     <Compile Include="GameObjects\AI\AIRangedCharacter.cs" />
     <Compile Include="GameObjects\AI\AIWeakCharacter.cs" />

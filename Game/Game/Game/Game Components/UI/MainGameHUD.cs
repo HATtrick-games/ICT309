@@ -16,6 +16,9 @@ using ICT309Game.GameObjects;
 
 namespace ICT309Game.Game_Components.UI
 {
+    /// <summary> Main game HUD.</summary>
+    ///
+    /// Displays the main game heads up display.
     class MainGameHUD : UIScreen
     {
         Button _turnButton;
@@ -41,17 +44,30 @@ namespace ICT309Game.Game_Components.UI
         TextBlock _movement;
 
         TextBox _gameLog;
-        
+
+        /// <summary> Gets or sets the turn manager object.</summary>
+        ///
+        /// <value> The turn manager object.</value>
         public TurnManager TurnManagerObject { get; set; }
 
+        /// <summary> Gets or sets a value indicating whether the end button
+        ///           clicked.</summary>
+        ///
+        /// <value> true if end button clicked, false if not.</value>
         public bool EndButtonClicked { get; private set; }
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="name">        The name.</param>
+        /// <param name="renderer">    The renderer.</param>
+        /// <param name="turnManager"> Manager for turn.</param>
         public MainGameHUD(string name, IUIRenderer renderer, TurnManager turnManager)
             : base(name, renderer)
         {
             TurnManagerObject = turnManager;
         }
 
+        /// <summary> Called when the game object should load its content.</summary>
         protected override void OnLoad()
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -196,11 +212,15 @@ namespace ICT309Game.Game_Components.UI
             base.OnLoad();
         }
 
+        /// <summary> Called when the game object should unload its content.</summary>
         protected override void OnUnload()
         {
             base.OnUnload();
         }
 
+        /// <summary> Called when the game object should be updated.</summary>
+        ///
+        /// <param name="deltaTime"> The elapsed time since the last frame.</param>
         protected override void OnUpdate(TimeSpan deltaTime)
         {
             EndButtonClicked = false;
@@ -277,6 +297,10 @@ namespace ICT309Game.Game_Components.UI
             base.OnUpdate(deltaTime);
         }
 
+        /// <summary> Called when the control and its visual children should be
+        ///           rendered.</summary>
+        ///
+        /// <param name="context"> The render context.</param>
         protected override void OnRender(UIRenderContext context)
         {
             

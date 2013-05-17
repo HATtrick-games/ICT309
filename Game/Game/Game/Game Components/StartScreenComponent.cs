@@ -9,17 +9,23 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ICT309Game.Game_Components
 {
+    /// <summary> Start screen component.</summary>
     class StartScreenComponent : DrawableGameComponent
     {
         private Texture2D _splashScreen;
         private int timing = 0;
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="game"> The game.</param>
         public StartScreenComponent(Game game)
             : base(game)
         {
 
         }
 
+        /// <summary> Called when graphics resources need to be loaded. Override this
+        ///           method to load any component-specific graphics resources.</summary>
         protected override void LoadContent()
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -29,6 +35,10 @@ namespace ICT309Game.Game_Components
             base.LoadContent();
         }
 
+        /// <summary> Called when the GameComponent needs to be updated. Override this
+        ///           method with component-specific update code.</summary>
+        ///
+        /// <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Update(GameTime gameTime)
         {
             timing += gameTime.ElapsedGameTime.Milliseconds;
@@ -42,6 +52,13 @@ namespace ICT309Game.Game_Components
             base.Update(gameTime);
         }
 
+        /// <summary> Called when the DrawableGameComponent needs to be drawn. Override
+        ///           this method with component-specific drawing code. Reference
+        ///           page contains links to related conceptual articles.</summary>
+        ///
+        /// <param name="gameTime"> Time passed since the last call to Draw.</param>
+        ///
+        /// ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = ServiceLocator.Current.GetInstance<SpriteBatch>();

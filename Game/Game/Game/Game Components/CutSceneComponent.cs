@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ICT309Game.Game_Components
 {
+    /// <summary> Cut scene component.</summary>
     class CutSceneComponent : DrawableGameComponent
     {
         Video cutScene;
@@ -18,12 +19,17 @@ namespace ICT309Game.Game_Components
 
         int videoTimer;
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="game"> The game.</param>
         public CutSceneComponent(Game game)
             : base(game)
         {
             videoTimer = 0;
         }
 
+        /// <summary> Called when graphics resources need to be loaded. Override this
+        ///           method to load any component-specific graphics resources.</summary>
         protected override void LoadContent()
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -34,11 +40,22 @@ namespace ICT309Game.Game_Components
             base.LoadContent();
         }
 
+        /// <summary> Releases the unmanaged resources used by the
+        ///           DrawableGameComponent and optionally releases the managed
+        ///           resources.</summary>
+        ///
+        /// <param name="disposing"> true to release both managed and unmanaged
+        ///                          resources; false to release only unmanaged
+        ///                          resources.</param>
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
         }
 
+        /// <summary> Called when the GameComponent needs to be updated. Override this
+        ///           method with component-specific update code.</summary>
+        ///
+        /// <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Update(GameTime gameTime)
         {
             if (player.State == MediaState.Stopped)

@@ -16,6 +16,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace ICT309Game.Game_Components
 {
+    /// <summary> Main menu component.</summary>
     class MainMenuComponent : DrawableGameComponent
     {
         //private MenuUI _menuUI;
@@ -23,7 +24,7 @@ namespace ICT309Game.Game_Components
         private UIScreen _menuUI;
 
         Button _startGame;
-        Button _about;
+        //Button _about;
         Button _exit;
 
         Image _gameLogo;
@@ -32,11 +33,16 @@ namespace ICT309Game.Game_Components
 
         Song backgroundMusic;
 
+        /// <summary> Constructor.</summary>
+        ///
+        /// <param name="game"> The game.</param>
         public MainMenuComponent(Game game) : base(game)
         {
             
         }
 
+        /// <summary> Initializes the component. Override this method to load any non-
+        ///           graphics resources and query for any required services.</summary>
         public override void Initialize()
         {
             var content = ServiceLocator.Current.GetInstance<ContentManager>();
@@ -59,7 +65,7 @@ namespace ICT309Game.Game_Components
             };
             _startGame.Click += (s, e) => MenuToGame();
 
-            _about = new Button
+            /*_about = new Button
             {
                 Margin = new Vector4F(10),
                 Width = 200,
@@ -67,7 +73,7 @@ namespace ICT309Game.Game_Components
                 Y = 405,
                 X = 200,
                 Content = new TextBlock { Text = "About Us" },
-            };
+            };*/
 
             var Game = ServiceLocator.Current.GetInstance<Game>();
             _exit = new Button
@@ -76,7 +82,7 @@ namespace ICT309Game.Game_Components
                 Width = 200,
                 Height = 60,
                 X = 200,
-                Y = 480,
+                Y = 405,
                 Content = new TextBlock { Text = "Exit" },
             };
             _exit.Click += (s, e) => Game.Exit();
@@ -104,7 +110,7 @@ namespace ICT309Game.Game_Components
             _menuUI.Children.Add(_menuPic);
             _menuUI.Children.Add(_gameLogo);
             _menuUI.Children.Add(_startGame);
-            _menuUI.Children.Add(_about);
+            //_menuUI.Children.Add(_about);
             _menuUI.Children.Add(_exit);
 
             backgroundMusic = content.Load<Song>("SoundFX/Menu_loop");
@@ -114,16 +120,34 @@ namespace ICT309Game.Game_Components
             base.Initialize();
         }
 
+        /// <summary> Called when the GameComponent needs to be updated. Override this
+        ///           method with component-specific update code.</summary>
+        ///
+        /// <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
 
+        /// <summary> Called when the DrawableGameComponent needs to be drawn. Override
+        ///           this method with component-specific drawing code. Reference
+        ///           page contains links to related conceptual articles.</summary>
+        ///
+        /// <param name="gameTime"> Time passed since the last call to Draw.</param>
+        ///
+        /// ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
         }
 
+        /// <summary> Releases the unmanaged resources used by the
+        ///           DrawableGameComponent and optionally releases the managed
+        ///           resources.</summary>
+        ///
+        /// <param name="disposing"> true to release both managed and unmanaged
+        ///                          resources; false to release only unmanaged
+        ///                          resources.</param>
         protected override void Dispose(bool disposing)
         {
             MediaPlayer.Stop();
@@ -135,6 +159,7 @@ namespace ICT309Game.Game_Components
             base.Dispose(disposing);
         }
 
+        /// <summary> Menu to game.</summary>
         public void MenuToGame()
         {
             GameSettings.LevelNumber = 0;
