@@ -13,8 +13,12 @@ using DigitalRune.Graphics;
 using Microsoft.Xna.Framework;
 using DigitalRune.Collections;
 using ICT309Game.Levels;
+<<<<<<< HEAD
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Content;
+=======
+using ICT309Game.Game_Components.UI;
+>>>>>>> Invisible Doom Traps are added
 
 namespace ICT309Game.GameObjects.Board
 {
@@ -38,6 +42,7 @@ namespace ICT309Game.GameObjects.Board
         private const float startPos = -114.5f;
         private const float gap = 25.5f;
         private const int boardSize = 10;
+        private List<TrapObject> Traps = new List<TrapObject>(); 
 
         // BOARD PROPERTIES
         public static readonly Vector3F[,] Positions = new Vector3F[boardSize, boardSize];
@@ -52,7 +57,9 @@ namespace ICT309Game.GameObjects.Board
 
         public GameBoardManagerObject(Level level)
         {
+
             moves = 0;
+
             MovementInProgress = false;
             Pather = new PathFinder();
             InitialiseBoard(); 
@@ -91,6 +98,40 @@ namespace ICT309Game.GameObjects.Board
             {
                 gameObjectService.Objects.Add(level._characters[x]);
                 TurnManager.AddToList(level._characters[x]);
+            }
+
+            bool passed = false;
+            int[,] taken = new int[10, 10];
+            TrapObject trap = new TrapObject();
+
+            for (int i = 0; i < level.NumberOfTraps; i++)
+            {                               
+                while (passed == false)
+                {
+                    trap = new TrapObject();
+                    passed = true;
+                    for (int z = 0; z < TurnManager.characterList.Count; z++)
+                    {
+                        if ((trap.PosX == TurnManager.characterList[z].PosX) && (trap.PosY == TurnManager.characterList[z].PosY))
+                        {
+                            passed = false;
+                        }
+                    }
+
+                    if (taken[trap.PosX, trap.PosY] == 1)
+                    {
+                        passed = false;
+                    }
+
+                    
+                }
+
+                taken[trap.PosX, trap.PosY] = 1;
+                Traps.Add(trap);
+                passed = false;
+                Console.Write("Trap added at ");
+                Console.Write(trap.PosX);
+                Console.Write(trap.PosY);
             }
         }
 
@@ -166,7 +207,7 @@ namespace ICT309Game.GameObjects.Board
                 TurnManager.CurrentTurn.PauseWalk();
                 MovementInProgress = false;
                 TurnManager.CurrentTurn.Moving = false;
-                GameActions.MoveCharacter(TurnManager.CurrentTurn, endx,endy);
+                GameActions.MoveCharacter(TurnManager.CurrentTurn, TurnManager.CurrentTurn.PosX, TurnManager.CurrentTurn.PosY);
                 TurnManager.ChangeStatus();
             }
             else if (twoVectors(TurnManager.CurrentTurn.MovingPos, GameBoardManagerObject.Positions[Pather.returnX(counter), Pather.returnY(counter)])) 
@@ -174,6 +215,19 @@ namespace ICT309Game.GameObjects.Board
                 moves = 0;
                 TurnManager.CurrentTurn.PosX = Pather.returnX(counter);
                 TurnManager.CurrentTurn.PosY = Pather.returnY(counter);
+                foreach(TrapObject trap in Traps)
+                {
+                    if ((trap.PosX == TurnManager.CurrentTurn.PosX) && (trap.PosY == TurnManager.CurrentTurn.PosY))
+                    {
+                        counter = 0;
+                        TurnManager.CurrentTurn.HitPoints -= trap.Damage;
+                        var gamelog = ServiceLocator.Current.GetInstance<GameLog>();
+                        gamelog.AddMessage("Trap deals " + trap.Damage + " to " + TurnManager.CurrentTurn.CharacterName + "!!!");
+                        Traps.Remove(trap);
+
+                        Console.WriteLine("TRAP HIT");
+                    }
+                }
                 counter -= 1;
                 
             }
