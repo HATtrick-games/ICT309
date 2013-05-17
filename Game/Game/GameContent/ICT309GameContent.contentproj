@@ -388,6 +388,15 @@
       <Processor>DRModelProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Player\OrcSmall.FBX">
+      <Name>OrcSmall</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>SkinnedModelProcessor</Processor>
+      <ProcessorParameters_Scale>0.08</ProcessorParameters_Scale>
+      <ProcessorParameters_SplitAnimationsFile>anims.xml</ProcessorParameters_SplitAnimationsFile>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

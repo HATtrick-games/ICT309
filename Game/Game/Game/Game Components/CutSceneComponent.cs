@@ -78,6 +78,13 @@ namespace ICT309Game.Game_Components
             base.Update(gameTime);
         }
 
+        /// <summary> Called when the DrawableGameComponent needs to be drawn. Override
+        ///           this method with component-specific drawing code. Reference
+        ///           page contains links to related conceptual articles.</summary>
+        ///
+        /// <param name="gameTime"> Time passed since the last call to Draw.</param>
+        ///
+        /// ### <param name="gameTime"> Time elapsed since the last call to Update.</param>
         public override void Draw(GameTime gameTime)
         {
             var spriteBatch = ServiceLocator.Current.GetInstance<SpriteBatch>();

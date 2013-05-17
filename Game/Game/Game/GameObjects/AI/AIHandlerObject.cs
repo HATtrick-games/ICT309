@@ -94,7 +94,7 @@ Mage	5
                 damages[i] = (GameBoardObj.TurnManager.CurrentTurn.Damage - ((GameBoardObj.TurnManager.CurrentTurn.Damage*GameBoardObj.TurnManager.characterList[i].Armor) / 100));
                 if (GameBoardObj.TurnManager.characterList[i].isAlly)
                 {
-                    scores[i] = damages[i] / (10 + GameBoardObj.TurnManager.characterList[i].importance + distances[i]);
+                    scores[i] = (damages[i]*GameBoardObj.TurnManager.characterList[i].importance) / (10 + distances[i]);
                     if ((scores[i] > max)&&(distances[i] != GameBoardObj.TurnManager.CurrentTurn.Movement))
                     {
                         Console.WriteLine(scores[i]);
