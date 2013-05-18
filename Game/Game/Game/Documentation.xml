@@ -70,7 +70,7 @@
         <member name="T:ICT309Game.Game_Components.CutSceneComponent">
             <summary> Cut scene component.</summary>
         </member>
-        <member name="M:ICT309Game.Game_Components.CutSceneComponent.#ctor(Microsoft.Xna.Framework.Game)">
+        <member name="M:ICT309Game.Game_Components.CutSceneComponent.#ctor(Microsoft.Xna.Framework.Game,System.String)">
              <summary> Constructor.</summary>
             
              <param name="game"> The game.</param>
@@ -134,6 +134,31 @@
             <summary>
             The main entry point for the application.
             </summary>
+        </member>
+        <member name="T:ICT309Game.GameObjects.AIWeakCharacter">
+            <summary> Ai weak character.</summary>
+        </member>
+        <member name="T:ICT309Game.GameObjects.AI.AIHandlerObject">
+            <summary> Ai handler object.</summary>
+        </member>
+        <member name="M:ICT309Game.GameObjects.AI.AIHandlerObject.#ctor(ICT309Game.GameObjects.Board.GameBoardManagerObject)">
+             <summary> Constructor.</summary>
+            
+             <param name="GameBoard"> The game board.</param>
+        </member>
+        <member name="M:ICT309Game.GameObjects.AI.AIHandlerObject.OnLoad">
+            <summary> Called when the game object should load its content.</summary>
+        </member>
+        <member name="M:ICT309Game.GameObjects.AI.AIHandlerObject.OnUnload">
+            <summary> Called when the game object should unload its content.</summary>
+        </member>
+        <member name="M:ICT309Game.GameObjects.AI.AIHandlerObject.Distance(ICT309Game.GameObjects.CharacterObject,ICT309Game.GameObjects.CharacterObject)">
+             <summary> Distances.</summary>
+            
+             <param name="target"> Target for the.</param>
+             <param name="source"> Source for the.</param>
+            
+             <returns> .</returns>
         </member>
         <member name="T:ICT309Game.Game_Components.UI.MainGameHUD">
              <summary> Main game HUD.</summary>

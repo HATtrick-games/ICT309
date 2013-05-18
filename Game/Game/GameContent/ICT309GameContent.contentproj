@@ -216,13 +216,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cutscenes\Cutscene.wmv">
-      <Name>Cutscene</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Player\DudeMain.FBX">
       <Name>DudeMain</Name>
       <Importer>FbxImporter</Importer>
@@ -395,6 +388,18 @@
       <Processor>SkinnedModelProcessor</Processor>
       <ProcessorParameters_Scale>0.08</ProcessorParameters_Scale>
       <ProcessorParameters_SplitAnimationsFile>anims.xml</ProcessorParameters_SplitAnimationsFile>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cutscenes\CutScene1.wmv">
+      <Name>CutScene1</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+    </Compile>
+    <Compile Include="Cutscenes\CutScene2.wmv">
+      <Name>CutScene2</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

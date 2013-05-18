@@ -196,9 +196,19 @@ namespace ICT309Game.Game_Components
         /// <summary> Returns to game.</summary>
         public void ReturnToGame()
         {
-            Game.Components.Remove(this);
-            Game.Components.Add(new MainGameComponent(Game));
-            Dispose(true);
+            if (GameSettings.LevelNumber > 0)
+            {
+                Game.Components.Remove(this);
+                Game.Components.Add(new CutSceneComponent(Game, "Cutscenes/CutScene2"));
+                Dispose(true);
+            }
+            else
+            {
+                Game.Components.Remove(this);
+                Game.Components.Add(new MainGameComponent(Game));
+                Dispose(true);
+            }
+            
         }
     }
 }

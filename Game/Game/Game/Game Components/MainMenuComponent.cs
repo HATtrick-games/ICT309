@@ -164,7 +164,7 @@ namespace ICT309Game.Game_Components
         {
             GameSettings.LevelNumber = 0;
             Game.Components.Remove(this);
-            Game.Components.Add(new MainGameComponent(Game));
+            Game.Components.Add(new CutSceneComponent(Game, "Cutscenes/CutScene1"));
             Dispose(true);
         }
     }
